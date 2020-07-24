@@ -1,0 +1,66 @@
+2020/07/23-11:54:43.735 424c Reusing MANIFEST C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Session Storage/MANIFEST-000001
+2020/07/23-11:54:43.737 424c Recovering log #132
+2020/07/23-11:54:43.739 424c Reusing old log C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Session Storage/000132.log 
+2020/07/23-11:54:52.883 1ee4 Level-0 table #136: started
+2020/07/23-11:54:52.888 1ee4 Level-0 table #136: 27849 bytes OK
+2020/07/23-11:54:52.890 1ee4 Delete type=0 #132
+2020/07/23-11:54:52.894 1ee4 Compacting 4@0 + 1@1 files
+2020/07/23-11:54:52.900 1ee4 Generated table #137@0: 51 keys, 18825 bytes
+2020/07/23-11:54:52.900 1ee4 Compacted 4@0 + 1@1 files => 18825 bytes
+2020/07/23-11:54:52.901 1ee4 compacted to: files[ 0 1 0 0 0 0 0 ]
+2020/07/23-11:54:52.902 1ee4 Delete type=2 #127
+2020/07/23-11:54:52.902 1ee4 Delete type=2 #129
+2020/07/23-11:54:52.902 1ee4 Delete type=2 #131
+2020/07/23-11:54:52.902 1ee4 Delete type=2 #133
+2020/07/23-11:54:52.902 1ee4 Delete type=2 #136
+2020/07/23-11:57:20.336 1ee4 Level-0 table #139: started
+2020/07/23-11:57:20.341 1ee4 Level-0 table #139: 39010 bytes OK
+2020/07/23-11:57:20.343 1ee4 Delete type=0 #135
+2020/07/23-11:58:48.865 1ee4 Level-0 table #141: started
+2020/07/23-11:58:48.870 1ee4 Level-0 table #141: 37776 bytes OK
+2020/07/23-11:58:48.871 1ee4 Delete type=0 #138
+2020/07/23-11:59:48.751 1ee4 Level-0 table #143: started
+2020/07/23-11:59:48.756 1ee4 Level-0 table #143: 37964 bytes OK
+2020/07/23-11:59:48.757 1ee4 Delete type=0 #140
+2020/07/23-12:03:07.138 1ee4 Level-0 table #145: started
+2020/07/23-12:03:07.143 1ee4 Level-0 table #145: 37986 bytes OK
+2020/07/23-12:03:07.145 1ee4 Delete type=0 #142
+2020/07/23-12:03:07.156 1ee4 Compacting 4@0 + 1@1 files
+2020/07/23-12:03:07.167 1ee4 Generated table #146@0: 452 keys, 169960 bytes
+2020/07/23-12:03:07.167 1ee4 Compacted 4@0 + 1@1 files => 169960 bytes
+2020/07/23-12:03:07.167 1ee4 compacted to: files[ 0 1 0 0 0 0 0 ]
+2020/07/23-12:03:07.168 1ee4 Delete type=2 #137
+2020/07/23-12:03:07.168 1ee4 Delete type=2 #139
+2020/07/23-12:03:07.169 1ee4 Delete type=2 #141
+2020/07/23-12:03:07.169 1ee4 Delete type=2 #143
+2020/07/23-12:03:07.169 1ee4 Delete type=2 #145
+2020/07/23-12:05:29.815 1ee4 Level-0 table #148: started
+2020/07/23-12:05:29.820 1ee4 Level-0 table #148: 38807 bytes OK
+2020/07/23-12:05:29.822 1ee4 Delete type=0 #144
+2020/07/23-12:06:51.985 1ee4 Level-0 table #150: started
+2020/07/23-12:06:51.989 1ee4 Level-0 table #150: 38141 bytes OK
+2020/07/23-12:06:51.991 1ee4 Delete type=0 #147
+2020/07/23-12:08:59.209 1ee4 Level-0 table #152: started
+2020/07/23-12:08:59.214 1ee4 Level-0 table #152: 38869 bytes OK
+2020/07/23-12:08:59.215 1ee4 Delete type=0 #149
+2020/07/23-12:11:55.090 1ee4 Level-0 table #154: started
+2020/07/23-12:11:55.097 1ee4 Level-0 table #154: 39067 bytes OK
+2020/07/23-12:11:55.099 1ee4 Delete type=0 #151
+2020/07/23-12:11:55.113 1ee4 Compacting 4@0 + 1@1 files
+2020/07/23-12:11:55.131 1ee4 Generated table #155@0: 852 keys, 323179 bytes
+2020/07/23-12:11:55.131 1ee4 Compacted 4@0 + 1@1 files => 323179 bytes
+2020/07/23-12:11:55.132 1ee4 compacted to: files[ 0 1 0 0 0 0 0 ]
+2020/07/23-12:11:55.133 1ee4 Delete type=2 #146
+2020/07/23-12:11:55.134 1ee4 Delete type=2 #148
+2020/07/23-12:11:55.134 1ee4 Delete type=2 #150
+2020/07/23-12:11:55.134 1ee4 Delete type=2 #152
+2020/07/23-12:11:55.134 1ee4 Delete type=2 #154
+2020/07/23-12:13:07.919 1ee4 Level-0 table #157: started
+2020/07/23-12:13:07.923 1ee4 Level-0 table #157: 38058 bytes OK
+2020/07/23-12:13:07.925 1ee4 Delete type=0 #153
+2020/07/23-12:16:07.512 1ee4 Level-0 table #159: started
+2020/07/23-12:16:07.518 1ee4 Level-0 table #159: 43621 bytes OK
+2020/07/23-12:16:07.521 1ee4 Delete type=0 #156
+2020/07/23-12:16:18.169 1ee4 Level-0 table #161: started
+2020/07/23-12:16:18.214 1ee4 Level-0 table #161: 27759 bytes OK
+2020/07/23-12:16:18.216 1ee4 Delete type=0 #158

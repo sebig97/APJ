@@ -1,0 +1,487 @@
+@charset "shift_jis";
+
+/*
+    テーブル設定
+    新規作成： 2007-04-03
+    最終更新： 2007-04-03
+*/
+
+
+/* table要素基本設定
+-------------------------------------------------- */
+div.mainContents table {
+    border-bottom: 1px solid #A9A9A9;
+    border-right: 1px solid #A9A9A9;
+    border-collapse: collapse;
+}
+
+/* テーブル幅指定 */
+table { width: 740px; }
+div.col3A table { width: 234px; }
+div.col3B table { width: 486px; }
+div.col4A table { width: 170px; }
+div.col4B table { width: 360px; }
+div.col4C table { width: 550px; }
+div.colExB table { width: 535px; }
+div.actionArea div.col4B table,
+div.recommendArea div.col4B table,
+div.importantArea div.col4B table { width: 350px; }
+
+div.platformY1 table { width: 908px; }
+div.platformY1 div.col4A table { width: 302px; }
+div.platformY1 div.col4B table { width: 444px; }
+div.platformY1 div.col4C table { width: 605px; }
+
+/* セル指定 */
+div.mainContents table th {
+    padding: 2px 7px;
+    background-color: #E6E4D7;
+    border-left: 1px solid #A9A9A9;
+    border-top: 1px solid #A9A9A9;
+    text-align: left;
+    vertical-align: middle;
+}
+
+div.mainContents table thead th {
+    width: auto;
+    text-align: center;
+    background-color: #CAC9BE;
+}
+
+div.mainContents table td {
+    padding: 2px 7px;
+    background-color: #F5F4E8;
+    border-left: 1px solid #A9A9A9;
+    border-top: 1px solid #A9A9A9;
+    vertical-align: middle;
+}
+
+/* 横マージンの設定 */
+div.mainContents table p,
+div.mainContents table ul,
+div.mainContents table ol,
+div.mainContents table dl {
+    margin-right: 0px !important;/* カラム内のマージン0を上書き */
+    margin-left: 0px;
+}
+
+/* 幅設定
+-------------------------------------------------- */
+div.mainContents table.double td { width: 50%; }
+div.mainContents table.triple td { width: 33.3%; }
+div.mainContents table.quadruple tbody td { width: 25%; }
+div.mainContents table.quintuple td { width: 20%; }
+
+div.mainContents table.customerInfo thh { width: 33.3%; }
+div.mainContents table.customerInfo td { width: 66.6%; }
+
+div.mainContents table.cardInfo th { width: 33.3%; }
+div.mainContents table.cardInfo td { width: 33.3%; }
+
+div.mainContents table.cancardInfo th { width: 25%; }
+div.mainContents table.cancardInfo td { width: auto; }
+
+table.col3A { width: 234px; }
+table.col3B { width: 486px; }
+
+table.col4A { width: 170px; }
+table.col4B { width: 360px; }
+table.col4C { width: 550px; }
+
+/* ローカルナビなし */
+div.platformY1 table.col3A { width: 289px; }
+div.platformY1 table.col3B { width: 598px; }
+
+div.platformY1 table.col4A { width: 212px; }
+div.platformY1 table.col4B { width: 444px; }
+div.platformY1 table.col4C { width: 676px; }
+
+/* 行の色設定 */
+div.mainContents table.triple tr:nth-child(odd) td {
+  background-color: #F5F4E8;
+}
+div.mainContents table.triple tr:nth-child(even) td {
+  background-color: #FFFFFF;
+}
+
+/* アイコン用・背景なし用 */
+div.mainContents div.col4B table.icon,
+div.mainContents div.col3A table.icon { clear: both; width: auto; }
+
+div.mainContents table.icon,
+div.mainContents table.transparent {
+    background-color: #FFF;
+    border-top: none;
+    border-right: none;
+}
+
+div.mainContents table.icon td,
+div.mainContents table.transparent thead th,
+div.mainContents table.transparent th,
+div.mainContents table.transparent td {
+    background-color: #FFF;
+    border-bottom: none;
+    border-left: none;
+}
+
+div.mainContents table td.borNone {
+    border-left: none;
+    border-bottom: none;
+}
+
+
+/* カードご利用明細
+-------------------------------------------------- */
+div.mainContents th.user p { width: 1em }
+div.mainContents td.user p { width: 2em; text-align: center; }
+div.mainContents th.userOdb p{}
+div.mainContents td.userOdb p { text-align: center; }
+div.mainContents th.useDay p {}
+div.mainContents td.useDay p { text-align: left; }
+div.mainContents th.useAhead p { width: 19em; }
+div.mainContents td.useAhead p {}
+
+div.mainContents th.rentalSpending p {}
+div.mainContents td.rentalSpending p { text-align: right; width: 4.5em;}
+div.mainContents th.paymentDivision p,
+div.mainContents td.paymentDivision p { width: 2em; }
+div.mainContents th.frequencyTime p,
+div.mainContents td.frequencyTime p { width: 2em; }
+div.mainContents th.correctionSignature p,
+div.mainContents td.correctionSignature p { width: 4em; }
+div.mainContents th.amountPayable p {}
+div.mainContents td.amountPayable p { text-align: right; width: 4.5em;}
+
+div.mainContents th.recapitulation p { width: 11.5em; }
+div.mainContents td.recapitulation p {}
+div.mainContents th.remarks p { width: 1em }
+div.mainContents td.remarks p { width: 2.3em; text-align: center; }
+
+div.mainContents td.totalAmount {}
+
+/* th二段目 */
+div.mainContents th.usageDetails p,
+div.mainContents td.usageDetails p {}
+div.mainContents th.paymentDetails p,
+div.mainContents td.paymentDetails p {}
+
+/* 分割払いカードご利用詳細
+-------------------------------------------------- */
+div.mainContents th.count {	width: 15%; }
+div.mainContents th.paymentDay { width: 15%; }
+div.mainContents th.amountMoney {	width: 20%; }
+div.mainContents th.innner { width: 30%; }
+div.mainContents th.innerPayment { width: 15%; }
+div.mainContents th.innerMargin {	width: 15%; }
+div.mainContents th.balance {	width: 20%; }
+
+/* 分割払い選択
+-------------------------------------------------- */
+div.mainContents table.divisionChoice th.division { width: 10%; }
+div.mainContents table.divisionChoice th.times { width: 15%; }
+div.mainContents table.divisionChoice th.user { width: 20%; }
+div.mainContents table.divisionChoice th.user p { width: 100%; }
+div.mainContents table.divisionChoice th.usedDay {	width: 15%; }
+div.mainContents table.divisionChoice th.where { width: 20%; }
+div.mainContents table.divisionChoice th.amount {	width: 20%; }
+
+/* リボ払い
+-------------------------------------------------- */
+div.mainContents table.revolving th.check {	width: 20%; }
+div.mainContents table.revolving th.user { width: 20%; }
+div.mainContents table.revolving th.user p { width: 100%; }
+div.mainContents table.revolving th.usedDay {	width: 15%; }
+div.mainContents table.revolving th.where {	width: 20%; }
+div.mainContents table.revolving th.amount { width: 25%; }
+
+/* リボ払い選択
+-------------------------------------------------- */
+div.mainContents table.revolvingChoice th.check {	width: 10%; }
+div.mainContents table.revolvingChoice th.user { width: 14%; }
+div.mainContents table.revolvingChoice th.user p { width: 100%; }
+div.mainContents table.revolvingChoice th.usedDay {	width: 12%; }
+div.mainContents table.revolvingChoice th.where {	width: 15%; }
+div.mainContents table.revolvingChoice th.rate { width: 12%; }
+div.mainContents table.revolvingChoice th.changeRate { width: 14%; }
+div.mainContents table.revolvingChoice th.rateDay {	width: 10%; }
+div.mainContents table.revolvingChoice th.amount { width: 13%; }
+
+/* リボ払い選択
+-------------------------------------------------- */
+div.mainContents table.request th,
+div.mainContents table.request td {	width: 50%; }
+
+/* 適用中のカード付帯サービス
+-------------------------------------------------- */
+div.mainContents table th.servicecode p { width: 7em; }
+
+div.mainContents table.cardservice {
+    border-collapse: collapse;
+    border: 2px solid #a9a9a9;
+}
+div.mainContents table.cardservice th {
+    text-align: left;
+}
+div.mainContents table.cardservice th.servicecode, td.servicecode {
+    border-top: 2px solid #a9a9a9;
+    border-right: 1px solid #a9a9a9;
+    border-bottom: 2px solid #a9a9a9;
+}
+div.mainContents table.cardservice th.servicename, td.servicename {
+    border-top: 2px solid #a9a9a9;
+    border-right: 1px solid #a9a9a9;
+    border-bottom: 2px solid #a9a9a9;
+}
+div.mainContents table.cardservice th.carddata, td.carddata {
+    border-top: 2px solid #a9a9a9;
+    border-right: 1px solid #a9a9a9;
+}
+div.mainContents table.cardservice th.coverage, td.coverage {
+    border-top: 2px solid #a9a9a9;
+}
+div.mainContents table.cardservice th.term, td.term {
+    border-top: 2px solid #a9a9a9;
+}
+div.mainContents table.cardservice th.fee, td.fee {
+    border-right: 1px solid #a9a9a9;
+    border-bottom: 2px solid #a9a9a9;
+}
+div.mainContents table.cardservice td.feeLeft {
+    border-right: none;
+    border-bottom: 2px solid #a9a9a9;
+}
+div.mainContents table.cardservice td.feeRight {
+    border-left: none;
+    border-right: 1px solid #a9a9a9;
+    border-bottom: 2px solid #a9a9a9;
+}
+div.mainContents table.cardservice th.timing, td.timing {
+    border-bottom: 2px solid #a9a9a9;
+}
+div.mainContents table.cardservice th.nextmonthAmount, td.nextmonthAmount {
+    border-bottom: 2px solid #a9a9a9;
+}
+div.mainContents table.cardservice th.applicationBtn, td.applicationBtn {
+    border-top: 2px solid #a9a9a9;
+    border-bottom: 2px solid #a9a9a9;
+}
+
+/* 入出国
+-------------------------------------------------- */
+div.mainContents table.irideCountry td p { text-align: center; }
+
+/* --------------------------------------------------汎用クラス */
+div.mainContents table th.wAuto,
+div.mainContents table td.wAuto { width: auto; }
+
+div.mainContents table th.w200,
+div.mainContents table td.w200 { width: 200px; }
+
+/* 上揃え */
+div.mainContents table thead th.vTop,
+div.mainContents table thead td.vTop,
+div.mainContents table tbody th.vTop,
+div.mainContents table tbody td.vTop { vertical-align: top; }
+
+/* ホワイトボーダー */
+div.mainContents table.borWhite {
+    border-top: 1px solid #FFF;
+    border-right: 1px solid #FFF;
+}
+
+div.mainContents table.borWhite th,
+div.mainContents table.borWhite td {
+    border-bottom: 1px solid #FFF;
+    border-left: 1px solid #FFF;
+}
+
+/* 上ボーダーなし */
+div.mainContents table th.borNoneT,
+div.mainContents table td.borNoneT {
+    border-top: none;
+}
+
+/* 左ボーダーなし */
+div.mainContents table th.borNoneL,
+div.mainContents table th.bgA { border-left: none; }
+
+/* 行揃え指定
+-------------------------------------------------- */
+div.mainContents table .alignL { text-align: left; }
+div.mainContents table .alignC { text-align: center; }
+div.mainContents table .alignR { text-align: right; }
+div.mainContents p.value,
+div.mainContents p.amount,
+div.mainContents table p.paymentDay { text-align: right; }
+
+div.mainContents p.date,
+div.mainContents p.point,
+div.mainContents p.pointC,
+div.mainContents p.valueC,
+div.mainContents table p.count,
+div.mainContents table p.detail,
+div.mainContents table p.usedDay,
+div.mainContents table p.message,
+div.mainContents table p.times,
+div.mainContents p.check,
+div.mainContents p.code,
+div.mainContents p.expiredDay,
+div.mainContents p.status,
+div.mainContents table p.select,
+div.mainContents p.add,
+div.mainContents p.correctionDay,
+div.mainContents p.correctionReason,
+div.mainContents p.priority,
+div.mainContents p.timing,
+div.mainContents p.deleteBtn,
+div.mainContents p.listsPoint { text-align: center; }
+div.mainContents p.pointR,
+div.mainContents p.valueR,
+div.mainContents p.currency,
+div.mainContents p.rate,
+div.mainContents p.rateDay,
+div.mainContents p.changeRate,
+div.mainContents p.point,
+div.mainContents p.copies { text-align: right; }
+
+div.mainContents table.priceList tbody td p { text-align: center; }
+
+/* 特殊テーブル
+-------------------------------------------------- */
+/* 汎用数値 */
+div.mainContents table.value td {
+    text-align: right;
+}
+
+/* ご希望商品 */
+div.mainContents table.goods tbody td {
+    vertical-align: top;
+}
+
+div.mainContents table.goods dl dt,
+div.mainContents table.goods dl dd,
+div.mainContents table.goods dl dd p {
+    display: inline;
+}
+
+div.mainContents table.goods dl dt,
+div.mainContents table.goods dl dd p {
+    margin-right: 10px;
+}
+
+div.mainContents table.goodsList tbody th {
+    width: 33.3%;
+    text-align: center;
+}
+
+div.mainContents table.goodsList tbody td {
+    vertical-align: top;
+}
+
+div.mainContents table.cashBack td { text-align: center; }
+
+/* ポイントサービス */
+div.mainContents table.pointService td { text-align: right; }
+
+/* お支払い残高情報 */
+div.mainContents table.expense td { text-align: right; }
+div.mainContents table.expense25 td { width:25%;text-align: right; }
+
+/* 支払予定額 */
+div.mainContents table.paymentPlan th { text-align: center; }
+div.mainContents table.paymentPlan20 th { width:20%;text-align: center; }
+div.mainContents table.paymentPlan25 th { width:25%;text-align: center; }
+div.mainContents table.paymentPlan td { text-align: right; }
+div.mainContents table.paymentPlan20 td { text-align: right; }
+div.mainContents table.paymentPlan25 td { text-align: right; }
+
+/* チェック項目がある場合 */
+table.selectionItem th {
+    width: 30px;
+    text-align: center;
+}
+
+table.child td {
+    width: 204px;
+}
+
+/* 有効ポイント */
+div.mainContents table th.effectivePoint { width: 65%; }
+
+/* 有効ポイント(ANA) */
+div.mainContents table th.ANA_effectivePoint { width: 35%; }
+
+/* ポイント履歴　表示説明(ANA) */
+div.mainContents table th.ANA_DispExplanation { width: 23%; }
+
+/* 背景色
+-------------------------------------------------- */
+table tr.cancel th,
+table tr.cancel td { background: #FFDBE0;}
+table tr td.cancel { background: #FFDBE0;}
+table tr.repaymentWaiting th { background: #ADDBFF;}
+table tr.repaymentWaiting td { background: #ADDBFF;}
+
+div.mainContents em.cancel { color: #FFDBE0; }
+div.mainContents em.repaymentWaitingTh { color: #ADDBFF; }
+div.mainContents em.repaymentWaitingTd { color: #ADDBFF; }
+
+/* ポイント履歴　使用ポイント */
+div.mainContents p.pointUsePoint {
+    text-align: right;
+    color: #FF0000;
+ }
+
+/* 暗証番号通知　住所テーブル */
+div.mainContents table.pinNotifyAddr {
+    background-color: #FFF;
+    border-collapse: collapse;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+}
+
+div.mainContents table.pinNotifyAddr td {
+    background-color: #FFF;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+    border-left: none;
+}
+
+div.mainContents table td.pinNotifyAddrLeftTd {
+    vertical-align:top;
+    width: 10%;
+ }
+
+/* WEB支払い */
+div.mainContents table.chgpayGyoshuTable { width: 128px; height: 102px; text-align: center; margin: 0px 0px 0px 0px; border-collapse: collapse;
+                                           border-top: 1px solid #A9A9A9; border-left: 1px solid #A9A9A9; border-right: none; border-bottom: none; }
+div.mainContents table.chgpayGyoshuTable td { text-align: center; vertical-align: middle; width: 100px; height: 100px; background-color: #FFFFFF;
+                                              border-top: none; border-left: none; border-right: 1px solid #A9A9A9; border-bottom: 1px solid #A9A9A9; }
+div.mainContents table.chgpayGyoshuTable th { text-align: center; vertical-align: middle; width: 25px; height: 100px;
+                                              border-top: none; border-left: none; border-right: 1px solid #A9A9A9; border-bottom: 1px solid #A9A9A9; }
+
+div.mainContents table.chgpayStaticTable { width: 152px; height: 122px; text-align: center; margin: 0px 0px 0px 0px; border-collapse: collapse; border: none; }
+div.mainContents table.chgpayStaticTable td { text-align: center; vertical-align: middle; width: 150px; height: 120px; background-color: #FFFFFF; border: 1px solid #A9A9A9; }
+
+div.mainContents table.chgpayKigyoTable { border-top: none; border-right: none; border-left: none; border-bottom: none; }
+div.mainContents th.chgpayBlueTh { background-color: #C1E0FF;}
+div.mainContents th.chgpayBlueborNoneT { background-color: #C1E0FF; border-top: none; }
+div.mainContents th.chgpayBlueBottomTh { background-color: #C1E0FF; border-bottom: 1px solid #A9A9A9;}
+div.mainContents th.chgpayBlueborNoneTBottom { background-color: #C1E0FF; border-top: none; border-bottom: 1px solid #A9A9A9; }
+div.mainContents th.chgpayBottomTh { border-bottom: 1px solid #A9A9A9;}
+div.mainContents td.chgpayOnBorder { border-top: 1px solid #A9A9A9; border-right: 1px solid #A9A9A9; border-left: 1px solid #A9A9A9; }
+div.mainContents td.chgpayOnBorderBottom { border-right: 1px solid #A9A9A9; border-bottom: 1px solid #A9A9A9; }
+div.mainContents td.chgpayNoneBorder { background-color: #FFF; border-top: none; border-right: none; border-left: none; border-bottom: none; }
+
+div.mainContents table.chgpayClearT { margin: 0px 0px 0px 0px; width: auto; height: auto; padding: 0px; border: none; }
+div.mainContents table.chgpayClearT td { width: inherit; height: auto; text-align: left; padding: 0px; border: none; }
+
+/* ワンクリック */
+div.mainContents table.oneclickTableWidthAuto { width: auto; }
+div.mainContents table.oneclickTableWidthAuto td { padding: 5px 7px; }
+div.mainContents table td.oneclick_uketsukeNum { text-align: center; }
+
+/*EOF*/

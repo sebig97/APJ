@@ -1,0 +1,649 @@
+@charset "shift_jis";
+
+/*
+	全体レイアウト設定
+	新規作成： 2007-03-01
+	最終更新： 2007-03-01
+*/
+
+/* ボディ
+ ----------------------------------------------- */
+body {
+	_margin-bottom: 10px;/* IE対応 */
+	background-image: url(../images/bg-body.gif);
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+
+/* プラットフォーム
+ ----------------------------------------------- */
+div.platformT1,
+div.platformY1 {
+	width: 950px;
+	height: auto;
+	margin: 0;
+	text-align: left;
+	background-repeat: repeat-y;
+	background-position: left top;
+	background-color: #FFF;
+}
+
+/* サイドバーあり */
+div.platformT1 { background-image: url(../images/bg-main-a.gif); }
+
+/* サイドバーなし */
+div.platformY1 { background-image: url(../images/bg-main-b.gif); }
+
+
+/* ロゴ */
+p.logo img,
+h1.logo img { vertical-align: top; }
+
+
+/* サイドバーエリア
+ ----------------------------------------------- */
+td.sidebar {
+	width: 168px;/* 左ボーターを含む幅 */
+	padding-left: 1px;
+	vertical-align: top;
+}
+
+/* コンテンツエリア
+ ----------------------------------------------- */
+td.contents {
+	width: 782px;/* 左右ボーターを含む幅 */
+	padding: 0 1px;
+	vertical-align: top;
+}
+
+div.platformY1 td.contents {
+	width: 950px;/* 左右ボーターを含む幅 */
+}
+
+
+/* ヘッダーエリア
+ ----------------------------------------------- */
+div.header {
+	width: 780px;
+	height: 65px;
+	margin-bottom: 20px;
+	background-image: url(../images/bg-header.jpg);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+div.platformY1 div.header {
+	width: 948px;
+	height: auto;
+	min-height: 116px;
+	_height: 116px;/* IE対応 */
+	border-bottom: 1px solid #D9D9D9;
+	background-image: none;
+}
+
+/* メインコンテンツエリア
+ ----------------------------------------------- */
+div.mainContents {
+	width: 780px;
+	min-height: 462px;
+}
+* html div.mainContents { height: 462px; }
+
+div.platformY1 div.mainContents { width: auto; }
+
+/* ボトムコンテンツエリア
+ ----------------------------------------------- */
+div.bottomContents p.toTop {
+	display: block;
+	clear: both;
+	width: 106px;
+	_width: 121px;/* IE対策 */
+	min_height: 20px;
+	_height: 20px;/* IE対策 */
+	margin-left: 818px;
+	padding-left: 15px;
+	background-image: url(../images/mark-totop.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-color: #F2F2F2;
+	font-size: 70%;
+	line-height: 20px;
+}
+
+/* フッターエリア
+ ----------------------------------------------- */
+div.footer {
+	clear: both; /*印刷時 WIN FFがフリーズする可能性あり */
+	width: 948px;
+	_width: 950px;
+	height: 27px;
+	margin-bottom: 10px;
+	_margin-bottom: 0px;
+	border: 1px solid #D9D9D9;
+	background-color: #FFF;
+}
+
+/* セクション
+ ----------------------------------------------- */
+div.sectionS,
+div.sectionM,
+div.sectionLink { clear: both; }
+
+div.sectionS,
+div.sectionLink { margin-bottom: 20px; }
+
+/* カラムセット
+ ----------------------------------------------- */
+div.locator {
+	clear: both;
+	width: auto;
+	margin-bottom: 20px;
+}
+
+div.col3A { width: 254px; float: left; }
+div.col3B { width: 506px; float: left; }
+
+div.col4A { width: 190px; float: left; }
+div.col4B { width: 380px; float: left; }
+div.col4C { width: 570px; float: left; }
+
+/* ローカルナビなし */
+div.platformY1 div.col3A { width: 309px; float: left; }
+div.platformY1 div.col3B { width: 618px; float: left; }
+
+div.platformY1 div.col4A { width: 232px; float: left; }
+div.platformY1 div.col4B { width: 464px; float: left; }
+div.platformY1 div.col4C { width: 696px; float: left; }
+
+/* エリア内で使用
+ ------------------------- */
+div.actionArea div.col4B,
+div.relationArea div.col4B,
+div.recommendArea div.col4B,
+div.importantArea div.col4B { width: 370px; }
+
+div.actionArea div.col3A,
+div.relationArea div.col3A,
+div.recommendArea div.col3A,
+div.importantArea div.col3A { width: 244px; }
+
+div.platformY1 div.actionArea div.col4B,
+div.platformY1 div.relationArea div.col4B,
+div.platformY1 div.recommendArea div.col4B,
+div.platformY1 div.importantArea div.col4B { width: 454px; }
+
+div#platformT1 div.ratio3-7 .text { width: 490px; }
+div#platformT1 div.ratio3-7 .image { width: 240px; }
+
+/* --------------------------------------------------コンテナ内2カラム */
+div.image p { text-align: center; }
+div.image.pdf p { text-align: left; }
+
+div.text,
+div.image { float: left; }
+
+/* 幅指定 5:5 */
+div.ratioA div.text,
+div.ratioA div.image { width: 50%; }
+
+/* 幅指定 7:3 */
+div.ratioB div.text { width: 60%; }
+div.ratioB div.image { width: 40%; }
+
+/* パテーション内の場合 */
+div.mainContents div.ratioA p,
+div.mainContents div.ratioA ol,
+div.mainContents div.ratioA ul,
+div.mainContents div.ratioA dl,
+div.mainContents div.ratioA table,
+div.mainContents div.ratioA input,
+div.mainContents div.ratioA select,
+div.mainContents div.ratioA textarea,
+div.mainContents div.ratioB p,
+div.mainContents div.ratioB ol,
+div.mainContents div.ratioB ul,
+div.mainContents div.ratioB dl,
+div.mainContents div.ratioB table,
+div.mainContents div.ratioB input,
+div.mainContents div.ratioB select,
+div.mainContents div.ratioB textarea { margin: 0 0 10px 0; }
+div.mainContents div.ratioA div.image p,
+div.mainContents div.ratioB div.image p { margin: 0 0 10px 10px; }
+
+/* --------------------------------------------------アイテム */
+div.itemL { clear: both; }
+div.itemC { clear: both; text-align: center; }
+div.itemR { clear: both; text-align: right; }
+
+div.mainContents div.itemR { margin-bottom: 10px; }/* toTop */
+
+/* --------------------------------------------------フラッシュエリア */
+div.mainContents div.flashArea {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+/* div.mainContents iframe */
+iframe {
+	margin: 0 0 10px 20px;
+	border: none;
+	background-color:;
+}
+
+/* --------------------------------------------------テキストエリア＋同意 */
+div.mainContents div.agreement {
+	width: 80%;
+}
+
+div.mainContents div.agreement p textarea {
+	width: 100%;
+}
+
+div.mainContents div.agreement p.agree {
+	text-align: center;
+}
+
+div.mainContents div.agreementtextArea {
+	overflow: auto;
+	width: 740px;
+	height: 150px;
+	margin-left: 20px;
+	border-top: 2px double #404040;
+	border-right: 1px solid #d4d0c8;
+	border-bottom: 1px solid #d4d0c8;
+	border-left: 2px double #404040;
+}
+
+div.mainContents div.agreementtextArea h2 {
+	width: auto;
+	margin-right: 0;
+	margin-left: 0;
+	background: none;
+	border: none;
+	font-size: 90%;
+	font-weight: bold;
+}
+
+div.mainContents div.agreementtextArea h3 {
+	width: auto;
+	margin-right: 0;
+	margin-left: 0;
+	background: none;
+	border: none;
+	color: #333;
+	font-weight: bold;
+}
+
+div.mainContents div.agreementtextArea h2,
+div.mainContents div.agreementtextArea h3,
+div.mainContents div.agreementtextArea ol,
+div.mainContents div.agreementtextArea p {
+	margin-bottom: 10px;
+}
+
+div.mainContents div.agreementtextArea ol { padding-left: 1.2em; _padding-left: 1.4em; }
+div.mainContents div.agreementtextArea ol li {
+	list-style: decimal;
+	line-height: 1.3;
+}
+
+div.mainContents div.agreementtextArea li li {
+	font-size: 100%;
+}
+
+/* --------------------------------------------------アクション・関連情報・おすすめ・重要なお知らせエリア */
+
+/* エリア定義・左右ボーダーを表示 */
+div.mainContents div.actionArea,
+div.mainContents div.relationArea,
+div.mainContents div.recommendArea,
+div.mainContents div.importantArea {
+	width: 740px;
+	margin: 0 0 10px 20px;
+	background-image: url(../images/bg-border-gray.gif);
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+
+div.platformY1 div.mainContents div.actionArea,
+div.platformY1 div.mainContents div.relationArea,
+div.platformY1 div.mainContents div.recommendArea,
+div.platformY1 div.mainContents div.importantArea {
+	width: 908px;
+	background-image: url(../images/bg-border-gray-wide.gif);
+}
+
+div.mainContents div.actionArea { background-color: #FFFDDD; }
+div.mainContents div.relationArea { background-color: #DFF0FF; }
+div.mainContents div.recommendArea { background-color: #F5F5F5; }
+div.mainContents div.importantArea { background-color: #FFF3ED; }
+
+/* 上画像の表示 */
+div.mainContents div.actionArea .top,
+div.mainContents div.relationArea .top,
+div.mainContents div.recommendArea .top,
+div.mainContents div.importantArea .top {
+	margin: 0;
+	padding: 10px 0 0 0;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+div.mainContents div.actionArea .top { background-image: url(../images/bg-action-top.gif); }
+div.mainContents div.relationArea .top { background-image: url(../images/bg-relation-top.gif); }
+div.mainContents div.recommendArea .top { background-image: url(../images/bg-recommend-top.gif); }
+div.mainContents div.importantArea .top { background-image: url(../images/bg-important-top.gif); }
+
+div.platformY1 div.mainContents div.actionArea .top { background-image: url(../images/bg-action-top-wide.gif); }
+div.platformY1 div.mainContents div.relationArea .top { background-image: url(../images/bg-relation-top-wide.gif); }
+div.platformY1 div.mainContents div.recommendArea .top { background-image: url(../images/bg-recommend-top-wide.gif); }
+div.platformY1 div.mainContents div.importantArea .top { background-image: url(../images/bg-important-top-wide.gif); }
+
+/* 下画像の表示 */
+div.mainContents div.actionArea div.sector,
+div.mainContents div.relationArea div.sector,
+div.mainContents div.actionArea div.sector,
+div.mainContents div.relationArea div.sector,
+div.mainContents div.recommendArea div.sector,
+div.mainContents div.importantArea div.sector,
+div.mainContents div.recommendArea div.sector,
+div.mainContents div.importantArea div.sector {
+	padding-bottom: 7px;
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+div.mainContents div.actionArea div.sector { background-image: url(../images/bg-action-bottom.gif); }
+div.mainContents div.relationArea div.sector { background-image: url(../images/bg-relation-bottom.gif); }
+div.mainContents div.recommendArea div.sector { background-image: url(../images/bg-recommend-bottom.gif); }
+div.mainContents div.importantArea div.sector { background-image: url(../images/bg-important-bottom.gif); }
+
+div.platformY1 div.mainContents div.actionArea div.sector { background-image: url(../images/bg-action-bottom-wide.gif); }
+div.platformY1 div.mainContents div.relationArea div.sector { background-image: url(../images/bg-relation-bottom-wide.gif); }
+div.platformY1 div.mainContents div.recommendArea div.sector { background-image: url(../images/bg-recommend-bottom-wide.gif); }
+div.platformY1 div.mainContents div.importantArea div.sector { background-image: url(../images/bg-important-bottom-wide.gif); }
+
+/* エリア内ロケーター */
+div.platformT1 div.actionArea div.locator,
+div.platformT1 div.relationArea div.locator,
+div.platformT1 div.recommendArea div.locator,
+div.platformT1 div.importantArea div.locator {
+	margin-bottom: 0px;
+}
+
+/* テーブル */
+div.mainContents div.actionArea table,
+div.mainContents div.relationArea table,
+div.mainContents div.recommendArea table,
+div.mainContents div.importantArea table { width: 720px; }
+
+div.mainContents div.actionArea table th,
+div.mainContents div.relationArea table th,
+div.mainContents div.recommendArea table th,
+div.mainContents div.importantArea table th {
+	width: 20%;
+	background-color: transparent;
+	border: none;
+}
+
+div.mainContents div.actionArea table td,
+div.mainContents div.relationArea table td,
+div.mainContents div.recommendArea table td,
+div.mainContents div.importantArea table td {
+	width: 30%;
+	background-color: transparent;
+	border: none;
+}
+
+div.mainContents div.registandchange div.col4B {
+	height: 11em;
+}
+
+div.mainContents div.paymentmethods div.col4B {
+	height: 7em;
+}
+
+div.mainContents div.variousInquiry div.col4B {
+	height: 3.5em;
+}
+
+div.mainContents div.paymentStartday div.col4B {
+	height: 16em;
+}
+
+
+/* -------------------------------------------------- マージン指定 */
+div.mainContents .mar00 { margin-bottom: 0px !important; }
+div.mainContents .mar05 { margin-bottom: 5px !important; }
+div.mainContents .mar10 { margin-bottom: 10px !important; }
+div.mainContents .mar15 { margin-bottom: 15px !important; }
+div.mainContents .mar20 { margin-bottom: 20px !important; }
+div.mainContents .mar30 { margin-bottom: 30px !important; }
+
+/* --------------------------------------------------マージン設計 */
+div.mainContents h3,
+div.mainContents h4,
+div.mainContents h5,
+div.mainContents h6,
+div.mainContents p,
+div.mainContents ol,
+div.mainContents ul,
+div.mainContents dl,
+div.mainContents table,
+div.mainContents div.ratioA,
+div.mainContents div.ratioB {
+	margin-left: 20px;
+	margin-bottom: 10px;
+}
+
+div.mainContents table h3,
+div.mainContents table h4,
+div.mainContents table h5,
+div.mainContents table h6,
+div.mainContents table p,
+div.mainContents table ol,
+div.mainContents table ul,
+div.mainContents table dl,
+div.mainContents table table {
+	margin-bottom: 0;
+}
+
+div.mainContents table dl dd p {
+	margin-left: 0;
+}
+
+/* エリア内マージン */
+div.mainContents div.actionArea h3,
+div.mainContents div.actionArea h4,
+div.mainContents div.actionArea h5,
+div.mainContents div.actionArea h6,
+div.mainContents div.actionArea p,
+div.mainContents div.actionArea ol,
+div.mainContents div.actionArea ul,
+div.mainContents div.actionArea dl,
+div.mainContents div.actionArea table,
+div.mainContents div.actionArea div.ratioA,
+div.mainContents div.actionArea div.ratioB,
+div.mainContents div.relationArea h3,
+div.mainContents div.relationArea h4,
+div.mainContents div.relationArea h5,
+div.mainContents div.relationArea h6,
+div.mainContents div.relationArea p,
+div.mainContents div.relationArea ol,
+div.mainContents div.relationArea ul,
+div.mainContents div.relationArea dl,
+div.mainContents div.relationArea table,
+div.mainContents div.relationArea div.ratioA,
+div.mainContents div.relationArea div.ratioB,
+div.mainContents div.recommendArea h3,
+div.mainContents div.recommendArea h4,
+div.mainContents div.recommendArea h5,
+div.mainContents div.recommendArea h6,
+div.mainContents div.recommendArea p,
+div.mainContents div.recommendArea ol,
+div.mainContents div.recommendArea ul,
+div.mainContents div.recommendArea dl,
+div.mainContents div.recommendArea table,
+div.mainContents div.recommendArea div.ratioA,
+div.mainContents div.recommendArea div.ratioB,
+div.mainContents div.importantArea h3,
+div.mainContents div.importantArea h4,
+div.mainContents div.importantArea h5,
+div.mainContents div.importantArea h6,
+div.mainContents div.importantArea p,
+div.mainContents div.importantArea ol,
+div.mainContents div.importantArea ul,
+div.mainContents div.importantArea dl,
+div.mainContents div.importantArea table,
+div.mainContents div.importantArea div.ratioA,
+div.mainContents div.importantArea div.ratioB {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+/* エリア内レーション内マージン 
+カラム内マージンをキャンセルするためにインポータントを使用 */
+div.mainContents div.relationArea div.ratioA p,
+div.mainContents div.relationArea div.ratioA ol,
+div.mainContents div.relationArea div.ratioA ul,
+div.mainContents div.relationArea div.ratioA dl,
+div.mainContents div.relationArea div.ratioA table,
+div.mainContents div.actionArea div.ratioA p,
+div.mainContents div.actionArea div.ratioA ol,
+div.mainContents div.actionArea div.ratioA ul,
+div.mainContents div.actionArea div.ratioA dl,
+div.mainContents div.actionArea div.ratioA table,
+div.mainContents div.relationArea div.ratioB p,
+div.mainContents div.relationArea div.ratioB ol,
+div.mainContents div.relationArea div.ratioB ul,
+div.mainContents div.relationArea div.ratioB dl,
+div.mainContents div.relationArea div.ratioB table,
+div.mainContents div.actionArea div.ratioB p,
+div.mainContents div.actionArea div.ratioB ol,
+div.mainContents div.actionArea div.ratioB ul,
+div.mainContents div.actionArea div.ratioB dl,
+div.mainContents div.actionArea div.ratioB table,
+div.mainContents div.recommendArea div.ratioA p,
+div.mainContents div.recommendArea div.ratioA ol,
+div.mainContents div.recommendArea div.ratioA ul,
+div.mainContents div.recommendArea div.ratioA dl,
+div.mainContents div.recommendArea div.ratioA table,
+div.mainContents div.importantArea div.ratioA p,
+div.mainContents div.importantArea div.ratioA ol,
+div.mainContents div.importantArea div.ratioA ul,
+div.mainContents div.importantArea div.ratioA dl,
+div.mainContents div.importantArea div.ratioA table,
+div.mainContents div.recommendArea div.ratioB p,
+div.mainContents div.recommendArea div.ratioB ol,
+div.mainContents div.recommendArea div.ratioB ul,
+div.mainContents div.recommendArea div.ratioB dl,
+div.mainContents div.recommendArea div.ratioB table,
+div.mainContents div.importantArea div.ratioB p,
+div.mainContents div.importantArea div.ratioB ol,
+div.mainContents div.importantArea div.ratioB ul,
+div.mainContents div.importantArea div.ratioB dl,
+div.mainContents div.importantArea div.ratioB table {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
+}
+
+/* UL入れ子マージン */
+div.mainContents ul ul { margin: 0; }
+
+/* WEB支払い用ロケータ clearfix適用のため最後尾でなくここに記載 */
+div.mainContents div.chgpayLocatar {
+    clear: both;
+    width: 650px;
+    display: inline-table;
+    height: 7em;
+    margin: 0px 20px 30px 20px;
+}
+
+/* clearfix
+ ----------------------------------------------- */
+div.platformY1 div.header:after,
+div.locator:after,
+div.mainContents div.ratioA:after,
+div.mainContents div.ratioB:after,
+div.itemL:after,
+div.sectionS:after,
+div.sectionM:after,
+div.sectionLink:after,
+div#platformT1 div.ratio3-7 .text:after,
+div#platformT1 div.ratio3-7 .image:after,
+div.mainContents div.chgpayLocatar:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+div.platformY1 div.header,
+div.locator,
+div.mainContents div.ratioA,
+div.mainContents div.ratioB,
+div.itemL,
+div.sectionS,
+div.sectionM,
+div.sectionLink,
+div#platformT1 div.ratio3-7 .text,
+div#platformT1 div.ratio3-7 .image,
+div.mainContents div.chgpayLocatar { display: inline-table; }
+
+/* Hides from IE-mac \*/
+* html div.platformY1 div.header,
+* html div.locator,
+* html div.mainContents div.ratioA,
+* html div.mainContents div.ratioB,
+* html div.itemL,
+* html div.sectionS,
+* html div.sectionM,
+* html div.sectionLink,
+* html div#platformT1 div.ratio3-7 .text,
+* html div#platformT1 div.ratio3-7 .image,
+* div.mainContents div.chgpayLocatar { height: 1%; }
+div.platformY1 div.header,
+div.locator,
+div.mainContents div.ratioA,
+div.mainContents div.ratioB,
+div.itemL,
+div.sectionS,
+div.sectionM,
+div.sectionLink,
+div#platformT1 div.ratio3-7 .text,
+div#platformT1 div.ratio3-7 .image,
+div.mainContents div.chgpayLocatar { display: block; }
+/* End hide from IE-mac */
+
+span.common_ErrMsg {
+  line-height: 135%;
+  font-size: 80%;
+  color: #ff0000;
+}
+
+span.noteMsg {
+  color: #ff0000;
+}
+
+/* WEB支払い用 */
+div.mainContents h3.chgpayH3 {
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+div.mainContents div.chgpayColA { 
+    width: 144px;
+    float: left;
+    height: 102px;
+    margin: 2px 2px 2px 2px;
+}
+
+div.mainContents div.chgpayColB { 
+    width: 153px;
+    float: left;
+    height: 122px;
+    margin: 2px 2px 2px 2px;
+}
+
+/*EOF*/
