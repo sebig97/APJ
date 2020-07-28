@@ -7,7 +7,6 @@ import pandas as pd
 from m import homePage
 from collections import defaultdict
 
-
 if __name__ == '__main__':
     # constructor with random parameters
     temp = homePage("1", "2", "3", "4")
@@ -30,20 +29,23 @@ if __name__ == '__main__':
     print("Name of the pdf = ", entries[0])
     time.sleep(1)
 
+    # path to the pdf downloaded from JCB
+    file = "C:\DownloadFiles\\" + str(entries[0])
+    print("PATH to the pdf = ", file)
+
     # VERITRANS
     portal[2].get_chrome_driver()
     portal[2].test_load_home_page()
     portal[2].login_veritrans()
 
-    # path to the pdf downloaded from JCB
-    # file = "C:\DownloadFiles\\" + str(entries[0])
-    # print("PATH to the pdf = ", file)
-    #
-    # # read the pdf
-    # tables = tabula.read_pdf(file, pages="all", multiple_tables=True)
-    #
-    # # output all the tables in the PDF to a CSV
-    # tabula.convert_into(file, "test.csv", pages="all")
+    try:
+        # read the pdf
+        tables = tabula.read_pdf(file, pages="all", multiple_tables=True)
+
+        # output all the tables in the PDF to a CSV
+        tabula.convert_into(file, "test.csv", pages="all")
+    except:
+        pass
 
     columns = defaultdict(list)  # each value in each column is appended to a list
 
@@ -95,12 +97,10 @@ if __name__ == '__main__':
                 else:
                     print("This date already exists in the list")
 
-    print(dates)
 
+    # print("CVS dates that have been uploaded to the sharepoint ", dates)
+    portal[2].send_email_via_outlook()
     portal[2].delete_all_files(r'C:\DownloadFiles\*')
     portal[2].tearDown()
-
-
-
 
 

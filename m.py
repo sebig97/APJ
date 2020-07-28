@@ -5,11 +5,17 @@ import pickle
 import pandas
 import datetime
 import requests
+import tabula
 from selenium import webdriver
+import win32com.client as win32
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 from selenium.webdriver.chrome.options import Options
+
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
 
 
 
@@ -136,15 +142,16 @@ class homePage(object):
 
         # final search
         driver.find_element_by_xpath("//input[@name='commit']").click()
-        # driver.implicitly_wait(10)
+        driver.implicitly_wait(10)
         time.sleep(2)
 
         # auto downloading csv
         driver.find_element_by_xpath("//ul[@class='search_csv search_top_csv']//li[1]//form[1]").click()
 
+        driver.implicitly_wait(10)
         print("CSV successfully downloaded")
 
-        # time.sleep(5)
+        # time.sleep(3)
 
     def search_JCB_page(self):
         driver = self.driver
@@ -152,7 +159,7 @@ class homePage(object):
         # driver.find_element_by_xpath("//a[@id='j_idt61']").click()
         # driver.find_element_by_xpath("//a[@id='j_idt87_2:j_idt93']").click()
         driver.find_element_by_id("j_idt61").click()
-        driver.find_element_by_id("j_idt87_1:j_idt93").click()
+        driver.find_element_by_id("j_idt87_0:j_idt93").click()
 
         print("PDF successfully downloaded ")
 
@@ -162,9 +169,10 @@ class homePage(object):
     # --- Post - Condition ---
     def tearDown(self):
         # to close the browser
+        time.sleep(2)
         self.driver.close()
         print("browser successfully closed")
-        time.sleep(.5)
+
 
     # method to get the downloaded file name
     def getDownLoadedFileName(self, waitTime):
@@ -292,4 +300,20 @@ class homePage(object):
         driver.close()
         time.sleep(.5)
         driver.switch_to.window(driver.window_handles[0])
+
+    def send_email_via_outlook(self):
+        outlook = win32.Dispatch('outlook.application')
+        mail = outlook.CreateItem(0)
+        mail.To = 'sebastian-nicolae.guzulescu@hp.com;  alexandru-bogdan.stefan@hp.com; robert.rudberg@hp.com; ' \
+                  'cristina-andreea.melente@hp.com; georgiana.lichi1@hp.com '
+        mail.Subject = 'APJ script has finished'
+        # mail.Body = 'Message body'
+        mail.HTMLBody = '<h2>All CSVs have been successfully uploaded to the sharepoint.</h2>'
+        mail.Send()
+        time.sleep(5)
+        print("Mail successfully sent")
+
+
+
+
 
