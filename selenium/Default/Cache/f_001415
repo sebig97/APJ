@@ -1,0 +1,553 @@
+@charset "shift_jis";
+
+/*
+	コンテナ設定（特別版）
+	最終更新： 2010-11-10
+*/
+
+/* --------------------------------------------------カード詳細系 */
+div#mainContents p.cardDivision {
+	clear: both;
+	margin-bottom: 5px;
+}
+
+div#mainContents p.card img { margin-bottom: 10px; }
+
+div#mainContents ul.selectBtn { clear: both; }
+div#mainContents ul.selectBtn li {
+	float: left;
+	display: inline;/* IE対応 */
+	font-size: 0;
+	line-height: 0;
+}
+
+div#mainContents ul.selectBtn li.btnShortcut {
+	float: left;/* FF用例外措置 */
+	display: block;
+	_display: inline;/* IE対応 */
+	font-size: 83%;
+	line-height: 1.3;
+	width: 70px;
+	_width: 90px;
+	margin-right: 20px;
+	min-height: 20px;
+	_height: 23px;
+	padding: 3px 5px 3px 12px;
+	border: 1px solid #D9D9D9;
+	background-image: url(../images/btn-shortcut.gif);
+	background-repeat: no-repeat;
+	background-position: left top;
+	background-color: #EFEFEF;
+	line-height: 1.3;
+}
+
+div#mainContents dl.selectBtnL,
+div#mainContents dl.selectBtnR {
+	float: left;
+	width: 90px;
+	display: inline;/* IE対応 */
+	margin-bottom: 0px;
+}
+
+div#mainContents dl.selectBtnL { margin-left: 20px; }
+div#mainContents dl.selectBtnR { margin-left: 5px; }
+
+div#mainContents dl.selectBtnL dt,
+div#mainContents dl.selectBtnR dt {
+	margin-bottom: 5px;
+	text-align: center;
+}
+
+/* ボタン */
+div#mainContents ul.selectBtn li.btn01 { margin: 0 5px 7px 0; }
+div#mainContents ul.selectBtn li.btn02 { margin: 0 0 7px 0; }
+div#mainContents ul.selectBtn li.btn03 { margin: 0 5px 0 0; }
+
+div#mainContents ul.selectBtn li.btn01B { margin: 0 5px 0 0; }
+div#mainContents ul.selectBtn li.btn02B { margin: 0; }
+div#mainContents ul.selectBtn li.btn03B { margin: 0 5px 0 0; }
+
+div#mainContents dl.selectBtnL dd.btn01,
+div#mainContents dl.selectBtnL dd.btn02,
+div#mainContents dl.selectBtnR dd.btn01,
+div#mainContents dl.selectBtnR dd.btn02 { margin-bottom: 7px; }
+
+div#mainContents p.btnSpeed,
+div#mainContents p.btnSpeed a,
+div#mainContents p.btnSpeedC,
+div#mainContents p.btnSpeedC a,
+div#mainContents p.btnOnline,
+div#mainContents p.btnOnline a,
+div#mainContents p.btnOnlineC,
+div#mainContents p.btnOnlineC a,
+div#mainContents p.btnRequest,
+div#mainContents p.btnRequest a,
+div#mainContents p.btnRequestC,
+div#mainContents p.btnRequestC a,
+div#mainContents p.selectBtn span,
+div#mainContents p.selectBtn span a,
+div#mainContents p.selectBtnC span,
+div#mainContents p.selectBtnC span a,
+div#mainContents ul.selectBtn li span,
+div#mainContents ul.selectBtn li span a,
+div#mainContents ul.selectBtnC li span,
+div#mainContents ul.selectBtnC li span a,
+div#mainContents dl.selectBtnL dd span,
+div#mainContents dl.selectBtnL dd span a,
+div#mainContents dl.selectBtnR dd span,
+div#mainContents dl.selectBtnR dd span a {
+	display: block;
+	width: 90px;
+	height: 31px;
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+	overflow: hidden;
+	font-size: 0;
+}
+
+div#mainContents p.btnSpeedC,
+div#mainContents p.btnOnlineC,
+div#mainContents p.btnRequestC,
+div#mainContents p.selectBtnC,
+div#mainContents ul.selectBtnC {
+	margin-left: 67.5px;
+}
+
+/* clearfix */
+div#mainContents ul.selectBtn:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+div#mainContents ul.selectBtn { display: inline-table; }
+
+/* Hides from IE-mac \*/
+* html div#mainContents ul.selectBtn { height: 1%; }
+div#mainContents ul.selectBtn { display: block; }
+/* End hide from IE-mac */
+
+
+.btnSpeed,
+.btnSpeed a,
+.btnSpeedC,
+.btnSpeedC a { background-image: url(../images/card/btn-speed.gif); }
+
+.btnOnline,
+.btnOnline a,
+.btnOnlineC,
+.btnOnlineC a { background-image: url(../images/card/btn-online.gif); }
+
+.btnRequest,
+.btnRequest a,
+.btnRequestC,
+.btnRequestC a { background-image: url(../images/card/btn-request.gif); }
+
+
+div#mainContents div.actionArea ul.selectBtn li span,
+div#mainContents div.actionArea ul.selectBtn li span a {
+	width: 110px;
+}
+
+div.actionArea .btnSpeed,
+div.actionArea .btnSpeed a,
+div.actionArea .btnSpeedC,
+div.actionArea .btnSpeedC a { background-image: url(../images/card/btn-speed-l.gif); }
+
+div.actionArea .btnOnline,
+div.actionArea .btnOnline a,
+div.actionArea .btnOnlineC,
+div.actionArea .btnOnlineC a { background-image: url(../images/card/btn-online-l.gif); }
+
+div.actionArea .btnRequest,
+div.actionArea .btnRequest a,
+div.actionArea .btnRequestC,
+div.actionArea .btnRequestC a { background-image: url(../images/card/btn-request-l.gif); }
+
+div#mainContents div.actionArea p.btnSpeed,
+div#mainContents div.actionArea p.btnSpeed a,
+div#mainContents div.actionArea p.btnOnline,
+div#mainContents div.actionArea p.btnOnline a,
+div#mainContents div.actionArea p.btnRequest,	
+div#mainContents div.actionArea p.btnRequest a {
+	display: block;
+	width: 110px;
+	height: 31px;
+	background-repeat: no-repeat;
+	text-indent: -9999px;
+	overflow: hidden;
+	font-size: 0;
+}
+
+div#mainContents div.actionArea p.btnSpeed,
+div#mainContents div.actionArea p.btnSpeed a {
+	background-image: url(../images/card/btn-speed-l.gif);
+}
+
+div#mainContents div.actionArea p.btnOnline,
+div#mainContents div.actionArea p.btnOnline a {
+	background-image: url(../images/card/btn-online-l.gif);
+}
+
+div#mainContents div.actionArea p.btnRequest,
+div#mainContents div.actionArea p.btnRequest a {
+	background-image: url(../images/card/btn-request-l.gif);
+}
+
+.btnSpeed a:hover,
+.btnSpeedC a:hover,
+div#mainContents div.actionArea table p.btnSpeed a:hover { background-position: 0 -31px; }
+.btnOnline a:hover,
+.btnOnlineC a:hover,
+div#mainContents div.actionArea table p.btnOnline a:hover { background-position: 0 -31px; }
+.btnRequest a:hover,
+.btnRequestC a:hover,
+div#mainContents div.actionArea table p.btnRequest a:hover { background-position: 0 -31px; }
+
+div#mainContents div.actionArea table.request {
+	border-top: none;
+	border-right: none;
+}
+div#mainContents div.actionArea div.col4B table.request { width: 350px; }
+div#mainContents div.actionArea table.request th { width: 110px; vertical-align: top;}
+div#mainContents div.actionArea table.request th p { margin: 0; }
+div#mainContents div.actionArea table.request td { width: 250px; vertical-align: top;}
+
+div#mainContents div.actionArea table.request3 th h3 {
+	width: auto;
+	margin: 0;
+	padding: 0;
+}
+
+div#mainContents div.actionArea table.request3 th { width: 33.3%; vertical-align: top;}
+div#mainContents div.actionArea table.request3 th p { margin: 0; }
+div#mainContents div.actionArea table.request3 td { width: 33.3%; vertical-align: top; }
+
+/* カードラインアップテーブル
+pのマージンは左右合わせて14px
+ボーダーは1px */
+table.cardLineup tr.lineup th p,
+table.cardLineup tr.lineup2Type th p,
+table.cardLineup tr.lineup3Type th p,
+table.cardLineup tr.lineup4Type th p,
+table.cardLineup tr.cardFace th p,
+table.cardLineup tr.cardFace2Type th p,
+table.cardLineup tr.cardFace3Type th p,
+table.cardLineup tr.cardFace4Type th p { width: 209px; }/* width: 224px; */
+
+table.cardLineup tr.target th p,
+table.cardLineup tr.target th p,
+table.cardLineup tr.annualDue th p,
+table.cardLineup tr.annualDue th p { width: 124px; }/* width: 139px; */
+table.cardLineup tr.target th.formalMember p,
+table.cardLineup tr.target th.familyMember p,
+table.cardLineup tr.annualDue th.formalMember p,
+table.cardLineup tr.annualDue th.familyMember p { width: 70px; }/* width: 85px; */
+
+tr.lineup td p,
+tr.cardFace td p { text-align: center; }
+
+tr.lineup2Type td p,
+tr.cardFace2Type td p { width: 243px; text-align: center; }/* width: 258px; */
+
+tr.lineup3Type td p,
+tr.cardFace3Type td p { width: 157px; text-align: center; }/* width: 172px; */
+
+tr.lineup4Type td p,
+tr.cardFace4Type td p { width: 114px; text-align: center; }/* width: 129px; */
+
+div#mainContents table h3 {
+	width: auto;
+	margin: 0 7px;
+	border: none;
+	color: #333;
+}
+
+/* リンダ特殊 */
+body.jcbLinda div#mainContents table.cardLineup tr.lineup td ul li,
+body.jcbLinda div#mainContents table.cardLineup tr.annualDue td ul li {
+	display: inline;
+	width: 33%;
+	text-align: center;
+}
+
+body.jcbLinda div#mainContents table.cardLineup tr.annualDue td { text-align: center;}
+
+/* JCB JUNOAカード */
+table.assurance th { width: 40%; }
+table.assurance td { width: 60%; }
+
+ul.notes li ol.list li { font-size: 100%; }
+
+/* JCB Living Plusカード */
+p.post {
+	text-align: center;
+	font-size: 70%;
+}
+
+body.livingplusCard div#mainContents div.colExA hr {
+	display: block;
+	clear: both; 
+	margin: 0 0 10px 20px;
+	_margin: 0 0 0 20px;
+	padding-top: 10px;
+	border: none;
+	border-bottom: 1px solid #CCC;
+	_height: 1px;/* IE対応 */ 
+	_border-top:none;/* IE対応 */ 
+	_color: #CCC;/* IE対応 */ 
+}
+
+
+/* ETC/JCBカード */
+div#mainContents div.relationArea table.etcInfo {
+	border-top: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+}
+
+div#mainContents div.relationArea table.etcInfo th {
+	vertical-align: top;
+	width: 6%;
+}
+
+div#mainContents div.relationArea table.etcInfo th { background-color: #E6E4D7; }
+div#mainContents div.relationArea table.etcInfo thead th { background-color: #CAC9BE; }
+div#mainContents div.relationArea table.etcInfo td { background-color: #F5F4E8; }
+
+div#mainContents div.relationArea table.etcInfo th,
+div#mainContents div.relationArea table.etcInfo td {
+	border-left: 1px solid #FFF;
+	border-bottom: 1px solid #FFF;
+}
+
+/* -------------------------------------------------- ここでも使えるJCB */
+/* CA */
+div#mainContents table.applicationCheckB th { text-align: left; width: 10%; }
+div#mainContents table.applicationCheckB th p { text-align: left; }
+div#mainContents table.applicationCheckB td { text-align: left; vertical-align: middle; width: 40%; }
+
+div#mainContents table.applicationCheckC th { text-align: left; width: 10%; }
+div#mainContents table.applicationCheckC th p { text-align: left; }
+div#mainContents table.applicationCheckC td { text-align: left; vertical-align: middle; width: 90%; }
+
+/* SC000300 高速道路でもJCB  */
+div#mainContents ul.motorRoad li {
+	display: inline;
+	width: 48%;
+}
+
+/* SC000700 コンビニでもJCB */
+div#mainContents table.handlingStore th { width: 16.6%; vertical-align: middle; text-align: center; }
+div#mainContents table.handlingStore td { width: 16.6%; vertical-align: middle; }
+
+/* SC000800 食料品もJCB */
+div#mainContents table.foodStore thead th { text-align: center; }
+div#mainContents table.foodStore tbody th { width: 5em; text-align: center; }
+
+/* SC001600 スポーツ用品店でもJCB */
+div#mainContents ul.sportsShop li {
+	display: inline;
+	width: 48%;
+}
+
+/* SC002800 加盟店一覧  */
+div#mainContents table.merchantList th { text-align: center; vertical-align: middle; }
+div#mainContents table.merchantList td { vertical-align: middle; }
+
+div#mainContents table.merchantList th.logoMark { width: 200px;	background-color: #F5F4E8; }
+div#mainContents table.merchantList .companyName {}
+div#mainContents table.merchantList .myJCB { width: 80px; text-align: center; }
+div#mainContents table.merchantList .payment { width: 170px; }
+
+body.sc000900 div#mainContents td.logoMark { width: 240px; background-color: #FFFFFF; }
+
+/* SC001400 海外オンラインショップ一覧 */
+body.sc001400 div#mainContents table th p { white-space: nowrap; }
+
+/* SC001700 スポーツクラブでもJCB  */
+body.sc001700 div#mainContents table td p { text-align: center; }
+
+/* SC002000 チケット購入もJCB */
+body.sc002000 div#mainContents table td.icon { width: 45px; }
+
+/* --------------------------------------------------便利でおトクなサービス */
+div#mainContents p.cordNo { display: inline; }
+
+/*SE004600 紛失・盗難海外サポート*/
+div#mainContents table.contactList thead th.country { width: 28%; }
+div#mainContents table.contactList thead th.tel { width: 37%; }
+div#mainContents table.contactList thead th.contact { width: 45%; }
+
+/*SE015600 「ゴルフ場予約サービス」*/
+div#mainContents table.golfSearch th,
+div#mainContents table.golfSearch td {
+	padding: 3px 0;
+	background-color: #FFF;
+}
+
+div#mainContents table.golfSearch select,
+div#mainContents table.golfSearch input {
+	width: auto;
+	margin-left: 0px;
+}
+
+div#mainContents table.golfSearch p select { font-size: 100%; }
+div#mainContents table.golfSearch td.title { width: 30%; }
+div#mainContents table.golfSearch td.btn { text-align: center; }
+
+/* -------------------------------------------------- お客さまサポート */
+/* SU000400 資料請求24時間受付サービス */
+body.siryou24h div#mainContents table.data thead th { text-align: center; }
+body.siryou24h div#mainContents table.data tbody td { width: 10em; text-align: center; vertical-align: middle; }
+
+/* SU000400- */
+div#mainContents table.applicationCheck th { text-align: left; width: 5em; }
+div#mainContents table.applicationCheck th.title { width: auto; }
+div#mainContents table.applicationCheck td.circulation { text-align: center; vertical-align: middle; width: 8em; }
+
+/* SU004900 JCBサービスデスク名古屋
+-SU006200 JCBサービスデスクなんば */
+div#mainContents table.address th { width: 6em; text-align: center; }
+
+/* -------------------------------------------------- 加盟店 */
+/* ME000200 JCBへ加盟をお考えの皆さま */
+body.mikameiIndex div#mainContents table th,
+body.mikameiIndex div#mainContents table td { vertical-align: top; }
+
+
+/* ME000900 店頭販売加盟店のご契約について ご加盟にあたって */
+ol.listPayment li { margin-bottom: 10px; }
+
+/* -------------------------------------------------- 法人 */
+/* CO000800 JCB法人カード・ビジネスカード会員限定　ゴールドホテルサービス  */
+p.date { text-align: right; }
+
+div#mainContents table.officeHours th,
+div#mainContents table.officeHours td {
+	background-color: transparent;
+}
+
+/* --------------------------------------------------便利でおトクなサービス系 */
+body.cardNumber div#mainContents input { margin: 0; }
+body.cardNumber div#mainContents div.actionArea { margin-bottom: 0; }
+body.cardNumber div#mainContents div.actionArea div.locatorA {
+	text-align: center;
+}
+
+body.error div#mainContents p { text-align: center; }
+
+body.myjService div#mainContents table th.cellA { width: 20%; }
+body.myjService div#mainContents table th.cellB { width: 60%; }
+body.myjService div#mainContents table th.cellC { width: 10%; }
+body.myjService div#mainContents table th.cellD { width: 10%; }
+
+body.tour div#mainContents table td { width: 490px; }
+
+body.lounge div#mainContents table th { width: 20%; text-align: center; }
+body.lounge div#mainContents p.icon { text-align: center; }
+body.lounge div#mainContents p.caption { font-size: 70%; }
+
+/* --------------------------------------------------カードを選ぶ系 */
+body.familyCard div#mainContents table td.pdf,
+body.familyCard div#mainContents table td.materials { 
+	width: 30px;
+	text-align: center;
+}
+
+body.free div#mainContents table thead th.cellA
+body.genre div#mainContents table thead th.cellA, { width: 240px; }
+body.free div#mainContents table thead th.cellB,
+body.genre div#mainContents table thead th.cellB { width: 320px; } 
+body.free div#mainContents table thead th.cellC,
+body.genre div#mainContents table thead th.cellC { width: 180px; } 
+
+body.free div#mainContents table tbody td.cellA,
+body.genre div#mainContents table tbody td.cellA { width: 60px; }
+body.free div#mainContents table tbody td.cellA p,
+body.genre div#mainContents table tbody td.cellA p { text-align: center; }
+
+/* --------------------------------------------------フッタ系 */
+body.privacyPolicy div#mainContents table tbody th { width: 33.3%; }
+
+body.privacyPolicy div#mainContents table.confidence thead th { text-align: left; }
+body.privacyPolicy div#mainContents table.confidence tbody th { width: 24%; }
+body.privacyPolicy div#mainContents table.confidence tbody td { width: 38%; }
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/* -------------------------------------------------- マージン指定 */
+div#mainContents .mar22 { margin-bottom: 22px !important; }
+
+/*////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+/* ----------------------------------------スマートフォン表示 */
+body#top div#smartPhone {
+	width: 760px;
+	margin: 0 0 40px 179px;
+	border: 1px solid #CCC;
+	background-color: #E5E5E5;
+	clear: both;
+}
+
+body.popUp div#smartPhone {
+	width: 608px;
+	margin: 0 0 40px 10px;
+	border: 1px solid #CCC;
+	background-color: #E5E5E5;
+	clear: both;
+}
+
+
+body#top div#smartPhone ul {
+	padding: 10px;
+	font-size: 16px;
+	text-align: center;
+}
+
+body#top div#smartPhone ul li {
+	display: inline;
+}
+
+body#top div#smartPhone ul li#first:after {
+	content: " | ";
+}
+
+div#smartPhone {
+	width: 740px;
+	margin: 20px 0 40px 20px;
+	border: 1px solid #CCC;
+	background-color: #E5E5E5;
+	clear: both;
+}
+
+div#smartPhone ul {
+	padding: 10px;
+	font-size: 20px;
+	text-align: center;
+}
+
+div#smartPhone ul li {
+	display: inline;
+}
+
+div#smartPhone ul li#first:after {
+	content: " | ";
+}
+
+/* ----------------------------------------ソーシャルプラグイン対応 */
+
+.SocialTracker{
+	float:right;
+}
+
+span.fb_edge_comment_widget.fb_iframe_widget iframe{
+display:none;
+}
+
+.sr-twitter-share-button{
+	cursor:pointer;
+}
+
+/*EOF*/

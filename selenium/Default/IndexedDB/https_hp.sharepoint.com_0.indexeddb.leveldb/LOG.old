@@ -1,15 +1,3 @@
-2020/07/28-13:46:06.410 4120 Reusing MANIFEST C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\IndexedDB\https_hp.sharepoint.com_0.indexeddb.leveldb/MANIFEST-000001
-2020/07/28-13:46:06.415 4120 Recovering log #399
-2020/07/28-13:46:06.415 4120 Reusing old log C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\IndexedDB\https_hp.sharepoint.com_0.indexeddb.leveldb/000399.log 
-2020/07/28-13:46:43.490 4140 Level-0 table #404: started
-2020/07/28-13:46:43.492 4140 Level-0 table #404: 2109 bytes OK
-2020/07/28-13:46:43.493 4140 Delete type=0 #399
-2020/07/28-13:46:43.497 4140 Manual compaction at level-0 from (begin) .. (end); will stop at (end)
-2020/07/28-13:46:43.497 4140 Manual compaction at level-1 from (begin) .. (end); will stop at '\x00\x01\x01%\x04\x02\x01\x17\x00s\x00t\x00s\x00-\x00p\x00a\x00g\x00e\x00-\x00r\x00e\x00s\x00p\x00o\x00n\x00s\x00e\x00-\x00c\x00a\x00c\x00h\x00e\x03\x00\x00\x00\x00\x00\x80I@\x00\x01w\x00_\x00o\x00d\x00s\x00p\x00c\x00a\x00c\x00h\x00e\x00_\x00h\x00t\x00t\x00p\x00s\x00%\x003\x00A\x00%\x002\x00F\x00%\x002\x00F\x00h\x00p\x00.\x00s\x00h\x00a\x00r\x00e\x00p\x00o\x00i\x00n\x00t\x00.\x00c\x00o\x00m\x00%\x002\x00F\x00s\x00i\x00t\x00e\x00s\x00%\x002\x00F\x00c\x00c\x00r\x00o\x00b\x00o\x00t\x00i\x00c\x00s\x00%\x002\x00F\x00r\x00o\x00c\x00k\x00e\x00t\x00a\x00p\x00j\x00%\x002\x005\x002\x000\x00c\x00r\x00e\x00d\x00i\x00t\x00%\x002\x005\x002\x000\x00c\x00a\x00r\x00d\x00%\x002\x00F\x00f\x00o\x00r\x00m\x00s\x00%\x002\x00F\x00a\x00l\x00l\x00i\x00t\x00e\x00m\x00s\x00.\x00a\x00s\x00p\x00x' @ 9779 : 1
-2020/07/28-13:46:43.497 4140 Compacting 1@1 + 1@2 files
-2020/07/28-13:46:43.503 4140 Generated table #405@1: 635 keys, 44122 bytes
-2020/07/28-13:46:43.503 4140 Compacted 1@1 + 1@2 files => 44122 bytes
-2020/07/28-13:46:43.504 4140 compacted to: files[ 0 0 1 0 0 0 0 ]
-2020/07/28-13:46:43.504 4140 Delete type=2 #401
-2020/07/28-13:46:43.504 4140 Delete type=2 #404
-2020/07/28-13:46:43.505 4140 Manual compaction at level-1 from '\x00\x01\x01%\x04\x02\x01\x17\x00s\x00t\x00s\x00-\x00p\x00a\x00g\x00e\x00-\x00r\x00e\x00s\x00p\x00o\x00n\x00s\x00e\x00-\x00c\x00a\x00c\x00h\x00e\x03\x00\x00\x00\x00\x00\x80I@\x00\x01w\x00_\x00o\x00d\x00s\x00p\x00c\x00a\x00c\x00h\x00e\x00_\x00h\x00t\x00t\x00p\x00s\x00%\x003\x00A\x00%\x002\x00F\x00%\x002\x00F\x00h\x00p\x00.\x00s\x00h\x00a\x00r\x00e\x00p\x00o\x00i\x00n\x00t\x00.\x00c\x00o\x00m\x00%\x002\x00F\x00s\x00i\x00t\x00e\x00s\x00%\x002\x00F\x00c\x00c\x00r\x00o\x00b\x00o\x00t\x00i\x00c\x00s\x00%\x002\x00F\x00r\x00o\x00c\x00k\x00e\x00t\x00a\x00p\x00j\x00%\x002\x005\x002\x000\x00c\x00r\x00e\x00d\x00i\x00t\x00%\x002\x005\x002\x000\x00c\x00a\x00r\x00d\x00%\x002\x00F\x00f\x00o\x00r\x00m\x00s\x00%\x002\x00F\x00a\x00l\x00l\x00i\x00t\x00e\x00m\x00s\x00.\x00a\x00s\x00p\x00x' @ 9779 : 1 .. (end); will stop at (end)
+2020/12/10-10:53:55.253 214 Reusing MANIFEST C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\IndexedDB\https_hp.sharepoint.com_0.indexeddb.leveldb/MANIFEST-000001
+2020/12/10-10:53:55.254 214 Recovering log #2991
+2020/12/10-10:53:55.271 214 Reusing old log C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\IndexedDB\https_hp.sharepoint.com_0.indexeddb.leveldb/002991.log 

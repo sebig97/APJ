@@ -1,3 +1,8 @@
-2020/07/28-13:39:57.537 2190 Reusing MANIFEST C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Session Storage/MANIFEST-000001
-2020/07/28-13:39:57.544 2190 Recovering log #235
-2020/07/28-13:39:57.545 2190 Reusing old log C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Session Storage/000235.log 
+2020/12/10-10:53:25.766 1bf8 Reusing MANIFEST C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Session Storage/MANIFEST-000001
+2020/12/10-10:53:25.768 1bf8 Recovering log #1927
+2020/12/10-10:53:25.768 1bf8 Level-0 table #1931: started
+2020/12/10-10:53:25.773 1bf8 Level-0 table #1931: 53117 bytes OK
+2020/12/10-10:53:25.773 1bf8 Recovering log #1931
+2020/12/10-10:53:25.774 1bf8 Reusing old log C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Session Storage/001931.log 
+2020/12/10-10:53:25.776 1bf8 Delete type=0 #1927
+2020/12/10-10:53:25.776 1bf8 Delete type=2 #1932

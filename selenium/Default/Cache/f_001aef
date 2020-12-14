@@ -1,0 +1,3976 @@
+//-----------------------------------------------------------------------------
+//         Copyright  (c) 2004 OMRON Software CO., Ltd.
+//         Nishinotouin Kizuyabashi St., Simogyoku, Kyoto, 6008216, Japan.
+//         All Rights Reserved.
+//-----------------------------------------------------------------------------
+//
+//[概要]
+//  共通JAVASCRIPTソース
+//
+//[更新履歴]
+//  <rv01> 2004-11-23 : HYRON 王華 : 新規
+//
+
+// 曜日
+var WEEKDAY = ["日","月","火","水","木","金","土"];
+
+// 焦点
+var oFocusElem = null;
+// 焦点
+var oBlurElem = null;
+// キー
+var bKeyUpDown = false;
+// テクストボックスの値
+var strTextData = "";
+
+// 日曜日
+var GL_SUN_FOR_COL = "FF0000";
+// 土曜日
+var GL_SAT_FOR_COL = "0000FF";
+// その他曜日
+var GL_NOR_FOR_COL = "666666";
+
+// 画面が制御
+BodyLimit();
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  BodyOnContextMenu
+//
+//[概要]
+//  画面はマウスの右ボタンが制御
+//
+//[機能説明]
+//  画面を右クリックするとき、ポップアップメニューを表示したい
+//
+//-----------------------------------------------------------------------------
+//
+function OnContextMenu()
+{
+	// 画面はマウスの右ボタンが制御
+	//window.event.returnValue = true;
+	OnMouseUp();
+	window.event.returnValue = false;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  BodyLimit
+//
+//[概要]
+//  画面が制御
+//
+//[機能説明]
+//  画面が制御
+//
+//-----------------------------------------------------------------------------
+//
+function BodyLimit()
+{
+	window.document.onkeyup = OnKeyUp;
+	window.document.onkeydown = OnKeyDown;
+	window.document.oncontextmenu = OnContextMenu;
+	window.document.onhelp = OnHelp;
+	window.document.onselectstart = OnSelectStart;
+	window.document.onmouseup = OnMouseUp;
+	window.document.onmousedown = OnMouseDown;
+	//window.document.onbeforeeditfocus = OnMouseDown;
+	//window.document.onclick = OnClick;
+	// リストボックス
+	//document.write("<style>");
+	//document.write("INPUT {behavior:url(COM_TXTLBLLST.htc)}");
+	//document.write("TEXTAREA {behavior:url(COM_TXTLBLLST.htc)}");
+	//document.write("</style>");
+	document.body.tabIndex = -1;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  ListBoxHide
+//
+//[概要]
+//  リストボックスを隠す
+//
+//[機能説明]
+//  リストボックスを隠す
+//
+//-----------------------------------------------------------------------------
+//
+function ListBoxHide()
+{
+	var ilength = 0;
+	var oForm = document.forms[0];
+	var oElem = null;
+	// リストボックス
+	//document.write("<style>");
+	//document.write("INPUT {behavior:url(COM_TXTLBLLST.htc)}");
+	//document.write("TEXTAREA {behavior:url(COM_TXTLBLLST.htc)}");
+	//document.write("</style>");
+	// リストボックスを隠す
+	for (var i = 0; i < oForm.elements.length; i++)
+	{
+		oElem = oForm.elements[i];
+		ilength = oElem.id.toUpperCase().length;
+		try
+		{
+			if (ilength > 14 &&
+				//oElem.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+				oElem.id.toUpperCase().indexOf("TXTLBLLST_") != -1 &&
+				//oElem.id.toUpperCase().substring(ilength - 4, ilength) == "_LST")
+				oElem.id.toUpperCase().indexOf("_LST") != -1)
+			{
+				oElem.style.visibility = "hidden";
+			}
+		}
+		catch(e)
+		{
+		}
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  OnFocus
+//
+//[概要]
+//  リストボックスが表示制御
+//
+//[機能説明]
+//  リストボックスが表示制御
+//
+//-----------------------------------------------------------------------------
+//
+function OnFocus()
+{
+	//alert(window.event.srcElement.id);
+	var strName = "";
+	var ilength = 0;
+	try
+	{
+		// コントロールチェック
+		if (window.event.srcElement.tagName.toUpperCase() == "SELECT")
+		{
+			ilength = window.event.srcElement.id.toUpperCase().length;
+			if (ilength > 14 &&
+				//window.event.srcElement.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+				window.event.srcElement.id.toUpperCase().indexOf("TXTLBLLST_") != -1 && 
+				//window.event.srcElement.id.toUpperCase().substring(ilength - 4, ilength) == "_LST"				
+				window.event.srcElement.id.toUpperCase().indexOf("_LST") != -1)
+			{
+				return true;
+			}
+		}
+		// コントロールチェック
+		if (oBlurElem != null && oBlurElem.id.toUpperCase() != window.event.srcElement.id.toUpperCase())
+		{
+			//alert(1);
+			ilength = oBlurElem.id.toUpperCase().length;
+			if (ilength > 14 &&
+				//oBlurElem.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+				oBlurElem.id.toUpperCase().indexOf("TXTLBLLST_") != -1 && 
+				//oBlurElem.id.toUpperCase().substring(ilength - 4, ilength) == "_TXT")
+				oBlurElem.id.toUpperCase().indexOf("_TXT") != -1)
+			{
+				strTextData = window.event.srcElement.value;
+				//alert(2);
+				strName = oBlurElem.id.toUpperCase().substring(0, (ilength - 4));
+				// 制御チェック
+				if (((oBlurElem.tagName.toUpperCase() == "INPUT" &&
+					(oBlurElem.type.toUpperCase() == "TEXT" ||
+					 oBlurElem.type.toUpperCase() == "FILE" ||
+					 oBlurElem.type.toUpperCase() == "PASSWORD")) ||
+					(oBlurElem.tagName.toUpperCase() == "TEXTAREA")) && oBlurElem.readOnly == false)
+				{
+					//alert(3);
+					// リストボックスが表示制御
+					if (document.getElementById(strName + "_LST").style.visibility == "visible" &&
+						window.event.srcElement.id.toUpperCase() != (strName + "_TXT"))
+					{
+						//alert(4);
+						document.getElementById(strName + "_LST").style.visibility = "hidden";
+					}
+				}
+			}
+			/*else
+			{
+				strName = oBlurElem.id.toUpperCase().substring(0, (ilength - 4));
+				// 制御チェック
+				if (document.getElementById(strName + "_LST").style.visibility == "hidden")
+				{
+					document.getElementById(strName + "_LST").style.visibility = "visible";
+				}
+			}*/
+		}
+
+		/*// リストボックスが表示
+		//-----------------------------------------------------------------------------------------------------------------------//
+		// コントロールチェック
+		ilength = window.event.srcElement.id.toUpperCase().length;
+		if (ilength > 14 &&
+			window.event.srcElement.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+			window.event.srcElement.id.toUpperCase().substring(ilength - 4, ilength) == "_TXT")
+		{
+			//alert(5);
+			strName = window.event.srcElement.id.toUpperCase().substring(0, (ilength - 4));
+			if (((window.event.srcElement.tagName.toUpperCase() == "INPUT" &&
+				(window.event.srcElement.type.toUpperCase() == "TEXT" ||
+				 window.event.srcElement.type.toUpperCase() == "FILE" ||
+				 window.event.srcElement.type.toUpperCase() == "PASSWORD")) ||
+				(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA")) && window.event.srcElement.readOnly == false)
+			{
+				//alert(6);
+				// 制御チェック
+				if (document.getElementById(strName + "_LST").style.visibility == "hidden")
+				{
+					//alert(7);
+					// リストボックスが表示制御
+					if (oFocusElem == null || 
+						(oFocusElem != null && 
+						 oFocusElem.id.toUpperCase() != (strName + "_LST") &&
+						 oFocusElem.id.toUpperCase() != window.event.srcElement.id.toUpperCase()))
+					{
+						//alert(8);
+						document.getElementById(strName + "_LST").style.visibility = "visible";
+					}
+					else if (oFocusElem.id.toUpperCase() == (strName + "_LST"))
+					{
+						SetFocus(window.event.srcElement.id);
+					}
+				}
+			}
+		}
+		//-----------------------------------------------------------------------------------------------------------------------//
+		*/
+		/*else
+		{
+			if (oBlurElem != null && oBlurElem.id.toUpperCase() != window.event.srcElement.id.toUpperCase())
+			ilength = oBlurElem.id.toUpperCase().length;
+			if (ilength > 14 &&
+				oBlurElem.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+				oBlurElem.id.toUpperCase().substring(ilength - 4, ilength) == "_TXT")
+			{
+				strName = oBlurElem.id.toUpperCase().substring(0, (ilength - 4));
+				// 制御チェック
+				if (((oBlurElem.tagName.toUpperCase() == "INPUT" &&
+					(oBlurElem.type.toUpperCase() == "TEXT" ||
+					 oBlurElem.type.toUpperCase() == "FILE" ||
+					 oBlurElem.type.toUpperCase() == "PASSWORD")) ||
+					(oBlurElem.tagName.toUpperCase() == "TEXTAREA")) && oBlurElem.readOnly == false)
+				{
+					// 制御チェック
+					if (document.getElementById(strName + "_LST").style.visibility == "visible")
+					{
+						document.getElementById(strName + "_LST").style.visibility = "hidden";
+					}
+				}
+			}
+		}*/
+	}
+	catch(e)
+	{
+	}
+	return true;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  OnBlur
+//
+//[概要]
+//  リストボックスが表示制御
+//
+//[機能説明]
+//  リストボックスが表示制御
+//
+//-----------------------------------------------------------------------------
+//
+function OnBlur()
+{
+	//alert(window.event.srcElement.id);
+	/*var strName = "";
+	var ilength = 0;
+	try
+	{
+		ilength = window.event.srcElement.id.toUpperCase().length;
+		if (ilength > 14 &&
+			window.event.srcElement.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+			window.event.srcElement.id.toUpperCase().substring(ilength - 4, ilength) == "_TXT")
+		{
+			strName = window.event.srcElement.id.toUpperCase().substring(0, (ilength - 4));
+			if (((window.event.srcElement.tagName.toUpperCase() == "INPUT" &&
+				(window.event.srcElement.type.toUpperCase() == "TEXT" ||
+				 window.event.srcElement.type.toUpperCase() == "FILE" ||
+				 window.event.srcElement.type.toUpperCase() == "PASSWORD")) ||
+				(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA")) && window.event.srcElement.readOnly == false)
+			{
+				if (document.getElementById(strName + "_LST").style.visibility == "visible")
+				{
+					document.getElementById(strName + "_LST").style.visibility = "hidden";
+				}
+			}
+		}
+	}
+	catch(e)
+	{
+	}*/
+	try
+	{
+		oBlurElem = window.event.srcElement;
+	}
+	catch(e)
+	{
+	}
+	return true;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  OnMouseDown
+//
+//[概要]
+//  クリックが制御
+//
+//[機能説明]
+//  クリックが制御
+//
+//-----------------------------------------------------------------------------
+//
+function OnMouseDown()
+{
+	var strName = "";
+	var ilength = 0;
+	
+	// キー
+	bKeyUpDown = false;
+	// テクストボックスの値
+	strTextData = "";
+	
+	// 制御チェック
+	/*if (((window.event.srcElement.tagName.toUpperCase() == "INPUT" && 
+		  (window.event.srcElement.type.toUpperCase() == "TEXT" || 
+		   window.event.srcElement.type.toUpperCase() == "PASSWORD" || 
+		   window.event.srcElement.type.toUpperCase() == "FILE" || 
+		   window.event.srcElement.type.toUpperCase() == "BUTTON" || 
+		   window.event.srcElement.type.toUpperCase() == "SUBMIT" || 
+		   window.event.srcElement.type.toUpperCase() == "RESET" || 
+		   window.event.srcElement.type.toUpperCase() == "IMAGE")) || 
+		 (window.event.srcElement.tagName.toUpperCase() == "TEXTAREA") || 
+		 (window.event.srcElement.tagName.toUpperCase() == "A")) && 
+		window.event.srcElement.readOnly == false && 
+		window.event.srcElement.disabled == false)*/
+	oFocusElem = window.document.activeElement;
+	try
+	{
+		if ((((window.event.srcElement.tagName.toUpperCase() == "INPUT" &&
+			(window.event.srcElement.type.toUpperCase() == "TEXT" ||
+				window.event.srcElement.type.toUpperCase() == "PASSWORD" ||
+				window.event.srcElement.type.toUpperCase() == "FILE" ||
+				window.event.srcElement.type.toUpperCase() == "BUTTON" ||
+				window.event.srcElement.type.toUpperCase() == "SUBMIT" ||
+				window.event.srcElement.type.toUpperCase() == "RESET" ||
+				window.event.srcElement.type.toUpperCase() == "RADIO" ||
+				window.event.srcElement.type.toUpperCase() == "CHECKBOX" ||
+				window.event.srcElement.type.toUpperCase() == "IMAGE")) ||
+			(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA")) &&
+			window.event.srcElement.readOnly == false &&
+			window.event.srcElement.disabled == false) ||
+			(((window.event.srcElement.tagName.toUpperCase() == "SELECT") || 
+			  (window.event.srcElement.tagName.toUpperCase() == "A")) &&
+			 window.event.srcElement.disabled == false))
+		{
+			if (window.event.srcElement.style.height.substring(0,1) == "0" ||
+				window.event.srcElement.style.width.substring(0,1) == "0")
+			{
+				// 制御
+				//oFocusElem = null;
+			}
+			else
+			{
+				try
+				{
+					// コントロールチェック
+					ilength = window.document.activeElement.id.toUpperCase().length;
+					if (ilength > 14 &&
+						//window.document.activeElement.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+						window.document.activeElement.id.toUpperCase().indexOf("TXTLBLLST_") != -1 &&
+						//window.document.activeElement.id.toUpperCase().substring(ilength - 4, ilength) == "_TXT")
+						window.document.activeElement.id.toUpperCase().indexOf("_TXT") != -1)
+					{
+						strName = window.document.activeElement.id.toUpperCase().substring(0, (ilength - 4));
+						if (((window.document.activeElement.tagName.toUpperCase() == "INPUT" &&
+							(window.document.activeElement.type.toUpperCase() == "TEXT" ||
+							 window.document.activeElement.type.toUpperCase() == "FILE" ||
+								window.document.activeElement.type.toUpperCase() == "PASSWORD")) ||
+							(window.document.activeElement.tagName.toUpperCase() == "TEXTAREA")) && window.document.activeElement.readOnly == false)
+						{
+							if (window.document.activeElement.id.toUpperCase() == window.event.srcElement.id.toUpperCase())
+							{
+								if (document.getElementById(strName + "_LST").style.visibility == "hidden")
+								{
+									document.getElementById(strName + "_LST").style.visibility = "visible";
+								}
+								else
+								{
+									document.getElementById(strName + "_LST").style.visibility = "hidden";
+								}
+							}
+							else
+							{
+								if (window.event.srcElement.id.toUpperCase() != (strName + "_LST"))
+								{
+									document.getElementById(strName + "_LST").style.visibility = "hidden";
+								}
+								/*else
+								{
+									alert(document.getElementById(strName + "_LST").selectedIndex);
+									//document.getElementById(strName + "_LST").style.visibility = "hidden";
+								}*/
+							}
+						}
+					}
+				}
+				catch(e)
+				{
+				}
+				// 制御しない
+				//oFocusElem = window.event.srcElement.id;
+				oFocusElem = window.event.srcElement;
+				if (window.document.activeElement.id.toUpperCase() != window.event.srcElement.id.toUpperCase())
+				{
+					try
+					{
+						// コントロールチェック
+						ilength = window.event.srcElement.id.toUpperCase().length;
+						if (ilength > 14 &&
+							//window.event.srcElement.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+							window.event.srcElement.id.toUpperCase().indexOf("TXTLBLLST_") != -1 &&
+							//window.event.srcElement.id.toUpperCase().substring(ilength - 4, ilength) == "_TXT")
+							window.event.srcElement.id.toUpperCase().indexOf("_TXT") != -1 )
+							
+						{
+							if ((window.event.srcElement.id.toUpperCase().substring(ilength - 7, ilength) == "_NM_TXT" || 
+								window.event.srcElement.id.toUpperCase().substring(ilength - 7, ilength) == "_NC_TXT") && 
+								ilength > 17)
+							{
+								//return true;
+							}
+							else
+							{
+								strName = window.event.srcElement.id.toUpperCase().substring(0, (ilength - 4));
+								if (((window.event.srcElement.tagName.toUpperCase() == "INPUT" &&
+									(window.event.srcElement.type.toUpperCase() == "TEXT" ||
+									window.event.srcElement.type.toUpperCase() == "FILE" ||
+										window.event.srcElement.type.toUpperCase() == "PASSWORD")) ||
+									(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA")) && window.event.srcElement.readOnly == false)
+								{
+									if (document.getElementById(strName + "_LST").style.visibility == "hidden")
+									{
+										document.getElementById(strName + "_LST").style.visibility = "visible";
+									}
+									else
+									{
+										document.getElementById(strName + "_LST").style.visibility = "hidden";
+									}
+								}
+							}
+						}
+					}
+					catch(e)
+					{
+					}
+				}
+			}
+		}
+		else
+		{
+			// 制御
+			//oFocusElem = null;
+		}
+	}
+	catch(e)
+	{
+	}
+	/*try
+	{
+		if ((((window.event.srcElement.tagName.toUpperCase() == "INPUT" && 
+			(window.event.srcElement.type.toUpperCase() == "TEXT" || 
+				window.event.srcElement.type.toUpperCase() == "PASSWORD" || 
+				window.event.srcElement.type.toUpperCase() == "FILE" || 
+				window.event.srcElement.type.toUpperCase() == "BUTTON" || 
+				window.event.srcElement.type.toUpperCase() == "SUBMIT" || 
+				window.event.srcElement.type.toUpperCase() == "RESET" || 
+				window.event.srcElement.type.toUpperCase() == "RADIO" || 
+				window.event.srcElement.type.toUpperCase() == "CHECKBOX" ||
+				window.event.srcElement.type.toUpperCase() == "IMAGE")) || 
+			(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA")) && 
+			window.event.srcElement.readOnly == false && 
+			window.event.srcElement.disabled == false) || 
+			(((window.event.srcElement.tagName.toUpperCase() == "SELECT") || 
+			  (window.event.srcElement.tagName.toUpperCase() == "A")) && 
+			 window.event.srcElement.disabled == false))
+		{
+			if (window.event.srcElement.style.height.substring(0,1) == "0" || 
+				window.event.srcElement.style.width.substring(0,1) == "0")
+			{
+				// 制御
+				//oFocusElem = null;
+			}
+			else
+			{
+				// 制御しない
+				//oFocusElem = window.event.srcElement.id;
+				oFocusElem = window.event.srcElement;
+			}
+		}
+		else
+		{
+			// 制御
+			//oFocusElem = null;
+		}
+	}
+	catch(e)
+	{
+	}*/
+	// ＬＩＮＫ制御
+	try
+	{
+		if (window.event.srcElement.tagName.toUpperCase() == "A" && 
+			(event.shiftKey || event.ctrlKey || event.altKey))
+		{
+			event.returnValue = false;
+			return false;
+		}
+	}
+	catch(e)
+	{
+	}
+	return true;
+}
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  OnMouseUp
+//
+//[概要]
+//  クリックが制御
+//
+//[機能説明]
+//  クリックが制御
+//
+//-----------------------------------------------------------------------------
+//
+function OnMouseUp()
+{
+	var strName = "";
+	var ilength = 0;
+	// 制御しない
+	if (oFocusElem != null)
+	{
+		try
+		{
+			//alert(oFocusElem.tagName);
+			ilength = oFocusElem.id.toUpperCase().length;
+			if (ilength > 14 &&
+				//oFocusElem.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+				oFocusElem.id.toUpperCase().indexOf("TXTLBLLST_") != -1 &&
+				//oFocusElem.id.toUpperCase().substring(ilength - 4, ilength) == "_LST")
+				oFocusElem.id.toUpperCase().indexOf("_LST") != -1)
+			{
+				strName = oFocusElem.id.toUpperCase().substring(0, (ilength - 4));
+				if (oFocusElem.tagName.toUpperCase() == "SELECT")
+				{
+					//alert(1);
+					SetFocus(strName + "_TXT");
+					SetTxtLbl(strName, oFocusElem.selectedIndex);
+					if (oFocusElem.style.visibility == "visible")
+					{
+						oFocusElem.style.visibility = "hidden";
+					}
+					SetFocus(strName + "_TXT");
+					event.returnValue = false;
+					return false;
+				}
+			}
+		}
+		catch(e)
+		{
+		}
+		if (oFocusElem.tagName.toUpperCase() == "SELECT")
+		{
+			try
+			{
+				//return true;
+				if (oFocusElem.id.toUpperCase() == window.event.srcElement.id.toUpperCase())
+				{
+					return true;
+				}
+			}
+			catch(e)
+			{
+				SetFocus(oFocusElem.id);
+				event.returnValue = false;
+				return false;
+			}
+		}
+		else if (oFocusElem.tagName.toUpperCase() == "INPUT" && oFocusElem.type.toUpperCase() == "FILE")
+		{
+			return true;
+		}
+		SetFocus(oFocusElem.id);
+		event.returnValue = false;
+		return false;
+	}
+	return true;
+	/*// 制御しない
+	if (oFocusElem != null)
+	{
+		if (oFocusElem.tagName.toUpperCase() == "SELECT")
+		{
+			return true;
+		}
+		SetFocus(oFocusElem.id);
+		//SetFocus(oFocusElem);
+		event.returnValue = false;
+		return false;
+	}*/
+	/*// 制御しない
+	if (((window.event.srcElement.tagName.toUpperCase() == "INPUT" && 
+		  (window.event.srcElement.type.toUpperCase() == "TEXT" || 
+		   window.event.srcElement.type.toUpperCase() == "PASSWORD" || 
+		   window.event.srcElement.type.toUpperCase() == "FILE" || 
+		   window.event.srcElement.type.toUpperCase() == "BUTTON" || 
+		   window.event.srcElement.type.toUpperCase() == "SUBMIT" || 
+		   window.event.srcElement.type.toUpperCase() == "RESET" || 
+		   window.event.srcElement.type.toUpperCase() == "IMAGE")) || 
+		 (window.event.srcElement.tagName.toUpperCase() == "TEXTAREA") || 
+		 (window.event.srcElement.tagName.toUpperCase() == "A")) && 
+		window.event.srcElement.readOnly == false && 
+		window.event.srcElement.disabled == false)
+	{
+		return true;
+	}*/
+	/*// 制御
+	var oForm = document.forms[0];
+	var oElem = null;
+	var iTableIndex = 0;
+	//for (i = 0; i < oForm.elements.length; i++)
+	for (i = 0; i < oForm.all.length; i++)
+	{
+		//for (j = 0; j < oForm.elements.length; j++)
+		for (j = 0; j < oForm.all.length; j++)
+		{
+			//oElem = oForm.elements[j];
+			oElem = oForm.all(j);
+			if (oElem.tabIndex == iTableIndex && 
+				((((oElem.tagName.toUpperCase() == "INPUT" && 
+					(oElem.type.toUpperCase() == "TEXT" || 
+					 oElem.type.toUpperCase() == "PASSWORD" || 
+					 oElem.type.toUpperCase() == "FILE" || 
+					 oElem.type.toUpperCase() == "BUTTON" || 
+					 oElem.type.toUpperCase() == "SUBMIT" || 
+					 oElem.type.toUpperCase() == "RESET" || 
+					 oElem.type.toUpperCase() == "RADIO" || 
+					 oElem.type.toUpperCase() == "CHECKBOX" ||
+					 oElem.type.toUpperCase() == "IMAGE")) || 
+				   (oElem.tagName.toUpperCase() == "TEXTAREA")) && 
+				  oElem.readOnly == false && 
+				  oElem.disabled == false) || 
+				 (((oElem.tagName.toUpperCase() == "SELECT") || 
+				   (oElem.tagName.toUpperCase() == "A")) && 
+				  oElem.disabled == false)))
+			{
+				if (oElem.style.height.substring(0,1) != "0" && 
+					oElem.style.width.substring(0,1) != "0")
+				{
+					SetFocus(oElem.id);
+					event.returnValue = false;
+					return false;
+				}
+			}
+		}
+		iTableIndex++;
+	}*/
+	/*else
+	{
+		var oForm = document.forms[0];
+		var oElem = null;
+		var iTableIndex = 0;
+		for (i = 0; i < oForm.elements.length; i++)
+		{
+			for (j = 0; j < oForm.elements.length; j++)
+			{
+				oElem = oForm.elements[j];
+				if (oElem.tabIndex == iTableIndex && 
+					(((oElem.tagName.toUpperCase() == "INPUT" && 
+					(oElem.type.toUpperCase() == "TEXT" || 
+						oElem.type.toUpperCase() == "PASSWORD" || 
+						oElem.type.toUpperCase() == "FILE" || 
+						oElem.type.toUpperCase() == "BUTTON" || 
+						oElem.type.toUpperCase() == "SUBMIT" || 
+						oElem.type.toUpperCase() == "RESET" || 
+						oElem.type.toUpperCase() == "IMAGE")) || 
+					(oElem.tagName.toUpperCase() == "TEXTAREA") || 
+					(oElem.tagName.toUpperCase() == "A")) && 
+					oElem.readOnly == false && 
+					oElem.disabled == false))
+				{
+					SetFocus(oElem.id);
+					event.returnValue = false;
+					return false;
+				}
+			}
+			iTableIndex++;
+		}
+	}
+	return true;*/
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  OnSelectStart
+//
+//[概要]
+//  選択が制御
+//
+//[機能説明]
+//  選択が制御
+//
+//-----------------------------------------------------------------------------
+//
+function OnSelectStart()
+{
+	if ((window.event.srcElement.tagName.toUpperCase() == "INPUT" &&
+		(window.event.srcElement.type.toUpperCase() == "TEXT" ||
+		 window.event.srcElement.type.toUpperCase() == "FILE" ||
+			window.event.srcElement.type.toUpperCase() == "PASSWORD")) ||
+		(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA"))
+	{
+		if (window.event.srcElement.readOnly == false && 
+			window.event.srcElement.disabled == false)
+		{
+			return true;
+		}
+	}
+	event.returnValue = false;
+	return false;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  OnKeyDown
+//
+//[概要]
+//  キーが制御
+//  BACKSPACE  : 8
+//  TAB        : 9
+//  ENTER      : 13
+//  ESC        : 27
+//  PAGEUP	   : 33
+//  PAGEDOWN   : 34
+//  END        : 35
+//  HOME       : 36
+//  LEFT       : 37
+//  UP	       : 38
+//  RIGHT      : 39
+//  DOWN       : 40
+//  A          : 65
+//  C          : 67
+//  E          : 69
+//  F          : 70
+//  H          : 72
+//  I          : 73
+//  N          : 78
+//  O          : 79
+//  P          : 80
+//  R          : 82
+//  S          : 83
+//  V          : 86
+//  W          : 87
+//  X          : 88
+//  RIGHTCLICK : 93
+//  F1         : 112
+//  F2         : 113
+//  F3         : 114
+//  F4         : 115
+//  F5         : 116
+//  F6         : 117
+//  F7         : 118
+//  F8         : 119
+//  F9         : 120
+//  F10        : 121
+//  F11        : 122
+//  F12        : 123
+//
+//[機能説明]
+//  キーが制御
+//
+//-----------------------------------------------------------------------------
+//
+function OnKeyDown()
+{
+	// ＡＬＴ＋Ｆ４
+    if (event.keyCode == 115 && event.altKey == true)
+    { 
+        alert("キーボードより「ALT+F4」が入力されました。\n画面は強制終了されます。責任者にご連絡ください。"); 
+		event.keyCode = 0;
+		event.returnValue = false;
+		return false;
+	}
+	
+	// 押下されたキーコードを取得
+	var strName = "";
+	var ilength = 0;
+
+	// 焦点
+	oFocusElem = null;
+	// 焦点
+	oBlurElem = null;
+
+	bKeyUpDown = false;
+	try
+	{
+		// コントロールチェック
+		ilength = window.event.srcElement.id.toUpperCase().length;
+		if (ilength > 14 &&
+			//window.event.srcElement.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+			window.event.srcElement.id.toUpperCase().indexOf("TXTLBLLST_") != -1 &&
+			//window.event.srcElement.id.toUpperCase().substring(ilength - 4, ilength) == "_TXT")
+			window.event.srcElement.id.toUpperCase().indexOf("_TXT") != -1)
+			
+		{
+			if ((window.event.srcElement.id.toUpperCase().substring(ilength - 7, ilength) == "_NM_TXT" || 
+				 window.event.srcElement.id.toUpperCase().substring(ilength - 7, ilength) == "_NC_TXT") && 
+				ilength > 17)
+			{
+				//return true;
+			}
+			else
+			{
+				strName = window.event.srcElement.id.toUpperCase().substring(0, (ilength - 4));
+				if (((window.event.srcElement.tagName.toUpperCase() == "INPUT" &&
+					(window.event.srcElement.type.toUpperCase() == "TEXT" ||
+					window.event.srcElement.type.toUpperCase() == "FILE" ||
+						window.event.srcElement.type.toUpperCase() == "PASSWORD")) ||
+					(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA")) && window.event.srcElement.readOnly == false)
+				{
+					if (event.keyCode == 9)      // TAB
+					{
+						document.getElementById(strName + "_LST").style.visibility = "hidden";
+						//SetFocus(window.event.srcElement.id);
+						//event.keyCode  = 0;
+						//event.returnValue = false;
+						//return false;
+					}
+					if (event.keyCode == 13)      // ENTER
+					{
+						document.getElementById(strName + "_LST").style.visibility = "hidden";
+						//SetFocus(window.event.srcElement.id);
+						//event.keyCode  = 0;
+						//event.returnValue = false;
+						//return false;
+					}
+					else if (event.keyCode == 33) // PAGEUP
+					{
+						bKeyUpDown = true;
+						document.getElementById(strName + "_LST").style.visibility = "hidden";
+						//SetFocus(window.event.srcElement.id);
+						event.keyCode  = 0;
+						event.returnValue = false;
+						return false;
+					}
+					else if (event.keyCode == 34) // PAGEDOWN
+					{
+						bKeyUpDown = true;
+						document.getElementById(strName + "_LST").style.visibility = "visible";
+						event.keyCode  = 0;
+						event.returnValue = false;
+						return false;
+					}
+					else if (event.keyCode == 38) // UP
+					{
+						bKeyUpDown = true;
+						SetTxtLbl(strName, document.getElementById(strName + "_LST").selectedIndex - 1);
+						event.keyCode  = 0;
+						event.returnValue = false;
+						//alert(document.getElementById(strName + "_LST").selectedIndex);
+						return false;
+					}
+					else if (event.keyCode == 40) // DOWN
+					{
+						bKeyUpDown = true;
+						SetTxtLbl(strName, document.getElementById(strName + "_LST").selectedIndex + 1);
+						event.keyCode  = 0;
+						event.returnValue = false;
+						//alert(document.getElementById(strName + "_LST").selectedIndex);
+						return false;
+					}
+					else // その他
+					{
+						strTextData = window.event.srcElement.value;
+					}
+				}
+			}
+		}
+	}
+	catch(e)
+	{
+	}
+	if (event.keyCode == 9)
+	{
+		bKeyUpDown = true;
+	}
+	if (event.keyCode == 93)
+	{
+		event.keyCode  = 0;
+		event.returnValue = false;
+		return false;
+	}
+	if (event.ctrlKey)
+	{
+		if (event.keyCode == 65 || event.keyCode == 67 || event.keyCode == 69 ||
+			event.keyCode == 70 || event.keyCode == 72 || event.keyCode == 73 ||
+			event.keyCode == 78 || event.keyCode == 79 || event.keyCode == 80 ||
+			event.keyCode == 82 || event.keyCode == 83 || event.keyCode == 86 ||
+			event.keyCode == 87 || event.keyCode == 88)
+		{
+			event.keyCode  = 0;
+			event.returnValue = false;
+			return false;
+		}
+	}
+	if (event.altKey)
+	{
+		if (event.keyCode == 9 || event.keyCode == 115 ||
+			event.keyCode == 65 || event.keyCode == 67 ||
+			event.keyCode == 69 || event.keyCode == 70)
+		{
+			event.keyCode  = 0;
+			event.returnValue = false;
+			return false;
+		}
+	}
+	if (event.shiftKey || event.ctrlKey || event.altKey)
+	{
+		if (window.event.srcElement.tagName.toUpperCase() == "A")
+		{
+			event.keyCode  = 0;
+			event.returnValue = false;
+			return false;
+		}
+	}
+	// Ｆ１－Ｆ１２
+	if (event.keyCode >= 112 && event.keyCode <= 123)
+	{
+		event.keyCode  = 0;
+		event.returnValue = false;
+		return false;
+	}
+	// ＥＳＣ
+	if (event.keyCode == 27)
+	{
+		event.keyCode  = 0;
+		event.returnValue = false;
+		return false;
+	}
+	// ＢＡＣＫＳＰＡＣＥ
+	if (event.keyCode == 8)
+	{
+		if (((window.event.srcElement.tagName.toUpperCase() == "INPUT" &&
+			(window.event.srcElement.type.toUpperCase() == "TEXT" ||
+			 window.event.srcElement.type.toUpperCase() == "FILE" ||
+			 window.event.srcElement.type.toUpperCase() == "PASSWORD")) ||
+			(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA")) && window.event.srcElement.readOnly == false)
+		{
+			return true;
+		}
+		event.keyCode  = 0;
+		event.returnValue = false;
+		return false;
+	}
+	// ＥＮＴＥＲ
+	if (event.keyCode == 13)
+	{
+		if ((window.event.srcElement.tagName.toUpperCase() == "INPUT" &&
+			 (window.event.srcElement.type.toUpperCase() == "BUTTON" ||
+			  window.event.srcElement.type.toUpperCase() == "FILE" ||
+			  window.event.srcElement.type.toUpperCase() == "SUBMIT" ||
+			  window.event.srcElement.type.toUpperCase() == "RESET" ||
+			  window.event.srcElement.type.toUpperCase() == "IMAGE")) ||
+			(window.event.srcElement.tagName.toUpperCase() == "A") || 
+			(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA"))
+		{
+			return true;
+		}
+		event.keyCode  = 0;
+		event.returnValue = false;
+		return false;
+	}
+	return  true;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  OnKeyUp
+//
+//[概要]
+//  キーが制御
+//
+//[機能説明]
+//  キーが制御
+//
+//-----------------------------------------------------------------------------
+//
+function OnKeyUp()
+{
+	var strName = "";
+	var ilength = 0;
+	try
+	{
+		// コントロールチェック
+		ilength = window.event.srcElement.id.toUpperCase().length;
+		if (ilength > 14 &&
+			//window.event.srcElement.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+			window.event.srcElement.id.toUpperCase().indexOf("TXTLBLLST_") != -1 &&
+			//window.event.srcElement.id.toUpperCase().substring(ilength - 4, ilength) == "_TXT")
+			window.event.srcElement.id.toUpperCase().indexOf("_TXT") != -1)
+		{
+			if ((window.event.srcElement.id.toUpperCase().substring(ilength - 7, ilength) == "_NM_TXT" || 
+				 window.event.srcElement.id.toUpperCase().substring(ilength - 7, ilength) == "_NC_TXT") && 
+				ilength > 17)
+			{
+				//return true;
+			}
+			else
+			{
+				strName = window.event.srcElement.id.toUpperCase().substring(0, (ilength - 4));
+				if (((window.event.srcElement.tagName.toUpperCase() == "INPUT" &&
+					(window.event.srcElement.type.toUpperCase() == "TEXT" || 
+					window.event.srcElement.type.toUpperCase() == "FILE" || 
+					window.event.srcElement.type.toUpperCase() == "PASSWORD")) ||
+					(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA")) && window.event.srcElement.readOnly == false)
+				{
+					// リストボックスが表示制御
+					if (strTextData != window.event.srcElement.value && bKeyUpDown == false)
+					{
+						SetTxtLblByValue(strName, window.event.srcElement.value);
+						//SetFocus(window.event.srcElement.id);
+					}
+					else if (bKeyUpDown == true)
+					{
+						SetFocus(window.event.srcElement.id);
+					}
+				}
+			}
+		}
+	}
+	catch(e)
+	{
+	}
+	return  true;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  OnHelp
+//
+//[概要]
+//  システムヘルプキーが制御
+//
+//[機能説明]
+//  システムヘルプキーが制御
+//
+//-----------------------------------------------------------------------------
+//
+function OnHelp()
+{
+	return false;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  HelpOpen
+//
+//[概要]
+//  ヘルプ画面表示
+//
+//[機能説明]
+//  ヘルプ画面表示
+//
+//[引数]
+//  [I/ ] : string strHelpFile      : ヘルプファイル名前
+//
+//-----------------------------------------------------------------------------
+//
+function HelpOpen(strHelpFile)
+{
+	// ヘルプ画面表示
+	//window.showHelp(strHelpFile);
+	//window.showModalDialog(strHelpFile,"","dialogWidth=800px;dialogHeight=575px;dialogTop=0px;dialogLeft=0px;");
+	//window.open(strHelpFile,("SAS_WEB_HELP_" + Now()),"location=0,status=1,titlebar=0,menubar=0,toolbar=0,resizable=0,scrollbars=0,width=790,height=525,top=0,left=0");
+	window.open(strHelpFile,"SAS_WEB_HELP","location=0,status=1,titlebar=0,menubar=0,toolbar=0,resizable=0,scrollbars=0,width=790,height=525,top=0,left=0");
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  DownloadOpen
+//
+//[概要]
+//  ファイルダウンロード画面表示
+//
+//[機能説明]
+//  ファイルダウンロード画面表示
+//
+//[引数]
+//  [I/ ] : string strDownloadFile      : ファイルダウンロード名前
+//
+//-----------------------------------------------------------------------------
+//
+function DownloadOpen(strDownloadFile)
+{
+	window.open(strDownloadFile,"","location=0,status=1,titlebar=0,menubar=0,toolbar=0,resizable=0,scrollbars=0,width=484,height=166,top=180,left=153");
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  OpenSmallWindow
+//
+//[概要]
+//  画面表示
+//
+//[機能説明]
+//  画面表示
+//
+//[引数]
+//  [I/ ] : string strSmallWindow      : 画面名前
+//
+//-----------------------------------------------------------------------------
+//
+function OpenSmallWindow(strSmallWindow)
+{
+	window.showModalDialog(strSmallWindow,"","dialogWidth=494px;dialogHeight=214px;dialogTop=158px;dialogLeft=138px;help=0;");
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  TejunOpen
+//
+//[概要]
+//  手順画面表示
+//
+//[機能説明]
+//  手順画面表示
+//
+//[引数]
+//  [I/ ] : string strTejunFile      : 手順ファイル名前
+//
+//-----------------------------------------------------------------------------
+//
+function TejunOpen(strTejunFile)
+{
+	// 手順画面表示
+	window.open(strTejunFile,"SAS_WEB_TEJUN","location=0,status=1,titlebar=0,menubar=0,toolbar=0,resizable=0,scrollbars=0,width=790,height=525,top=0,left=0");
+}
+
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  ReportOpen
+//
+//[概要]
+//  レポート画面表示
+//
+//[機能説明]
+//  レポート画面表示
+//
+//[引数]
+//  [I/ ] : string strReportFile      : レポートファイル名前
+//
+//-----------------------------------------------------------------------------
+//
+function ReportOpen(strReportFile)
+{
+    // レポート画面表示
+    window.open(strReportFile,"","location=0,status=1,titlebar=0,menubar=0,toolbar=0,resizable=1,scrollbars=0,width=790,height=525,top=0,left=0");
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  Now
+//
+//[概要]
+//  現在の日付を取得
+//
+//[機能説明]
+//  現在の日付を取得
+//
+//[戻り値]
+//  string  ;現在の日付
+//
+//-----------------------------------------------------------------------------
+//
+function Now()
+{
+	// 現在の日付を取得
+	var dDate = new Date();
+	var strNow = "";
+	strNow += dDate.getFullYear();
+	strNow += (dDate.getMonth() + 1);
+	strNow += dDate.getDate();
+	strNow += dDate.getHours();
+	strNow += dDate.getMinutes();
+	strNow += dDate.getSeconds();
+	strNow += dDate.getMilliseconds();
+	return strNow;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  Start
+//
+//[概要]
+//  担当者入力画面表示
+//
+//[機能説明]
+//  担当者入力画面表示
+//
+//[引数]
+//  [I/ ] : string strStartPage     : 担当者入力画面ＵＲＬ
+//
+//-----------------------------------------------------------------------------
+//
+function Start(strStartPage)
+{
+	if (parent != null && parent.document.all("IFMEMENU") != null) 
+	{
+		location.href = strStartPage;
+	}
+	else
+	{
+		// 担当者入力画面表示
+		window.open(strStartPage,("SAS_WEB_" + Now()),"location=0,status=1,titlebar=0,menubar=0,toolbar=0,resizable=0,scrollbars=0,width=790,height=525,top=0,left=0");
+		//window.open("/SAS_WEB/MAIN/SC00101/SC00101.aspx",("SAS_WEB_" + Now()),"");
+		self.window.opener = "NONE";
+		self.window.close();
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  Start
+//
+//[概要]
+//  開始画面表示
+//
+//[機能説明]
+//  開始画面表示
+//
+//[引数]
+//  [I/ ] : string strBeginPage     : 開始画面ＵＲＬ
+//  [I/ ] : string strStartPage     : 開始画面ＵＲＬ
+//
+//-----------------------------------------------------------------------------
+//
+function ReStart(strBeginPage, strStartPage)
+{
+	if (parent != null && parent.document.all("IFMEMAIN") != null) 
+	{
+		parent.document.all("IFMEMAIN").src = strStartPage;
+	}
+	else
+	{
+		// 開始画面表示
+		window.open(strBeginPage,("SAS_WEB_" + Now()),"location=0,status=1,titlebar=0,menubar=0,toolbar=0,resizable=0,scrollbars=0,width=790,height=525,top=0,left=0");
+		self.window.opener = "NONE";
+		self.window.close();
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  ErrorPageLoad
+//
+//[概要]
+//  エラー画面表示
+//
+//[機能説明]
+//  1. 画面背景設定
+//  /*2. 戻るボタン表示設定*/
+//
+//[引数]
+//  [I/ ] : string strDir       : 担背景図画目録
+//  /*[I/ ] : bool   bShow        : 戻るボタン表示フラグ     false : 表示しない     true : 表示する*/
+//
+//-----------------------------------------------------------------------------
+//
+//function ErrorPageLoad(strDir, bShow)
+function ErrorPageLoad(strDir)
+{
+	// 画面背景設定
+	//document.body.background = strDir + "backimage.gif";
+	document.getElementById("BACKGROUND_DIV").style.backgroundImage = "url(" + strDir + "COMMON/background.jpg)";
+	
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  StartPageLoad
+//
+//[概要]
+//  開始画面表示
+//
+//[機能説明]
+//  1. 画面背景設定
+//
+//[引数]
+//  [I/ ] : string strDir       : 担背景図画目録
+//
+//-----------------------------------------------------------------------------
+//
+function StartPageLoad(strDir)
+{
+	// 画面背景設定
+	document.body.background = strDir + "mainBg.gif";
+	document.getElementById("BACKGROUND_DIV").style.backgroundImage = "url(" + strDir + "wait.gif)";
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  SetNextFocus
+//
+//[概要]
+//  画面後の焦点設定
+//
+//[機能説明]
+//  画面後の焦点設定
+//
+//[引数]
+//  [I/ ] : string strControlName   : 画面後の焦点のコントロール名前
+//
+//-----------------------------------------------------------------------------
+//
+function SetNextFocus(strControlName)
+{
+	if(window.event.keyCode == 9 && window.event.shiftKey == false)
+	{
+		window.event.keyCode = 0;
+		window.event.returnValue = false;
+		SetFocus(strControlName);
+		return false;
+	}
+	return  true;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  SetPrevFocus
+//
+//[概要]
+//  画面前の焦点設定
+//
+//[機能説明]
+//  画面前の焦点設定
+//
+//[引数]
+//  [I/ ] : string strControlName   : 画面前の焦点のコントロール名前
+//
+//-----------------------------------------------------------------------------
+//
+function SetPrevFocus(strControlName)
+{
+	if(window.event.keyCode == 9 && window.event.shiftKey == true)
+	{
+		window.event.keyCode = 0;
+		window.event.returnValue = false;
+		SetFocus(strControlName);
+		return false;
+	}
+	return  true;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  SetFocus
+//
+//[概要]
+//  画面焦点設定
+//
+//[機能説明]
+//  画面焦点設定
+//
+//[引数]
+//  [I/ ] : string strControlName       : 画面焦点のコントロール名前
+//
+//-----------------------------------------------------------------------------
+//
+function SetFocus(strControlName)
+{
+	// 画面焦点設定
+	try
+	{
+		document.getElementById(strControlName).focus();
+	}
+	catch (e)
+	{
+		return;
+	}
+	try
+	{
+		document.getElementById(strControlName).select();
+	}
+	catch (e)
+	{
+		document.getElementById(strControlName).focus();
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  SetStatus
+//
+//[概要]
+//  ステータスバー設定
+//
+//[機能説明]
+//  ステータスバー設定
+//
+//[引数]
+//  [I/ ] : string strStatusValue       : ステータスバー表示内容
+//
+//-----------------------------------------------------------------------------
+//
+function SetStatus(strStatusValue)
+{
+	// ステータスバー設定
+	window.status = strStatusValue;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  ButtonClick
+//
+//[概要]
+//  ボタンクリック
+//
+//[機能説明]
+//  ボタンクリック実行
+//
+//[引数]
+//  [I/ ] : string strControlName       : ボタン名前
+//
+//-----------------------------------------------------------------------------
+//
+function ButtonClick(strControlName)
+{
+	// ボタンクリック実行
+	try
+	{
+		document.getElementById(strControlName).click();
+	}
+	catch (e)
+	{
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  GetWeekDay
+//
+//[概要]
+//  曜日を取得
+//
+//[機能説明]
+//  曜日を取得
+//
+//[引数]
+//  [I/ ] : string strYear      : 年
+//  [I/ ] : string strMonth     : 月
+//  [I/ ] : string strDay       : 日
+//
+//[戻り値]
+//  string : 曜日
+//
+//-----------------------------------------------------------------------------
+//
+function GetWeekDay(strYear, strMonth, strDay)
+{
+	try
+	{
+		// 年チェック
+		if (strYear.length != 4)
+		{
+			return "";
+		}
+		var dDate = new Date(parseInt(strYear, 10), (parseInt(strMonth, 10) - 1), parseInt(strDay, 10));
+		//var strYearTemp = GetYear(strYear);
+		//var dDate = new Date(parseInt(strYearTemp, 10), (parseInt(strMonth, 10) - 1), parseInt(strDay, 10));
+		// 日付チェック
+		if (isNaN(dDate))
+		{
+			return "";
+		}
+		// 日付変換チェック
+		//if (dDate.getFullYear() != parseInt(strYearTemp, 10) ||
+		if (dDate.getFullYear() != parseInt(strYear, 10) ||
+			dDate.getMonth() != (parseInt(strMonth, 10) - 1) ||
+			dDate.getDate() != parseInt(strDay, 10))
+		{
+			return "";
+		}
+		var iWeekDay = dDate.getDay();
+		return WEEKDAY[iWeekDay];
+	}
+	catch (e)
+	{
+		// エラー
+		return "";
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  GetYoubi
+//
+//[概要]
+//  曜日を取得
+//
+//[機能説明]
+//  曜日を取得
+//
+//[引数]
+//  [I/ ] : string strDate      : 日付
+//
+//[戻り値]
+//  string : 曜日
+//
+//-----------------------------------------------------------------------------
+//
+function GetYoubi(strDate)
+{
+	try
+	{
+		if (strDate == null)
+		{
+			return "";
+		}
+		if (strDate.length != 11)
+		{
+			return "";
+		}
+		var strYear = strDate.substring(0, 4);
+		var strMonth = strDate.substring(5, 7);
+		var strDay = strDate.substring(8, 10);
+		// 年チェック
+		if (strYear.length != 4)
+		{
+			return "";
+		}
+		var dDate = new Date(parseInt(strYear, 10), (parseInt(strMonth, 10) - 1), parseInt(strDay, 10));
+		//var strYearTemp = GetYear(strYear);
+		//var dDate = new Date(parseInt(strYearTemp, 10), (parseInt(strMonth, 10) - 1), parseInt(strDay, 10));
+		// 日付チェック
+		if (isNaN(dDate))
+		{
+			return "";
+		}
+		// 日付変換チェック
+		//if (dDate.getFullYear() != parseInt(strYearTemp, 10) ||
+		if (dDate.getFullYear() != parseInt(strYear, 10) ||
+			dDate.getMonth() != (parseInt(strMonth, 10) - 1) ||
+			dDate.getDate() != parseInt(strDay, 10))
+		{
+			return "";
+		}
+		var iWeekDay = dDate.getDay();
+		return WEEKDAY[iWeekDay];
+	}
+	catch (e)
+	{
+		// エラー
+		return "";
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  SetWeekDay
+//
+//[概要]
+//  曜日を表示
+//
+//[機能説明]
+//  曜日を表示
+//
+//[引数]
+//  [I/ ] : string strControlName       : 曜日のコントロール名前
+//  [I/ ] : string strWeekDay		    : 曜日
+//
+//-----------------------------------------------------------------------------
+//
+function SetWeekDay(strControlName, strWeekDay)
+{
+	try
+	{
+		// 曜日を表示
+		switch(strWeekDay)
+		{
+			case "日":
+				document.getElementById(strControlName).style.color = GL_SUN_FOR_COL;
+				document.getElementById(strControlName).innerText = "(日)";
+				break;
+			case "月":
+				document.getElementById(strControlName).style.color = GL_NOR_FOR_COL;
+				document.getElementById(strControlName).innerText = "(月)";
+				break;
+			case "火":
+				document.getElementById(strControlName).style.color = GL_NOR_FOR_COL;
+				document.getElementById(strControlName).innerText = "(火)";
+				break;
+			case "水":
+				document.getElementById(strControlName).style.color = GL_NOR_FOR_COL;
+				document.getElementById(strControlName).innerText = "(水)";
+				break;
+			case "木":
+				document.getElementById(strControlName).style.color = GL_NOR_FOR_COL;
+				document.getElementById(strControlName).innerText = "(木)";
+				break;
+			case "金":
+				document.getElementById(strControlName).style.color = GL_NOR_FOR_COL;
+				document.getElementById(strControlName).innerText = "(金)";
+				break;
+			case "土":
+				document.getElementById(strControlName).style.color = GL_SAT_FOR_COL;
+				document.getElementById(strControlName).innerText = "(土)";
+				break;
+			default:
+				document.getElementById(strControlName).style.color = GL_NOR_FOR_COL;
+				document.getElementById(strControlName).innerText = "";
+				break;
+		}
+	}
+	catch (e)
+	{
+		// エラー
+		return "";
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	年を取る
+//
+//[概要]
+//	年を取る
+//
+//[機能説明]
+//	年を取る
+//
+//[引数]
+//	[I/ ] : string strYear			: 年
+//
+//[戻り値]
+//	string  ;			年
+//
+//-----------------------------------------------------------------------------
+//
+function GetYear(strYear)
+{
+	var iYear = 0;
+	var strYReturn = "";
+	if (isNaN(parseInt(strYear, 10)))
+	{
+		return "";
+	}
+	iYear = parseInt(strYear, 10);
+	if (iYear < 0) 
+	{
+		return "";
+	}
+	switch(strYear.length)
+	{
+		case 1:
+			strYReturn = "200" + strYear;       //200*年
+			break;
+		case 2:
+			if (iYear > 80)
+			{
+				strYReturn = "19" + strYear;    //19**年
+			}
+			else
+			{
+				strYReturn = "20" + strYear;    //20**年
+			}
+			break;
+		case 3:
+			if (iYear > 980)
+			{
+				strYReturn = "1" + strYear;     //1***年
+			}
+			else
+			{
+				strYReturn = "2" + strYear;     //2***年
+			}
+			break;
+		case 4:
+			strYReturn = strYear;
+			break;
+		default:
+			return "";
+	}
+	return strYReturn;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	SetTxtLbl
+//
+//[概要]
+//	リストボックスが表示設定
+//
+//[機能説明]
+//	リストボックスが表示設定
+//
+//[引数]
+//	[I/ ] : string strControlName	: テクストボックスのコントロール名前
+//	[I/ ] : int iSelectedIndex		: テクストボックスの選択の値
+//
+//-----------------------------------------------------------------------------
+//
+function SetTxtLbl(strControlName, iSelectedIndex)
+{
+	try
+	{
+		// コントロールチェック
+		//alert(document.getElementById(strControlName + "_LST").options.length);
+		//if (strControlName.toUpperCase().substring(0, 10) == "TXTLBLLST_")
+		if (strControlName.toUpperCase().indexOf("TXTLBLLST_") != -1)		
+		{
+			if (iSelectedIndex >= document.getElementById(strControlName + "_LST").options.length)
+			{
+				document.getElementById(strControlName + "_LST").selectedIndex = document.getElementById(strControlName + "_LST").options.length - 1;
+			}
+			else if (iSelectedIndex < 0)
+			{
+				document.getElementById(strControlName + "_LST").selectedIndex = 0;
+			}
+			else
+			{
+				document.getElementById(strControlName + "_LST").selectedIndex = iSelectedIndex;
+			}
+			SetTxtLblByValue(strControlName, document.getElementById(strControlName + "_LST").value);
+		}
+	}
+	catch (e)
+	{
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	SetTxtLbl
+//
+//[概要]
+//	リストボックスが表示設定
+//
+//[機能説明]
+//	リストボックスが表示設定
+//
+//[引数]
+//	[I/ ] : string strControlName	: テクストボックスのコントロール名前
+//	[I/ ] : string strValue			: テクストボックスの値
+//
+//-----------------------------------------------------------------------------
+//
+function SetTxtLblByValue(strControlName, strValue)
+{
+	var i = 0;
+	var j = 0;
+	var strText = "";
+	var strTextTemp = "";
+	try
+	{
+		// コントロールチェック
+		//if (strControlName.toUpperCase().substring(0, 10) == "TXTLBLLST_")
+		if (strControlName.toUpperCase().indexOf("TXTLBLLST_") != -1)
+		{
+			for (i = 0; i < document.getElementById(strControlName + "_LST").options.length; i++)
+			{
+				if (strValue == document.getElementById(strControlName + "_LST").options[i].value)
+				{
+					//alert(document.getElementById(strControlName + "_LST").options[i].text);
+					document.getElementById(strControlName + "_LST").selectedIndex = i;
+					document.getElementById(strControlName.toUpperCase() + "_TXT").value = strValue;
+					strText = document.getElementById(strControlName + "_LST").options[i].text;
+					if (strValue != null && strText != null)
+					{
+						if (strValue.length <= strText.length)
+						{
+							if(strValue == strText.substring(0, strValue.length))
+							{
+								strTextTemp = strText.substring(strValue.length, strText.length);
+								for (j = 0; j < strTextTemp.length; j++)
+								{
+									if (strTextTemp.substring(j, (j + 1)) != " ")
+									{
+										break;
+									}
+								}
+								strText = strTextTemp.substring(j, strTextTemp.length);
+								try
+								{
+									document.getElementById(strControlName.toUpperCase() + "_LBL").innerText = strText;
+								}
+								catch (ex)
+								{
+								}
+								try
+								{
+									document.getElementById(strControlName.toUpperCase() + "_NM_TXT").value = strText;
+								}
+								catch (ex)
+								{
+								}
+								try
+								{
+									document.getElementById(strControlName.toUpperCase() + "_NC_TXT").value = strText;
+								}
+								catch (ex)
+								{
+								}
+								try 
+								{
+									if (document.getElementById(strControlName.toUpperCase() + "_TXT").getAttribute("onchange") != null) 
+									{
+										document.getElementById(strControlName.toUpperCase() + "_TXT").onchange();
+									}
+								}
+								catch (ex)
+								{
+								}
+								return;
+							}
+						}
+					}
+				}
+			}
+			if (i == document.getElementById(strControlName + "_LST").options.length)
+			{
+				//document.getElementById(strControlName + "_LST").selectedIndex = -1;
+				//document.getElementById(strControlName.toUpperCase() + "_TXT").value = "";
+				try
+				{
+					document.getElementById(strControlName.toUpperCase() + "_LBL").innerText = "";
+				}
+				catch (ex)
+				{
+				}
+				try
+				{
+					document.getElementById(strControlName.toUpperCase() + "_NM_TXT").value = "";
+				}
+				catch (ex)
+				{
+				}
+			}
+		}
+	}
+	catch (e)
+	{
+	}
+}
+
+/*//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	OnClick
+//
+//[概要]
+//	リストボックスが表示制御
+//
+//[機能説明]
+//	リストボックスが表示制御
+//
+//-----------------------------------------------------------------------------
+//
+function OnClick()
+{
+	var strName = "";
+	var ilength = 0;
+	try
+	{
+		// コントロールチェック
+		ilength = window.event.srcElement.id.toUpperCase().length;
+		if (ilength > 14 &&
+			window.event.srcElement.id.toUpperCase().substring(0, 10) == "TXTLBLLST_" &&
+			window.event.srcElement.id.toUpperCase().substring(ilength - 4, ilength) == "_TXT")
+		{
+			strName = window.event.srcElement.id.toUpperCase().substring(0, (ilength - 4));
+			if (((window.event.srcElement.tagName.toUpperCase() == "INPUT" &&
+				(window.event.srcElement.type.toUpperCase() == "TEXT" ||
+				 window.event.srcElement.type.toUpperCase() == "FILE" ||
+				 window.event.srcElement.type.toUpperCase() == "PASSWORD")) ||
+				(window.event.srcElement.tagName.toUpperCase() == "TEXTAREA")) && window.event.srcElement.readOnly == false)
+			{
+				if (document.getElementById(strName + "_LST").style.visibility == "hidden")
+				{
+					document.getElementById(strName + "_LST").style.visibility = "visible";
+				}
+				else
+				{
+					document.getElementById(strName + "_LST").style.visibility = "hidden";
+				}
+			}
+		}
+	}
+	catch(e)
+	{
+	}
+}*/
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	SetDateTime
+//
+//[概要]
+//	日付時刻が表示設定
+//
+//[機能説明]
+//	日付時刻が表示設定
+//
+//[引数]
+//	[I/ ] : string strControlName	: 日付時刻のコントロール名前
+//
+//-----------------------------------------------------------------------------
+//
+function SetDateTime(strControlName)
+{
+	try
+	{
+		var strDateTime = "";
+		var dDate = new Date();
+		strDateTime += ZeroAdd(4, ("" + dDate.getFullYear()), 0);
+		strDateTime += "/";
+		strDateTime += ZeroAdd(2, ("" + (dDate.getMonth() + 1)), 0);
+		strDateTime += "/";
+		strDateTime += ZeroAdd(2, ("" + dDate.getDate()), 0);
+		strDateTime += " ";
+		strDateTime += ZeroAdd(2, ("" + dDate.getHours()), 0);
+		strDateTime += ":";
+		strDateTime += ZeroAdd(2, ("" + dDate.getMinutes()), 0);
+		//strDateTime += ":";
+		//strDateTime += ZeroAdd(2, ("" + dDate.getSeconds()), 0);
+		//strDateTime += ".";
+		//strDateTime += ZeroAdd(3, ("" + dDate.getMilliseconds()), 0);
+		document.getElementById(strControlName).innerText = strDateTime;
+	}
+	catch(e)
+	{
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  文字列切り捨て
+//
+//[概要]
+//  Left 切り捨て
+//
+//[機能説明]
+//  Left 切り捨て
+//
+//[引数]
+//  [I/ ] : string szStringValue    : 指定された文字列
+//  [I/ ] : int iLength             : 指定された長さ
+//
+//[戻り値]
+//  string
+//
+//
+//-----------------------------------------------------------------------------
+//
+function Left(szStringValue, iLength)
+{
+	var iLen = 0;
+	if (isNaN(parseInt(iLength, 10)))
+	{
+		iLen = 0;
+	}
+	else
+	{
+		iLen = parseInt(iLength, 10);
+	}
+	if (IsBlank(szStringValue, true) == true || iLen <= 0)
+	{
+		return "";
+	}
+
+	if (iLen > szStringValue.length)
+	{
+		return szStringValue;
+	}
+	else
+	{
+		return szStringValue.substring(0, iLen);
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  文字列切り捨て
+//
+//[概要]
+//  Right切り捨て
+//
+//[機能説明]
+//  Right切り捨て
+//
+//[引数]
+//  [I/ ] : string szStringValue    : 指定された文字列
+//  [I/ ] : int iLength             : 指定された長さ
+//
+//[戻り値]
+//  string
+//
+//
+//-----------------------------------------------------------------------------
+//
+function Right(szStringValue, iLength)
+{
+	var iLen = 0;
+	if (isNaN(parseInt(iLength, 10)))
+	{
+		iLen = 0;
+	}
+	else
+	{
+		iLen = parseInt(iLength, 10);
+	}
+	if (IsBlank(szStringValue, true) == true || iLen <= 0)
+	{
+		return "";
+	}
+
+	if (iLen > szStringValue.length)
+	{
+		return szStringValue;
+	}
+	else
+	{
+		return szStringValue.substring(szStringValue.length - iLen, szStringValue.length);
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  Nullチェック
+//
+//[概要]
+//  Nullチェック
+//
+//[機能説明]
+//  Nullチェック
+//
+//[引数]
+//  [I/ ] : string szStringValue            : 指定された文字列
+//  [I/ ] : bool enableNull                 : ＮＵＬＬの状態
+//
+//[戻り値]
+//  string
+//
+//-----------------------------------------------------------------------------
+//
+function IsNull(szStringValue)
+{
+	if (szStringValue == null)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  Blankチェック
+//
+//[概要]
+//  Blankチェック
+//
+//[機能説明]
+//  Blankチェック
+//
+//[引数]
+//  [I/ ] : string szStringValue            : 指定された文字列
+//  [I/ ] : bool enableNull                 : ＮＵＬＬの状態
+//
+//[戻り値]
+//  string
+//
+//-----------------------------------------------------------------------------
+//
+function IsBlank(szStringValue, enableNull)
+{
+	if (IsNull(szStringValue) == true)
+	{
+		if (enableNull == true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+	//if ("".Equals(szStringValue))
+	if ("" == szStringValue)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  Format
+//
+//[概要]
+//  Format
+//
+//[機能説明]
+//  Format
+//
+//[引数]
+//  [I/ ] : string szStringValue            : 指定された文字列
+//  [I/ ] : string szFormat                 :
+//  [I/ ] : bool bCanDefaultFormat          :
+//[戻り値]
+//  string null;            失敗
+//         その他;          成功
+//
+//
+//-----------------------------------------------------------------------------
+//
+function Format(szStringValue, szFormat, bCanDefaultFormat)
+{
+	var szMyString = szStringValue + "";
+	var szCheckOK = "@!";
+	var szDotType = "";
+	var szDotString = "";
+	var szDotReturn = "";
+	var szZenType = "";
+	var szZenString = "";
+	var szZenReturn = "";
+	var szChkString = "";
+	var szWorkString = "";
+	var szRetString = "";
+	var szMark = "";
+	var szBackup = "";
+	var cChar = ' ';
+	var iDotPos = 0;
+	var bAllValid = true;
+	var i = 0;
+	var j = 0;
+	var iDotLength = 0;
+	var regexp;
+
+	szStringValue = "" + szStringValue;
+	szFormat = "" + szFormat;
+	if (IsBlank(szStringValue, true) == true)
+	{
+		return "";
+	}
+
+	if (IsBlank(szFormat, true) == true)
+	{
+		return szStringValue;
+	}
+
+	try
+	{
+		// @の場合
+		szBackup = szStringValue;
+		szMyString = szBackup + "";
+		for (i = 0; i < szFormat.length; i++)
+		{
+			cChar = szFormat.charAt(i);
+			for (j = 0; j < szCheckOK.length; j++)
+			{
+				if (cChar == szCheckOK.charAt(j))
+				{
+					break;
+				}
+			}
+			if (j == szCheckOK.length)
+			{
+				bAllValid = false;
+				break;
+			}
+		}
+
+		if (bAllValid)
+		{
+			for (i = 0; i < szFormat.length; i++)
+			{
+				// ！の場合
+				if (szFormat.charAt(i) == '!')
+				{
+					if (szMyString.length < (szFormat.length - 1))
+					{
+						szWorkString =  szMyString + Space(szFormat.length);
+						return szWorkString.substring(0, szFormat.length - 1);
+					}
+					else
+					{
+						szWorkString =  Space(szFormat.length) + szMyString;
+						return Right(szWorkString, szFormat.length - 1);
+					}
+				}
+			}
+			// 非！の場合
+			if (szMyString.length >= szFormat.length)
+			{
+				return szMyString;
+			}
+			else
+			{
+				szWorkString = Space(szFormat.length - szMyString.length) + szMyString;
+				return szWorkString;
+			}
+		}
+
+		szBackup = "";
+		// "0."の場合
+		//if ("-".Equals(Left(szStringValue, 1)))
+		if ("-" == Left(szStringValue, 1))
+		{
+			szMark = "-";
+			szBackup = Right(szStringValue, szStringValue.length - 1);
+		}
+		else
+		{
+			szMark = "";
+			szBackup = szStringValue;
+		}
+		szMyString = szBackup + "";
+		szCheckOK = "0.";
+		bAllValid = true;
+
+		for (i = 0; i < szFormat.length; i++)
+		{
+			cChar = szFormat.charAt(i);
+			for (j = 0; j < szCheckOK.length; j++)
+			{
+				if (cChar == szCheckOK.charAt(j))
+				{
+					break;
+				}
+			}
+			if (j == szCheckOK.length)
+			{
+				bAllValid = false;
+				break;
+			}
+		}
+
+		if (bAllValid)
+		{
+			for (i = 0; i < szFormat.length; i++)
+			{
+				// フォーマット小数点ある場合
+				if (szFormat.charAt(i) == '.')
+				{
+					szZenType = szFormat.substring(0, i);
+					iDotLength = szFormat.lastIndexOf("0") + 1;
+					if (iDotLength <= i + 1)
+					{
+						szDotType = "";
+					}
+					else
+					{
+						szDotType = szFormat.substring(i + 1, iDotLength);
+						//szDotType = szFormat.substring(i + 1, iDotLength - i - 1);
+					}
+
+					iDotPos = szMyString.indexOf(".");
+					if (iDotPos == -1)
+					{
+						// 変換元小数点ない場合
+						szZenString = szMyString;
+						szDotString = "";
+					}
+					else
+					{
+						// 変換元小数点ある場合
+						szZenString = szMyString.substring(0, iDotPos);
+						szDotString = szMyString.substring(iDotPos + 1, szMyString.length);
+						//szDotString = szMyString.substring(iDotPos + 1, szMyString.length - iDotPos - 1);
+					}
+
+					if (szDotType.length >= szDotString.length)
+					{
+						szWorkString =  szDotString + Space(szDotType.length - szDotString.length);
+						regexp = / /g;
+						szDotReturn = szWorkString.replace(regexp, '0');
+					}
+					else
+					{
+						szChkString = szDotString.substring(szDotType.length, szDotType.length + 1);
+						//szChkString = szDotString.substring(szDotType.length, 1);
+						szWorkString =  szDotString.substring(0, szDotType.length);
+						if (parseInt(szChkString, 10) >= 5)
+						{
+							szDotReturn = "" + (parseInt(szWorkString, 10) + 1);
+							if (szDotReturn.length  > szWorkString.length)
+							{
+								szZenString =   "" + (parseInt(szZenString, 10) + 1);
+								szDotReturn = szDotReturn.substring(1, szDotReturn.length);
+								//szDotReturn = szDotReturn.substring(1, szDotReturn.length - 1);
+							}
+							szDotReturn = Right((Zero(szDotType.length) + szDotReturn), szDotType.length);
+						}
+						else
+						{
+							szDotReturn = szWorkString;
+						}
+					}
+					if (szZenString.length >= szZenType.length)
+					{
+						szZenReturn = szZenString;
+					}
+					else
+					{
+						szWorkString =  Space(szZenType.length  - szZenString.length) + szZenString;
+						regexp = / /g;
+						szZenReturn = szWorkString.replace(regexp, '0');
+					}
+					return szMark + szZenReturn + '.' + szDotReturn;
+				}
+			}
+
+			// フォーマット小数点ない場合
+			iDotPos = szMyString.indexOf(".");
+			if (iDotPos == -1)
+			{
+				// 変換元小数点ない場合
+				if (szMyString.length >= szFormat.length)
+				{
+					return szMark + szMyString;
+				}
+				else
+				{
+					szWorkString = Space(szFormat.length - szMyString.length) + szMyString;
+					regexp = / /g;
+					return szMark + szWorkString.replace(regexp, '0');
+				}
+			}
+			else
+			{
+				// 変換元小数点ある場合
+				var szDotData =  szMyString.substring(iDotPos + 1, iDotPos + 2);
+				//var szDotData = szMyString.substring(iDotPos + 1, 1);
+				var szNumString = szMyString.substring(0, iDotPos);
+				if (szNumString.length >= szFormat.length)
+				{
+					szRetString = szNumString;
+					if (parseInt(szDotData, 10) >= 5)
+					{
+						szRetString =   "" + (parseInt(szRetString, 10) + 1);
+					}
+					else
+					{
+					}
+				}
+				else
+				{
+					szRetString = szNumString;
+					if (parseInt(szDotData, 10) >= 5)
+					{
+						szRetString =   "" + (parseInt(szRetString, 10) + 1);
+					}
+					else
+					{
+					}
+					szWorkString =  Space(szFormat.length - szRetString.length) + szRetString;
+					regexp = / /g;
+					szRetString = szWorkString.replace(regexp, '0');
+				}
+				return szMark + szRetString;
+			}
+		}
+
+		// "0.,#"の場合
+		szCheckOK = "0.,#";
+		bAllValid = true;
+
+		for (i = 0; i < szFormat.length; i++)
+		{
+			cChar = szFormat.charAt(i);
+			for (j = 0; j < szCheckOK.length; j++)
+			{
+				if (cChar == szCheckOK.charAt(j))
+				{
+					break;
+				}
+			}
+			if (j == szCheckOK.length)
+			{
+				bAllValid = false;
+				break;
+			}
+		}
+
+		var bDotFlg = false;
+		if (bAllValid)
+		{
+			for (i = 0; i < szFormat.length; i++)
+			{
+				if (szFormat.charAt(i) == '.')
+				{
+					// フォーマット小数点ある場合
+					szZenType = szFormat.substring(0, i);
+					iDotLength = szFormat.lastIndexOf("0") + 1;
+					if (iDotLength <= i + 1)
+					{
+						szDotType = "";
+					}
+					else
+					{
+						szDotType = szFormat.substring(i + 1, iDotLength);
+						//szDotType = szFormat.substring(i + 1, iDotLength - i - 1);
+					}
+
+					iDotPos = szMyString.indexOf(".");
+					if (iDotPos == -1)
+					{
+						// 変換元小数点ない場合
+						szZenString = szMyString;
+						szDotString = "";
+					}
+					else
+					{
+						// 変換元小数点ある場合
+						szZenString = szMyString.substring(0, iDotPos);
+						szDotString = szMyString.substring(iDotPos + 1, szMyString.length);
+						//szDotString = szMyString.substring(iDotPos + 1, szMyString.length - iDotPos - 1);
+					}
+					bDotFlg = true;
+					break;
+				}
+			}
+			if (bDotFlg!= true)
+			{
+				// フォーマット小数点ない場合
+				szZenType = szFormat;
+				szDotType = "";
+
+				iDotPos = szMyString.indexOf(".");
+				if (iDotPos == -1)
+				{
+					// 変換元小数点ない場合
+					szZenString = szMyString;
+					szDotString = "";
+					szDotReturn = "";
+				}
+				else
+				{
+					// 変換元小数点ある場合
+					szZenString = szMyString.substring(0, iDotPos);
+					szDotString = szMyString.substring(iDotPos + 1, szMyString.length);
+					//szDotString = szMyString.substring(iDotPos + 1, szMyString.length - iDotPos - 1);
+
+					szChkString = szDotString.substring(szDotType.length, szDotType.length + 1);
+					//szChkString = szDotString.substring(szDotType.length, 1);
+					szWorkString = szDotString.substring(0, szDotType.length);
+					if (parseInt(szChkString, 10) >= 5)
+					{
+						szZenString = "" + (parseInt(szZenString, 10) + 1);
+					}
+					//else {
+					//  szZenString = szZenString;
+					//}
+				}
+
+				// #,変換
+				if (szZenType.indexOf("#")!= -1)
+				{
+					if (bCanDefaultFormat == true)
+					{
+						j = 0;
+					}
+					else
+					{
+						j = szZenType.length;
+					}
+					szWorkString = "";
+					if (szZenType.indexOf(",")!= -1)
+					{
+						for (i = szZenString.length; i > 0; i--)
+						{
+							if (bCanDefaultFormat == true)
+							{
+								if (j == 3)
+								{
+									szWorkString =    szZenString.substring(i - 1, i) + ',' + szWorkString;
+									//szWorkString =  szZenString.substring(i - 1, 1) + ',' + szWorkString;
+									j = 0;
+								}
+								else
+								{
+									szWorkString =szZenString.substring(i - 1, i) + szWorkString;
+									//szWorkString =szZenString.substring(i - 1, 1)   + szWorkString;
+								}
+								j = j + 1;
+							}
+							else
+							{
+								if (j > 0)
+								{
+									//if (",".Equals(szZenType.substring(j - 1, 1)))
+									//if (",".Equals(szZenType.substring(j - 1, j)))
+									if ("," == szZenType.substring(j - 1, j))
+									{
+										szWorkString = szZenString.substring(i - 1, i) + ',' + szWorkString;
+										//szWorkString = szZenString.substring(i - 1, 1) + ',' + szWorkString;
+										j = j - 1;
+									}
+									else
+									{
+										szWorkString = szZenString.substring(i - 1, i) + szWorkString;
+										//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+									}
+									j = j - 1;
+								}
+								else
+								{
+									szWorkString = szZenString.substring(i - 1, i) + szWorkString;
+									//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+								}
+							}
+						}
+					}
+					else
+					{
+						szWorkString = szZenString;
+					}
+					szZenString = szWorkString;
+					//if (",".Equals(szZenString.substring(0, 1)))
+					if ("," == szZenString.substring(0, 1))
+					{
+						szZenString = szZenString.substring(1, szZenString.length);
+						//szZenString = szZenString.substring(1, szZenString.length - 1);
+					}
+				}
+				// 0,変換
+				else if (szZenType.indexOf("0")!= -1)
+				{
+					if (bCanDefaultFormat == true)
+					{
+						j = 0;
+					}
+					else
+					{
+						j = szZenType.length;
+					}
+					szWorkString = "";
+					if (szZenType.indexOf(",")!= -1)
+					{
+						for (i = szZenString.length; i > 0; i--)
+						{
+							if (bCanDefaultFormat == true)
+							{
+								if (j == 3)
+								{
+									szWorkString = szZenString.substring(i - 1, i) + ',' + szWorkString;
+									//szWorkString = szZenString.substring(i - 1, 1) + ',' + szWorkString;
+									j = 0;
+								}
+								else
+								{
+									szWorkString = szZenString.substring(i - 1, i) + szWorkString;
+									//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+								}
+								j = j + 1;
+							}
+							else
+							{
+								if (j > 0)
+								{
+									//if (",".Equals(szZenType.substring(j - 1, 1)))
+									//if (",".Equals(szZenType.substring(j - 1, j)))
+									if ("," == szZenType.substring(j - 1, j))
+									{
+										szWorkString = szZenString.substring(i - 1, i) + ',' + szWorkString;
+										//szWorkString = szZenString.substring(i - 1, 1) + ',' + szWorkString;
+										j = j - 1;
+									}
+									else
+									{
+										szWorkString = szZenString.substring(i - 1, i) + szWorkString;
+										//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+									}
+									j = j - 1;
+								}
+								else
+								{
+									szWorkString = szZenString.substring(i - 1, i) + szWorkString;
+									//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+								}
+							}
+						}
+						if (bCanDefaultFormat == true)
+						{
+							for (i = szZenType.length - szWorkString.length; i > 0; i--)
+							{
+								//if ("0".Equals(szZenType.substring(i - 1, 1)) || ",".Equals(szZenType.substring(i - 1, 1)))
+								//if ("0".Equals(szZenType.substring(i - 1, i)) || ",".Equals(szZenType.substring(i - 1, i)))
+								if ("0" == szZenType.substring(i - 1, i) || "," == szZenType.substring(i - 1, i))
+								{
+									if (j == 3)
+									{
+										szWorkString = ',' + szWorkString;
+										j = -1;
+									}
+									else
+									{
+										szWorkString = '0' + szWorkString;
+									}
+									j = j + 1;
+								}
+								else
+								{
+									break;
+								}
+							}
+						}
+						else
+						{
+							if (j > 0)
+							{
+								for (i = j; i > 0; i--)
+								{
+									//if ("0".Equals(szZenType.substring(i - 1, 1)))
+									//else if (",".Equals(szZenType.substring(i - 1, 1)))
+									//if ("0".Equals(szZenType.substring(i - 1, i)))
+									//else if (",".Equals(szZenType.substring(i - 1, i)))
+									if ("0" == szZenType.substring(i - 1, i))
+									{
+										szWorkString = '0' + szWorkString;
+									}
+									else if ("," == szZenType.substring(i - 1, i))
+									{
+										szWorkString = ',' + szWorkString;
+									}
+									else
+									{
+										break;
+									}
+								}
+							}
+						}
+					}
+					else
+					{
+						//szWorkString = Right((Zero(szZenType.length) + szZenString), szZenType.length);
+						szWorkString = szZenString;
+					}
+					szZenString = szWorkString;
+					//if (",".Equals(szZenString.substring(0, 1)))
+					if ("," == szZenString.substring(0, 1))
+					{
+						szZenString = szZenString.substring(1, szZenString.length);
+						//szZenString = szZenString.substring(1, szZenString.length - 1);
+					}
+				}
+				return szMark + szZenString;
+			}
+
+			// フォーマット小数点ある場合
+			iDotPos = szMyString.indexOf(".");
+			if (iDotPos == -1)
+			{
+				// 変換元小数点ない場合
+				szWorkString = Space(szDotType.length);
+				regexp = / /g;
+				szDotReturn = szWorkString.replace(regexp, '0');
+			}
+			else
+			{
+				// 変換元小数点ある場合
+				szWorkString = szDotString + Space(szDotType.length);
+				regexp = / /g;
+				szWorkString = szWorkString.replace(regexp, '0');
+				//System.out.println("DotString = " + DotString);
+				//System.out.println("DotType.length = " + DotType.length);
+
+				if (szDotString.length > szDotType.length)
+				{
+					szChkString = szDotString.substring(szDotType.length, szDotType.length + 1);
+					//szChkString = szDotString.substring(szDotType.length, 1);
+				}
+				else
+				{
+					szChkString = szDotString;
+				}
+
+				szWorkString = szWorkString.substring(0, szDotType.length);
+				if (parseInt(szChkString, 10) >= 5)
+				{
+					if (szDotString.length > szDotType.length)
+					{
+						szDotReturn = "" + (parseInt(szDotString.substring(0, szDotType.length), 10) + 1);
+						if (szDotReturn.length > szWorkString.length)
+						{
+							szZenString = "" + (parseInt(szZenString, 10) + 1);
+							szDotReturn = szDotReturn.substring(1, szDotReturn.length);
+							//szDotReturn = szDotReturn.substring(1, szDotReturn.length - 1);
+						}
+						szDotReturn = Right((Zero(szDotType.length) + szDotReturn), szDotType.length);
+					}
+					else
+					{
+						szDotReturn = szDotString;
+					}
+				}
+				else
+				{
+					szDotReturn = szWorkString.substring(0, szDotType.length);
+				}
+
+				if (szDotReturn.length > szDotType.length)
+				{
+					szZenString = "" + (parseInt(szZenString, 10) + 1);
+					szDotReturn = szDotReturn.substring(1, szDotReturn.length);
+					//szDotReturn = szDotReturn.substring(1, szDotReturn.length - 1);
+				}
+			}
+
+			// #,変換
+			if (szZenType.indexOf("#")!= -1)
+			{
+				if (bCanDefaultFormat == true)
+				{
+					j = 0;
+				}
+				else
+				{
+					j = szZenType.length;
+				}
+				szWorkString = "";
+				if (szZenType.indexOf(",")!= -1)
+				{
+					for (i = szZenString.length; i > 0; i--)
+					{
+						if (bCanDefaultFormat == true)
+						{
+							if (j == 3)
+							{
+								szWorkString = szZenString.substring(i - 1, i) + ',' + szWorkString;
+								//szWorkString = szZenString.substring(i - 1, 1) + ',' + szWorkString;
+								j = 0;
+							}
+							else
+							{
+								szWorkString = szZenString.substring(i - 1, i) + szWorkString;
+								//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+							}
+							j = j + 1;
+						}
+						else
+						{
+							if (j > 0)
+							{
+								//if (",".Equals(szZenType.substring(j - 1, 1)))
+								//if (",".Equals(szZenType.substring(j - 1, j)))
+								if ("," == szZenType.substring(j - 1, j))
+								{
+									szWorkString = szZenString.substring(i - 1, i) + ',' + szWorkString;
+									//szWorkString = szZenString.substring(i - 1, 1) + ',' + szWorkString;
+									j = j - 1;
+								}
+								else
+								{
+									szWorkString = szZenString.substring(i - 1, i) + szWorkString;
+									//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+								}
+								j = j - 1;
+							}
+							else
+							{
+								szWorkString = szZenString.substring(i - 1, i)
+								//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+							}
+						}
+					}
+				}
+				else
+				{
+					szWorkString = szZenString;
+				}
+				szZenString = szWorkString;
+				//if (",".Equals(szZenString.substring(0, 1)))
+				if ("," == szZenString.substring(0, 1))
+				{
+					szZenString = szZenString.substring(1, szZenString.length);
+					//szZenString = szZenString.substring(1, szZenString.length - 1);
+				}
+			}
+			// 0,変換
+			else if (szZenType.indexOf("0")!= -1)
+			{
+				if (bCanDefaultFormat == true)
+				{
+					j = 0;
+				}
+				else
+				{
+					j = szZenType.length;
+				}
+				szWorkString = "";
+				if (szZenType.indexOf(",")!= -1)
+				{
+					for (i = szZenString.length; i > 0; i--)
+					{
+						if (bCanDefaultFormat == true)
+						{
+							if (j == 3)
+							{
+								szWorkString = szZenString.substring(i - 1, i) + ',' + szWorkString;
+								//szWorkString = szZenString.substring(i - 1, 1) + ',' + szWorkString;
+								j = 0;
+							}
+							else
+							{
+								szWorkString = szZenString.substring(i - 1, i) + szWorkString;
+								//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+							}
+							j = j + 1;
+						}
+						else
+						{
+							if (j > 0)
+							{
+								//if (",".Equals(szZenType.substring(j - 1, 1)))
+								//if (",".Equals(szZenType.substring(j - 1, j)))
+								if ("," == szZenType.substring(j - 1, j))
+								{
+									szWorkString = szZenString.substring(i - 1, i) + ',' + szWorkString;
+									//szWorkString = szZenString.substring(i - 1, 1) + ',' + szWorkString;
+									j = j - 1;
+								}
+								else
+								{
+									szWorkString = szZenString.substring(i - 1, i) + szWorkString;
+									//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+								}
+								j = j - 1;
+							}
+							else
+							{
+								szWorkString = szZenString.substring(i - 1, i) + szWorkString;
+								//szWorkString = szZenString.substring(i - 1, 1) + szWorkString;
+							}
+						}
+					}
+					if (bCanDefaultFormat == true)
+					{
+						for (i = szZenType.length - szWorkString.length; i > 0; i--)
+						{
+							//if ("0".Equals(szZenType.substring(i - 1, 1)) || ",".Equals( szZenType.substring(i - 1, 1)))
+							//if ("0".Equals(szZenType.substring(i - 1, i)) || ",".Equals( szZenType.substring(i - 1, i)))
+							if ("0" == szZenType.substring(i - 1, i) || "," == szZenType.substring(i - 1, i))
+							{
+								if (j == 3)
+								{
+									szWorkString = ',' + szWorkString;
+									j = -1;
+								}
+								else
+								{
+									szWorkString = '0' + szWorkString;
+								}
+								j = j + 1;
+							}
+							else
+							{
+								break;
+							}
+						}
+					}
+					else
+					{
+						if (j > 0)
+						{
+							for (i = j; i > 0; i--)
+							{
+								//if ("0".Equals(szZenType.substring(i - 1, 1)))
+								//else if (",".Equals(szZenType.substring(i - 1, 1)))
+								//if ("0".Equals(szZenType.substring(i - 1, i)))
+								//else if (",".Equals(szZenType.substring(i - 1, i)))
+								if ("0" == szZenType.substring(i - 1, i))
+								{
+									szWorkString = '0' + szWorkString;
+								}
+								else if ("," == szZenType.substring(i - 1, i))
+								{
+									szWorkString = ',' + szWorkString;
+								}
+								else
+								{
+									break;
+								}
+							}
+						}
+					}
+				}
+				else
+				{
+					//szWorkString = Right((Zero(szZenType.length) + szZenString), szZenType.length);
+					szWorkString = szZenString;
+				}
+				szZenString = szWorkString;
+				//if (",".Equals(szZenString.substring(0, 1)))
+				if ("," == szZenString.substring(0, 1))
+				{
+					szZenString = szZenString.substring(1, szZenString.length);
+					//szZenString = szZenString.substring(1, szZenString.length - 1);
+				}
+			}
+			//if ("".Equals(szDotReturn))
+			if ("" == szDotReturn)
+			{
+
+				return szMark + szZenString;
+			}
+			else
+			{
+
+				return szMark + szZenString + '.' + Left( (szDotReturn + Zero(szDotType.length)), szDotType.length);
+			}
+		}
+		// その他の場合
+		return szMark + szMyString;
+	}
+	// 例外発生
+	catch (e)
+	{
+		return "";
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	Space
+//
+//[概要]
+//	Space
+//
+//[機能説明]
+//	Space
+//
+//[引数]
+//	[I/ ] : int iLen					: 文字列のLen
+//
+//[戻り値]
+//	string
+//
+//-----------------------------------------------------------------------------
+//
+function Space(iLength)
+{
+	var iLen = 0;
+	var i = 0;
+	if (isNaN(parseInt(iLength, 10)))
+	{
+		iLen = 0;
+	}
+	else
+	{
+		iLen = parseInt(iLength, 10);
+	}
+
+	var szTemp = "";
+	for (i = 1; i <= iLen; i++)
+	{
+		szTemp += " ";
+	}
+	return szTemp;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	SpaceAdd
+//
+//[概要]
+//	SpaceAdd
+//
+//[機能説明]
+//	SpaceAdd
+//
+//[引数]
+//	[I/ ] : int iLen					: 文字列のLen
+//	[I/ ] : string szStringValue		: 文字列
+//	[I/ ] : int iPos					: 位置
+//
+//[戻り値]
+//	string
+//
+//-----------------------------------------------------------------------------
+//
+function SpaceAdd(iLength, szStringValue, iPos)
+{
+	var iLen = 0;
+	var i = 0;
+	if (isNaN(parseInt(iLength, 10)))
+	{
+		iLen = 0;
+	}
+	else
+	{
+		iLen = parseInt(iLength, 10);
+	}
+	if (IsBlank(szStringValue, true) == true || iLen <= 0)
+	{
+		return Space(iLen);
+	}
+
+	if (szStringValue.length > iLen)
+	{
+		return szStringValue;
+	}
+
+	var szTemp = szStringValue;
+	var iAddLen = iLen - szStringValue.length;
+	if (iPos == 0)
+	{
+		for (i = 1; i <= iAddLen; i++)
+		{
+			szTemp = " " + szTemp;
+		}
+	}
+	else if (iPos == 1)
+	{
+		for (i = 1; i <= iAddLen; i++)
+		{
+			szTemp += " ";
+		}
+	}
+	
+	return szTemp;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//  Zero
+//
+//[概要]
+//  Zero
+//
+//[機能説明]
+//  Zero
+//
+//[引数]
+//  [I/ ] : int iLength                 : 指定された長さ
+//
+//[戻り値]
+//  string
+//
+//-----------------------------------------------------------------------------
+//
+function Zero(iLength)
+{
+	var iLen = 0;
+	var i = 0;
+	if (isNaN(parseInt(iLength, 10)))
+	{
+		iLen = 0;
+	}
+	else
+	{
+		iLen = parseInt(iLength, 10);
+	}
+	if (iLen <= 0)
+	{
+		return "";
+	}
+
+	var szTemp = "";
+	for (i = 0; i < iLen; i++)
+	{
+		szTemp += "0";
+	}
+	return szTemp;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	ZeroAdd
+//
+//[概要]
+//	ZeroAdd
+//
+//[機能説明]
+//	ZeroAdd
+//
+//[引数]
+//	[I/ ] : int iLen					: 文字列のLen
+//	[I/ ] : string szStringValue		: 文字列
+//	[I/ ] : int iPos					: 位置
+//
+//[戻り値]
+//	string
+//
+//-----------------------------------------------------------------------------
+//
+function ZeroAdd(iLength, szStringValue, iPos)
+{
+	var iLen = 0;
+	var i = 0;
+	if (isNaN(parseInt(iLength, 10)))
+	{
+		iLen = 0;
+	}
+	else
+	{
+		iLen = parseInt(iLength, 10);
+	}
+	if (IsBlank(szStringValue, true) == true || iLen <= 0)
+	{
+		return Zero(iLen);
+	}
+
+	if (szStringValue.length > iLen)
+	{
+		return szStringValue;
+	}
+
+	var szTemp = szStringValue;
+	var iAddLen = iLen - szStringValue.length;
+	if (iPos == 0)
+	{
+		for (i = 1; i <= iAddLen; i++)
+		{
+			szTemp = "0" + szTemp;
+		}
+	}
+	else if (iPos == 1)
+	{
+		for (i = 1; i <= iAddLen; i++)
+		{
+			szTemp += "0";
+		}
+	}
+	
+	return szTemp;
+} 
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	指定されたファーマットより文字列を削除する
+//
+//[概要]
+//	指定されたファーマットより文字列を削除する
+//
+//[機能説明]
+//	指定されたファーマットより文字列を削除する
+//
+//[引数]
+//	[I/ ] : string szStringValue : 指定された文字列
+//  [I/ ] : string szDelete
+//
+//[戻り値]
+//	string 
+//
+//
+//-----------------------------------------------------------------------------
+//
+function DeleteString(szStringValue, szDelete)
+{
+	if (IsBlank(szStringValue, true) == true) 
+	{
+		return "";
+	}
+	if (IsBlank(szDelete, true) == true) 
+	{
+		return szStringValue;
+	}
+	var regexp = new RegExp(szDelete, "g");
+	return szStringValue.replace(regexp, "");
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	Val
+//
+//[概要]
+//	Val
+//
+//[機能説明]
+//	Val
+//
+//[引数]
+//	[I/ ] : string szStringValue			: 指定された文字列
+//
+//[戻り値]
+//	string
+//
+//-----------------------------------------------------------------------------
+//
+function Val(szStringValue)
+{
+	var i = 0;
+	var iType = 0;
+	var bType = true;
+	var iNum = 0;
+	var iENum = 0;
+	var strReturn = "";
+	if (IsBlank(szStringValue, true) == true)
+	{
+		return "0";
+	}
+	var regexp = new RegExp(" ", "g");
+	var strTemp = szStringValue.replace(regexp, "");
+	regexp = new RegExp("　", "g");
+	szStringValue = strTemp.replace(regexp, "");
+	if (szStringValue.length == 0)
+	{
+		return "0";
+	}
+	for (i = 0; i < szStringValue.length; i++)
+	{
+		strTemp = szStringValue.substring(i, (i + 1));
+		if (strTemp != "0" && strTemp != "1" && strTemp != "2" && strTemp != "3" && strTemp != "4" && 
+			strTemp != "5" && strTemp != "6" && strTemp != "7" && strTemp != "8" && strTemp != "9")
+		{
+			if ("&" == strTemp && i == 0)
+			{
+				bType = false;
+				iType = 1;
+			}
+			else if (("H" == strTemp || "h" == strTemp) && i == 1 && 
+					 iType == 1 && bType == false)
+			{
+				iType = 2;
+			}
+			else if (("O" == strTemp || "o" == strTemp) && i == 1 && 
+					 iType == 1 && bType == false)
+			{
+				iType = 1;
+			}
+			else if (("+" == strTemp || "-" == strTemp) && i == 0)
+			{
+				bType = true;
+				iType = 0;
+				if ("-" == strTemp)
+				{
+					strReturn = strReturn + strTemp;
+				}
+			}
+			else if (("e" == strTemp || "E" == strTemp) && bType == true && 
+					 (iNum == 0 || iNum == 1) && iENum == 0 && iType == 0)
+			{
+				iENum = iENum + 1;
+				strReturn = strReturn + strTemp;
+			}
+			else if ("." == strTemp && bType == true && iNum == 0 && 
+					 iENum == 0 && iType == 0)
+			{
+				iNum = iNum + 1;
+				strReturn = strReturn + strTemp;
+			}
+			else
+			{
+				break;
+			}
+		}
+		else
+		{
+			strReturn = strReturn + strTemp;
+		}
+	}
+	//regexp = new RegExp(".e", "g");
+	//strTemp = strReturn.replace(regexp, "E");
+	//regexp = new RegExp(".E", "g");
+	//strReturn = strTemp.replace(regexp, "E");
+	strTemp = "";
+	for (i = 0; i < strReturn.length - 1; i = i + 2)
+	{
+		if (strReturn.substring(i, (i + 2)) == ".e" || strReturn.substring(i, (i + 2)) == ".E")
+		{
+			strTemp = strTemp + "E";
+		}
+		else
+		{
+			strTemp = strTemp + strReturn.substring(i, (i + 2));
+		}
+	}
+	strTemp = strTemp + Right(strReturn, strReturn.length - i);
+	strReturn = strTemp;
+	strTemp = Right(strReturn, 1);
+	if ("." == strTemp || "e" == strTemp || "E" == strTemp)
+	{
+		strTemp = strReturn.substring(0, (strReturn.length - 1));
+		strReturn = strTemp;
+	}
+	if (strReturn.length == 0)
+	{
+		return "0";
+	}
+	if (iType == 0)
+	{
+		if ("+" == strReturn || "-" == strReturn)
+		{
+			return "0";
+		}
+		return strReturn;
+	}
+	else if (iType == 1)
+	{
+		return ("" + parseInt(strReturn, 8));
+	}
+	else if (iType == 2)
+	{
+		return ("" + parseInt(strReturn, 16));
+	}
+	else
+	{
+		return "0";
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	ValB
+//
+//[概要]
+//	ValB
+//
+//[機能説明]
+//	ValB
+//
+//[引数]
+//	[I/ ] : string szStringValue			: 指定された文字列
+//
+//[戻り値]
+//	string
+//
+//-----------------------------------------------------------------------------
+//
+function ValB(szStringValue)
+{
+	var i = 0;
+	var iType = 0;
+	var bType = true;
+	var iNum = 0;
+	var iENum = 0;
+	var strReturn = "";
+	if (IsBlank(szStringValue, true) == true)
+	{
+		return "";
+	}
+	var regexp = new RegExp(" ", "g");
+	var strTemp = szStringValue.replace(regexp, "");
+	regexp = new RegExp("　", "g");
+	szStringValue = strTemp.replace(regexp, "");
+	if (szStringValue.length == 0)
+	{
+		return "";
+	}
+	for (i = 0; i < szStringValue.length; i++)
+	{
+		strTemp = szStringValue.substring(i, (i + 1));
+		if (strTemp != "0" && strTemp != "1" && strTemp != "2" && strTemp != "3" && strTemp != "4" && 
+			strTemp != "5" && strTemp != "6" && strTemp != "7" && strTemp != "8" && strTemp != "9")
+		{
+			if ("&" == strTemp && i == 0)
+			{
+				bType = false;
+				iType = 1;
+			}
+			else if (("H" == strTemp || "h" == strTemp) && i == 1 && 
+					 iType == 1 && bType == false)
+			{
+				iType = 2;
+			}
+			else if (("O" == strTemp || "o" == strTemp) && i == 1 && 
+					 iType == 1 && bType == false)
+			{
+				iType = 1;
+			}
+			else if (("+" == strTemp || "-" == strTemp) && i == 0)
+			{
+				bType = true;
+				iType = 0;
+				if ("-" == strTemp)
+				{
+					strReturn = strReturn + strTemp;
+				}
+			}
+			else if (("e" == strTemp || "E" == strTemp) && bType == true && 
+					 (iNum == 0 || iNum == 1) && iENum == 0 && iType == 0)
+			{
+				iENum = iENum + 1;
+				strReturn = strReturn + strTemp;
+			}
+			else if ("." == strTemp && bType == true && iNum == 0 && 
+					 iENum == 0 && iType == 0)
+			{
+				iNum = iNum + 1;
+				strReturn = strReturn + strTemp;
+			}
+			else
+			{
+				break;
+			}
+		}
+		else
+		{
+			strReturn = strReturn + strTemp;
+		}
+	}
+	//regexp = new RegExp(".e", "g");
+	//strTemp = strReturn.replace(regexp, "E");
+	//regexp = new RegExp(".E", "g");
+	//strReturn = strTemp.replace(regexp, "E");
+	strTemp = "";
+	for (i = 0; i < strReturn.length - 1; i = i + 2)
+	{
+		if (strReturn.substring(i, (i + 2)) == ".e" || strReturn.substring(i, (i + 2)) == ".E")
+		{
+			strTemp = strTemp + "E";
+		}
+		else
+		{
+			strTemp = strTemp + strReturn.substring(i, (i + 2));
+		}
+	}
+	strTemp = strTemp + Right(strReturn, strReturn.length - i);
+	strReturn = strTemp;
+	strTemp = Right(strReturn, 1);
+	if ("." == strTemp || "e" == strTemp || "E" == strTemp)
+	{
+		strTemp = strReturn.substring(0, (strReturn.length - 1));
+		strReturn = strTemp;
+	}
+	if (strReturn.length == 0)
+	{
+		return "";
+	}
+	if (iType == 0)
+	{
+		if ("+" == strReturn || "-" == strReturn)
+		{
+			return "";
+		}
+		return strReturn;
+	}
+	else if (iType == 1)
+	{
+		return ("" + parseInt(strReturn, 8));
+	}
+	else if (iType == 2)
+	{
+		return ("" + parseInt(strReturn, 16));
+	}
+	else
+	{
+		return "";
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	LTrim
+//
+//[概要]
+//	LTrim
+//
+//[機能説明]
+//	文字列左側スペース削除処理
+//
+//[引数]
+//	[I/ ] : string strValue			: 指定された文字列
+//
+//[戻り値]
+//	string
+//
+//-----------------------------------------------------------------------------
+//
+function LTrim(strValue) {
+    var i = strValue.length;
+    var j;
+    if (strValue == null) {
+        return "";
+    }
+    if (strValue == "") {
+        return "";
+    }
+    strValue = "" + strValue;
+    for(j = 0; j < i && strValue.charAt(j) <= ' '; j++);
+	if (j <= 0) {
+		return strValue;
+	}
+	else {
+		return strValue.substring(j, i);
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	RTrim
+//
+//[概要]
+//	RTrim
+//
+//[機能説明]
+//	文字列右側スペース削除処理
+//
+//[引数]
+//	[I/ ] : string strValue			: 指定された文字列
+//
+//[戻り値]
+//	string
+//
+//-----------------------------------------------------------------------------
+//
+function RTrim(strValue) {
+    var i;
+    if (strValue == null) {
+        return "";
+    }
+    if (strValue == "") {
+        return "";
+    }
+    strValue = "" + strValue;
+    for(i = strValue.length; i > 0 && strValue.charAt(i - 1) <= ' '; i--);
+    if (i >= strValue.length) {
+        return strValue;
+    }
+    else {
+        return strValue.substring(0, i);
+    }
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	Trim
+//
+//[概要]
+//	Trim
+//
+//[機能説明]
+//	文字列両方スペース削除処理
+//
+//[引数]
+//	[I/ ] : string strValue			: 指定された文字列
+//
+//[戻り値]
+//	string
+//
+//-----------------------------------------------------------------------------
+//
+function Trim(strValue) {
+    var strValueReturn;
+
+    if(strValue == null) {
+        return "";
+    }
+    else if (strValue == "") {
+        return "";
+    }
+    else {
+        strValue = "" + strValue;
+        strValueReturn = strValue;
+        strValueReturn = RTrim(strValueReturn);
+        strValueReturn = LTrim(strValueReturn);
+    }
+    return strValueReturn;
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	IsNumeric
+//
+//[概要]
+//	IsNumeric
+//
+//[機能説明]
+//	式が数値として評価できるかどうかを調べ、結果をブール型 (bool) で返します。
+//
+//[引数]
+//	[I/ ] : string strValue			: 指定された文字列
+//
+//[戻り値]
+//	bool true : OK
+//		 false: NG
+//
+//-----------------------------------------------------------------------------
+//
+function IsNumeric(strValue)
+{
+	try
+	{
+		var dNum = parseFloat(strValue);
+		if (isNaN(dNum))
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	// 例外発生
+	catch (e)
+	{
+		return false;
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	IsNumber
+//
+//[概要]
+//	IsNumber
+//
+//[機能説明]
+//	式が数値として評価できるかどうかを調べ、結果をブール型 (bool) で返します。
+//
+//[引数]
+//	[I/ ] : string strValue			: 指定された文字列
+//
+//[戻り値]
+//	bool true : OK
+//		 false: NG
+//
+//-----------------------------------------------------------------------------
+//
+function IsNumber(strValue)
+{
+	try
+	{
+		if (strValue == null || isNaN(strValue) || strValue == "")
+		{
+			return false;
+		}
+		var i = 0;
+		for (var i = 0; i < strValue.length; i++)
+		{
+			if (strValue.substring(i, i + 1) != "0" && 
+				strValue.substring(i, i + 1) != "1" && 
+				strValue.substring(i, i + 1) != "2" && 
+				strValue.substring(i, i + 1) != "3" && 
+				strValue.substring(i, i + 1) != "4" && 
+				strValue.substring(i, i + 1) != "5" && 
+				strValue.substring(i, i + 1) != "6" && 
+				strValue.substring(i, i + 1) != "7" && 
+				strValue.substring(i, i + 1) != "8" && 
+				strValue.substring(i, i + 1) != "9")
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	// 例外発生
+	catch (e)
+	{
+		return false;
+	}
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	WindowClose
+//
+//[概要]
+//	ファイルダウンロード画面を自動閉じる
+//
+//[機能説明]
+//	ファイルダウンロード画面を自動閉じる
+//
+//-----------------------------------------------------------------------------
+//
+function WindowClose()
+{
+	try
+	{
+		self.window.opener = "NONE";
+		self.window.close();
+	}
+	catch(e)
+	{
+	}
+}
+
+// Ver BR 2016/2/12 PSD ADD Start 【15設備】ＯＴＡＣセキュリティ対策
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	PasswordHash_LogIn
+//
+//[概要]
+//	パスワードのハッシュ化
+//
+//[機能説明]
+//	入力パスワードのハッシュ化を行う
+//
+//[引数]
+//	[I/ ] : string strID			: ハッシュ入力コントロールID
+//	[I/ ] : string strErrClass		: エラー発生区分
+//
+//-----------------------------------------------------------------------------
+//
+function PasswordHashLogIn(strID, strErrClass) {
+    // 入力パスワードをハッシュ化するが、ハッシュ後のパスワードでは実施できないチェック項目がある。
+    // そのため、ハッシュ前のパスワード(平文)で行うチェック処理をボタンイベント処理からjavascript内に移動する。
+
+    // 隠しテキストボックス内容を初期化
+    document.getElementById(strErrClass).value = "0";					// 初期値(エラーなし)
+
+    //-----------------------------------------------------------
+    //
+    // 未入力チェック
+    //
+    //-----------------------------------------------------------
+    if ("" == document.getElementById(strID).value) {
+        document.getElementById(strErrClass).value = "1";	// エラー区分を"パスワード"に更新
+    }
+
+    // パスワードが未入力だった場合でも必ずハッシュ化する
+    // ハッシュ入力コントロールIDハッシュ化
+    var shaObj = new jsSHA(document.getElementById(strID).value, "ASCII");
+    var newpasswordHash = shaObj.getHash('SHA-256', "HEX");
+    document.getElementById(strID).value = newpasswordHash;
+}
+
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	PasswordHashChgDataCheck
+//
+//[概要]
+//	ハッシュ化前のパスワードを対象とし、入力値チェック
+//
+//[機能説明]
+//	ハッシュ化前のパスワードを対象とし、入力値チェック
+//
+//[引数]
+//	[I/ ] : string strID1			: ハッシュ入力コントロールID1
+//	[I/ ] : string strID2			: ハッシュ入力コントロールID2
+//	[I/ ] : string strErrClass		: エラー発生区分
+//										0:エラーなし 
+//										1:新しいパスワード 未入力エラー
+//										2:再入力 未入力エラー
+//										3:新しいパスワード 文字数エラー
+//										4:新しいパスワード 許可記号連続入力エラー
+//										5:新しいパスワード 未許可記号使用エラー
+//										6:新しいパスワード 半角空白スペース使用エラー
+//										7:新しいパスワード 数字、英文字組み合わせエラー
+//
+//-----------------------------------------------------------------------------
+//
+function PasswordHashChgDataCheck(strID1, strID2, strErrClass) {
+    /* 入力パスワードをハッシュ化するが、ハッシュ後のパスワードでは実施できないチェック項目がある。
+	* そのため、ハッシュ前のパスワード(平文)で行うチェック処理をボタンイベント処理からjavascript内に移動する。
+	* ハッシュ後に行うチェック項目については、ボタンイベント処理内で問題ないため、既存のままとする。
+	* 以下に各チェックで対象とするデータと処理実施箇所を示す
+	* __________________________________________________________________________________________
+	*|     チェック内容			|		対象データ		　  |	改造有無	|	  処理箇所		|
+	*|--------------------------|---------------------------|---------------|-------------------|
+	*|未入力チェック			|	　　　平文				|	　 有		|	  javascript	|
+	*|--------------------------|---------------------------|---------------|-------------------|
+	*|入力内容同一性チェック	|　ハッシュ後のパスワード	|	　 無		|	 ボタンイベント	|
+	*|--------------------------|---------------------------|---------------|-------------------|
+	*|文字数チェック			|		　平文				|	　 有		|	  javascript	|
+	*|--------------------------|---------------------------|---------------|-------------------|
+	*|新旧同一性チェック		|　ハッシュ後のパスワード	|	　 無		|	 ボタンイベント	|
+	*|--------------------------|---------------------------|---------------|-------------------|
+	*|使用可能文字チェック		|		　平文				|	　 有		|	  javascript	|
+	* -------------------------------------------------------------------------------------------
+	*/
+
+    //--- 変数宣言 ---
+    var bLetterExist = false;
+    var bNumberExist = false;
+    var iSeqRepeat = 0;					// シンボル文字連続使用チェック用
+    var iLoop = 0;						// ループカウンタ
+    var strCheck = "";					// パスワード使用文字チェック用
+
+    var strPlainTextPass = document.getElementById(strID1).value;		// パスワード平文取得
+    var strPlainTextRePass = document.getElementById(strID2).value;		// 再入力パスワード平文取得
+    // 隠しテキストボックス内容を初期化
+    document.getElementById(strErrClass).value = "0";					// 初期値(エラーなし)
+
+
+    //-----------------------------------------------------------
+    //
+    // 未入力チェック
+    //
+    //-----------------------------------------------------------
+    if ("" == strPlainTextPass) {
+        document.getElementById(strErrClass).value = "1";	// エラー区分を"新しいパスワード 未入力エラー"に更新
+        return;
+    }
+    if ("" == strPlainTextRePass) {
+        document.getElementById(strErrClass).value = "2";	// エラー区分を"再入力 未入力エラー"に更新
+        return;
+    }
+
+
+    //-----------------------------------------------------------
+    //
+    // パスワード文字数チェック
+    //
+    //-----------------------------------------------------------
+    if (strPlainTextPass.length < 6) {
+        document.getElementById(strErrClass).value = "3";	// エラー区分を"新しいパスワード 文字数エラー"に更新
+        return;
+    }
+
+
+    //-----------------------------------------------------------
+    //
+    // パスワードに英字、数字、許可記号が含まれているか確認
+    //
+    //-----------------------------------------------------------
+    for (iLoop = 0; iLoop < strPlainTextPass.length; iLoop++) {
+        // チェック対象の文字列を取得
+        strCheck = strPlainTextPass.charAt(iLoop);
+        // 数字含有確認
+        if (strCheck.match(/[0-9]/)) {
+            bNumberExist = true;
+            iSeqRepeat = 0;
+        }
+        // 英字含有確認
+        if (strCheck.match(/[A-Z]/i)) {
+            bLetterExist = true;
+            iSeqRepeat = 0;
+        }
+        // 許可記号含有確認
+        if (strCheck.match(/[-=.,_]/)) {
+            iSeqRepeat += 1;
+            if (iSeqRepeat >= 2) {
+                // 許可記号が連続して設定されている場合、エラー
+                document.getElementById(strErrClass).value = "4";	// エラー区分を"新しいパスワード 許可記号連続入力エラー"に更新
+                return;
+            }
+        }
+            // 半角空白スペース含有確認
+            // 【未許可記号含有確認と半角空白スペース確認のエラー区分が逆転している理由】
+            // 改造前のチェック順は、未許可記号含有確認後に半角空白スペース含有確認だったが、
+            // 未許可記号チェックに使用している正規表現(/\W/)では半角空白スペースも一致してしまうため、
+            // 今回の改造では先に空白チェックを行っている。
+            // OKボタン押下処理内で改造前のエラー出力順となるようエラー区分の番号で制御を行っているため、
+            // ここではエラー区分の番号が逆転している。
+        else if (strCheck.match(/\s/)) {
+            document.getElementById(strErrClass).value = "6";	// エラー区分を"半角空白スペース使用エラー"に更新
+            return;
+        }
+            // 未許可記号含有確認(数字、半角英文字、許可記号、半角スペース以外の全ての文字)
+        else if (strCheck.match(/\W/)) {
+            document.getElementById(strErrClass).value = "5";	// エラー区分を"新しいパスワード 未許可記号使用エラー"に更新
+            return;
+        }
+    }
+    // パスワードに数字と半角英文字が含まれていない場合、パスワード基準を満たさないため、エラー
+    if (bNumberExist == false || bLetterExist == false) {
+        document.getElementById(strErrClass).value = "7";	// エラー区分を"新しいパスワード 数字、英文字組み合わせエラー"に更新
+    }
+}
+
+//-----------------------------------------------------------------------------
+//
+//[関数名称]
+//	PasswordHash_Chg
+//
+//[概要]
+//	入力パスワードを退避後、パスワードのハッシュ化
+//
+//[機能説明]
+//	入力データチェックを行うため、ハッシュ化前のパスワードを退避後、ハッシュ化を行う
+//
+//[引数]
+//	[I/ ] : string strID1			: ハッシュ入力コントロールID1
+//	[I/ ] : string strID2			: ハッシュ入力コントロールID2
+//	[I/ ] : string strErrClass		: エラー発生区分
+//
+//-----------------------------------------------------------------------------
+//
+function PasswordHashChg(strID1, strID2, strErrClass) {
+    // パスワードチェック
+    PasswordHashChgDataCheck(strID1, strID2, strErrClass);
+
+    // パスワードチェック内でエラーが発生した場合でも必ずパスワードはハッシュ化しておく。
+    // ハッシュ入力コントロールID1ハッシュ化	
+    var shaObj1 = new jsSHA(document.getElementById(strID1).value, "ASCII");
+    var newpasswordHash = shaObj1.getHash('SHA-256', "HEX");
+    document.getElementById(strID1).value = newpasswordHash;
+
+    // ハッシュ入力コントロールID2ハッシュ化	
+    var shaObj2 = new jsSHA(document.getElementById(strID2).value, "ASCII");
+    var repasswordHash = shaObj2.getHash('SHA-256', "HEX");
+    document.getElementById(strID2).value = repasswordHash;
+}
+// Ver BR 2016/2/12 PSD ADD End
+
+//-----------------------------------------------------------------------------
+//         Copyright  (c) 2004 OMRON Software CO., Ltd.
+//         All Rights Reserved.
+//         end of file
+//-----------------------------------------------------------------------------

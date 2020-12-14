@@ -1,0 +1,646 @@
+@charset "shift_jis";
+
+/*
+	全体レイアウト設定
+	最終更新： 2006-10-24
+*/
+
+/* チェック用 
+div.section { background-color: #f99; }
+div.locator { background-color: #9f9; }
+div.locatorA { background-color: #9f9; }
+div.locatorB { background-color: #9f9; }
+
+div.container { background-color: #99f; }*/
+
+
+/* --------------------------------------------------ボディ */
+body {
+	_margin-bottom: 10px;/* IE対応 */
+	background-image: url(../images/bg-body.gif);
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+
+body.popUp { background-position: -310px top; }
+
+/* --------------------------------------------------プラットフォーム */
+div#platformT1,
+div#platformT2,
+div#platformP1,
+div#platformY1,
+div#platformY2,
+div#platformY3 {
+	width: 950px;
+	height: auto;
+	margin: 0;
+	text-align: left;
+	background-repeat: repeat-y;
+	background-position: left top;
+	background-color: #FFF;
+}
+
+div#platformP1 { width: 640px; }
+
+/* サイドバーあり */
+div#platformT1,
+div#platformT2 { background-image: url(../images/bg-main-a.gif); }
+
+/* サイドバーなし */
+div#platformP1,
+div#platformY1,
+div#platformY2,
+div#platformY3 { background-image: url(../images/bg-main-b.gif); }
+
+/* ポップアップ */
+div#platformP1 { background-image: url(../images/bg-main-c.gif); }
+
+/* --------------------------------------------------サイドバーエリア */
+div#sidebar {
+	display: inline;/* IE対策 */
+	float: left;
+	width: 167px;/* 左右ボーターを含まない幅 */
+	margin-left: 1px;
+}
+
+/* --------------------------------------------------コンテンツエリア */
+div#contents {
+	margin: 0 1px;
+	width: 948px;/* 左右ボーターを含まない幅 */
+}
+
+div#platformT1 div#contents,
+div#platformT2 div#contents {
+	margin: 0;
+	float: right;
+	width: 781px;/* 右ボーターを含む幅 */
+}
+
+div#platformP1 div#contents {
+	margin: 0 1px;
+	width: 638px;/* 左右ボーターを含まない幅 */
+}
+
+/* --------------------------------------------------ヘッダーエリア */
+div#header {
+	width: 780px;
+	height: 36px;
+	margin-bottom: 10px;
+	background-image: url(../images/bg-header-a.jpg);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+div#platformY3 div#header {
+	width: 948px;
+	height: 53px;
+	background-image: url(../images/bg-header-b.gif);
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #D9D9D9;
+}
+
+div#platformY1 div#header {
+	width: 948px;
+	height: 71px;
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #D9D9D9;
+}
+
+div#platformY2 div#header {
+	width: 948px;
+	height: 53px;
+	background-image: url(../images/bg-header-c.jpg);
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #D9D9D9;
+}
+
+div#platformP1 div#header {
+	width: 638px;
+	height: 53px;
+	background-image: url(../images/bg-header-b.gif);
+	background-repeat: no-repeat;
+	border-bottom: 1px solid #D9D9D9;
+}
+
+/* --------------------------------------------------グローバルナビエリア */
+div#globalNavi {
+	height: 26px;
+	margin-bottom: 28px;
+}
+
+/* --------------------------------------------------メインコンテンツエリア */
+div#platformT1 div#mainContents { width: 780px; }
+
+div#platformT2 div#mainContents {
+	width: 780px;
+	padding-top: 34px;
+	background-image: url(../images/bg-header-b.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+}
+
+/* --------------------------------------------------フッターエリア */
+div#footer {
+	clear: both; /*印刷時 WIN FFがフリーズする可能性あり */
+	width: 948px;
+	_width: 950px;
+	height: 27px;
+	margin-bottom: 10px;
+	_margin-bottom: 0px;
+	border: 1px solid #D9D9D9;
+	background-color: #FFF;
+}
+
+div#platformP1 div#footer {
+	clear: both;
+	width: 638px;
+	_width: 640px;/* IE対応 */
+}
+
+/* --------------------------------------------------セクション */
+div.section { clear: both; }
+
+/* --------------------------------------------------ロケーター */
+/*
+div.locator 加盟店のみで使用
+div.locatorA 加盟店以外で使用
+*/
+
+div.locator {
+	clear: both;
+	width: auto;
+	margin-bottom: 30px;
+}
+
+div.locatorA {
+	clear: both;
+	width: auto;
+	margin-bottom: 20px;
+}
+
+/* h1以外の1カラム要素はBを使用（削除予定） */
+div.locatorB {
+	clear: both;
+	margin-bottom: 0;
+}
+
+/* clearfix */
+.locator:after,
+.locatorA:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.locator,
+.locatorA { display: inline-table; }
+
+/* Hides from IE-mac \*/
+* html .locator,
+* html .locatorA { height: 1%; }
+.locator,
+.locatorA { display: block; }
+/* End hide from IE-mac */
+
+/* --------------------------------------------------カラムセット */
+/* ローカルナビなし */
+div.col3A { width: 309px; float: left; }
+div.col3B { width: 618px; float: left; }
+
+div.col4A { width: 232px; float: left; }
+div.col4B { width: 464px; float: left; }
+div.col4C { width: 696px; float: left; }
+
+/* ローカルナビあり */
+div#platformT1 div.col3A,
+div#platformT2 div.col3A { width: 254px; }
+div#platformT1 div.col3B,
+div#platformT2 div.col3B { width: 506px; }
+
+div#platformT1 div.col4A,
+div#platformT2 div.col4A { width: 190px; }
+div#platformT1 div.col4B,
+div#platformT2 div.col4B { width: 380px; }
+div#platformT1 div.col4C,
+div#platformT2 div.col4C { width: 570px; }
+
+/* カード系で使用 */
+div#platformT1 div.colExA,
+div#platformT2 div.colExA { width: 205px; float: left; }
+div#platformT1 div.colExB,
+div#platformT2 div.colExB { width: 555px; float: left; }
+
+/* エリア内で使用 */
+div#platformT1 div.colExC,
+div#platformT2 div.colExC { width: 370px; float: left; }
+div#platformT1 div.actionArea div.col4B,
+div#platformT1 div.relationArea div.col4B,
+div#platformT1 div.recommendArea div.col4B,
+div#platformT1 div.importantArea div.col4B,
+div#platformT2 div.actionArea div.col4B,
+div#platformT2 div.relationArea div.col4B,
+div#platformT2 div.recommendArea div.col4B,
+div#platformT2 div.importantArea div.col4B { width: 370px; }
+div#platformT1 div.actionArea div.col3A,
+div#platformT1 div.relationArea div.col3A,
+div#platformT1 div.recommendArea div.col3A,
+div#platformT1 div.importantArea div.col3A,
+div#platformT2 div.actionArea div.col3A,
+div#platformT2 div.relationArea div.col3A
+div#platformT2 div.recommendArea div.col3A,
+div#platformT2 div.importantArea div.col3A { width: 240px; }
+
+/* ポップアップ */
+div#platformP1 div.col3A { width: 206px; }
+div#platformP1 div.col3B { width: 412px; }
+
+div#platformP1 div.col4A { width: 154px; }
+div#platformP1 div.col4B { width: 309px; }
+div#platformP1 div.col4C { width: 463px; }
+
+/* --------------------------------------------------コンテナ */
+div.container {
+	clear: both;
+	margin: 0 0 10px 0;
+}
+
+/* エリア内コンテナ */
+div.actionArea .container,
+div.relationArea .container,
+div.recommendArea .container,
+div.importantArea .container { margin: 0;}
+
+/* clearfix */
+.container:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.container { display: inline-table; }
+
+/* Hides from IE-mac \*/
+* html .container { height: 1%; }
+.container { display: block; }
+/* End hide from IE-mac */
+
+/* --------------------------------------------------コンテナ内2カラム */
+div#mainContents div.image { text-align: center; }
+
+div#mainContents div.ratioA div.image,
+div#mainContents div.ratioB div.image { display: inline; margin-left: 10px; }
+
+/* 幅指定 新5:5*/
+div#mainContents div.ratioA .image,
+div#mainContents div.ratioA .text { float: left; margin: 0; padding: 0; }
+div#mainContents div.ratioA p,
+div#mainContents div.ratioA ul,
+div#mainContents div.ratioA ol,
+div#mainContents div.ratioA input,
+div#mainContents div.ratioA select { margin-left: 0; }
+
+div.ratioA div.text { width: 355px; }
+div.ratioA div.image { width: 375px; }/* H1直下で崩れがあるため */
+
+div.col4A div.ratioA div.text { width: 80px; }
+div.col4A div.ratioA div.image { width: 80px; }
+div.col4B div.ratioA div.text { width: 175px; }
+div.col4B div.ratioA div.image { width: 175px; }
+div.col4C div.ratioA div.text { width: 225px; }
+div.col4C div.ratioA div.image { width: 225px; }
+
+div.col3A div.ratioA div.text { width: 112px; }
+div.col3A div.ratioA div.image { width: 112px; }
+div.col3B div.ratioA div.text { width: 238px; }
+div.col3B div.ratioA div.image { width: 238px; }
+
+div#platformP1 div.ratioB div.text { width: 295px; }
+div#platformP1 div.ratioB div.image { width: 295px; }
+
+div#platformP1 div.col4A div.ratioA div.text {}
+div#platformP1 div.col4A div.ratioA div.image {}
+div#platformP1 div.col4B div.ratioA div.text { width: 139px; }
+div#platformP1 div.col4B div.ratioA div.image { width: 139px; }
+div#platformP1 div.col4C div.ratioA div.text {}
+div#platformP1 div.col4C div.ratioA div.image {}
+
+div#platformP1 div.col3A div.ratioA div.text { width: 88px; }
+div#platformP1 div.col3A div.ratioA div.image { width: 88px; }
+div#platformP1 div.col3B div.ratioA div.text { width: 191px; }
+div#platformP1 div.col3B div.ratioA div.image { width: 191px; }
+
+/* 幅指定 エリア内新5:5 */
+div.actionArea div.ratioA div.text,
+div.actionArea div.ratioA div.image,
+div.relationArea div.ratioA div.text,
+div.relationArea div.ratioA div.image,
+div.recommendArea div.ratioA div.text,
+div.recommendArea div.ratioA div.image,
+div.importantArea div.ratioA div.text,
+div.importantArea div.ratioA div.image { width: 355px; background-color: #FF0000;}
+
+div.colExC div.ratioA div.text,
+div.actionArea div.col4B div.ratioA div.text,
+div.relationArea div.col4B div.ratioA div.text,
+div.recommendArea div.col4B div.ratioA div.text,
+div.importantArea div.col4B div.ratioA div.text { width: 165px; background-color: #FF0000;}
+
+/* 幅指定 新3:7 */
+div#mainContents div.ratioB .image,
+div#mainContents div.ratioB .text { float: left; margin: 0; padding: 0;}
+div#mainContents div.ratioB p,
+div#mainContents div.ratioB ul,
+div#mainContents div.ratioB ol,
+div#mainContents div.ratioB input,
+div#mainContents div.ratioB select { margin-left: 0; }
+
+div.ratioB div.text { width: 490px; }
+div.ratioB div.image { width: 240px; }
+
+div.col4A div.ratioB div.text { width: 105px; }
+div.col4A div.ratioB div.image { width: 60px; margin-left: 5px !important; }
+div.col4B div.ratioB div.text { width: 230px; }
+div.col4B div.ratioB div.image { width: 120px; }
+div.col4C div.ratioB div.text { width: 370px; }
+div.col4C div.ratioB div.image { width: 180px; }
+
+div.col3A div.ratioB div.text { width: 144px; }
+div.col3A div.ratioB div.image { width: 80px; }
+div.col3B div.ratioB div.text { width: 332px; }
+div.col3B div.ratioB div.image { width: 144px; }
+
+div#platformP1 div.ratioB div.text { width: 390px; }
+div#platformP1 div.ratioB div.image { width: 200px; }
+
+div#platformP1 div.col4A div.ratioB div.text {  }
+div#platformP1 div.col4A div.ratioB div.image {  }
+div#platformP1 div.col4B div.ratioB div.text { width: 198px; }
+div#platformP1 div.col4B div.ratioB div.image { width: 80px; }
+div#platformP1 div.col4C div.ratioB div.text {  }
+div#platformP1 div.col4C div.ratioB div.image {  }
+
+div#platformP1 div.col3A div.ratioB div.text { width: 126px; }
+div#platformP1 div.col3A div.ratioB div.image { width: 50px; }
+div#platformP1 div.col3B div.ratioB div.text {}
+div#platformP1 div.col3B div.ratioB div.image {}
+
+/* 幅指定 エリア内新3:7 */
+div.actionArea div.ratioB div.text { width: 470px; }
+div.actionArea div.ratioB div.image { width: 240px; }
+div.relationArea div.ratioB div.text { width: 470px; }
+div.relationArea div.ratioB div.image { width: 240px; }
+div.recommendArea div.ratioB div.text { width: 470px; }
+div.recommendArea div.ratioB div.image { width: 240px; }
+div.importantArea div.ratioB div.text { width: 470px; }
+div.importantArea div.ratioB div.image { width: 240px; }
+
+div.colExC div.ratioB div.text,
+div.actionArea div.col4B div.ratioB div.text,
+div.relationArea div.col4B div.ratioB div.text,
+div.recommendArea div.col4B div.ratioB div.text,
+div.importantArea div.col4B div.ratioB div.text { width: 220px; }
+
+div.colExC div.ratioB div.image,
+div.actionArea div.col4B div.ratioB div.image,
+div.relationArea div.col4B div.ratioB div.image,
+div.recommendArea div.col4B div.ratioB div.image,
+div.importantArea div.col4B div.ratioB div.image { width: 110px; }
+
+/* clearfix */
+div#mainContents div.ratioA:after,
+div#mainContents div.ratioB:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+div#mainContents div.ratioA,
+div#mainContents div.ratioB { display: inline-table; }
+
+/* Hides from IE-mac \*/
+* html div#mainContents div.ratioA,
+* html div#mainContents div.ratioB { height: 1%; }
+div#mainContents div.ratioA,
+div#mainContents div.ratioB { display: block; }
+/* End hide from IE-mac */
+
+/* --------------------------------------------------カラム内2カラム */
+div#mainContents div.ratio5-5 .image,
+div#mainContents div.ratio3-7 .image { display: inline; margin-left: 10px !important; }
+
+/* 幅指定 5:5*/
+div#mainContents div.ratio5-5 .image,
+div#mainContents div.ratio5-5 .text { float: left; margin: 0; padding: 0; }
+div#mainContents div.ratio5-5 p,
+div#mainContents div.ratio5-5 ul,
+div#mainContents div.ratio5-5 ol { margin-left: 0; }
+
+div#platformT1 div.ratio5-5 .text { width: 365px; }
+div#platformT1 div.ratio5-5 .image { width: 365px; }
+
+div#platformT1 div.col4A div.ratio5-5 .text { width: 80px; }
+div#platformT1 div.col4A div.ratio5-5 .image { width: 80px; }
+div#platformT1 div.col4B div.ratio5-5 .text { width: 175px; }
+div#platformT1 div.col4B div.ratio5-5 .image { width: 175px; }
+div#platformT1 div.col4C div.ratio5-5 .text { width: 225px; }
+div#platformT1 div.col4C div.ratio5-5 .image { width: 225px; }
+
+div#platformT1 div.col3A div.ratio5-5 .text { width: 112px; }
+div#platformT1 div.col3A div.ratio5-5 .image { width: 112px; }
+div#platformT1 div.col3B div.ratio5-5 .text { width: 238px; }
+div#platformT1 div.col3B div.ratio5-5 .image { width: 238px; }
+
+/* 幅指定 3:7 */
+div#mainContents div.ratio3-7 .image,
+div#mainContents div.ratio3-7 .text { float: left; margin: 0; padding: 0; }
+div#mainContents div.ratio3-7 p,
+div#mainContents div.ratio3-7 ul,
+div#mainContents div.ratio3-7 ol { margin-left: 0; }
+
+div#platformT1 div.ratio3-7 .text { width: 490px; }
+div#platformT1 div.ratio3-7 .image { width: 240px; }
+
+div#platformT1 div.col4A div.ratio3-7 .text { width: 105px; }
+div#platformT1 div.col4A div.ratio3-7 .image { width: 60px; margin-left: 5px !important; }
+div#platformT1 div.col4B div.ratio3-7 .text { width: 230px; }
+div#platformT1 div.col4B div.ratio3-7 .image { width: 120px; }
+div#platformT1 div.col4C div.ratio3-7 .text { width: 370px; }
+div#platformT1 div.col4C div.ratio3-7 .image { width: 180px; }
+
+div#platformT1 div.col3A div.ratio3-7 .text { width: 144px; }
+div#platformT1 div.col3A div.ratio3-7 .image { width: 80px; }
+div#platformT1 div.col3B div.ratio3-7 .text { width: 332px; }
+div#platformT1 div.col3B div.ratio3-7 .image { width: 144px; }
+
+/* clearfix */
+div#mainContents div.ratio5-5:after,
+div#mainContents div.ratio3-7:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+div#mainContents div.ratio5-5,
+div#mainContents div.ratio3-7 { display: inline-table; }
+
+/* Hides from IE-mac \*/
+* html div#mainContents div.ratio5-5,
+* html div#mainContents div.ratio3-7 { height: 1%; }
+div#mainContents div.ratio5-5,
+div#mainContents div.ratio3-7 { display: block; }
+/* End hide from IE-mac */
+
+/* --------------------------------------------------アイテム */
+div.itemL { clear: both; }
+div.itemC { clear: both; text-align: center; }
+div.itemR { clear: both; text-align: right; }
+
+div#mainContents div.itemR { margin-bottom: 10px; }/* toTop */
+
+/* clearfix */
+div.itemL:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+div.itemL { display: inline-table; }
+
+/* Hides from IE-mac \*/
+* html div.itemL { height: 1%; }
+div.itemL { display: block; }
+/* End hide from IE-mac */
+
+
+/* --------------------------------------------------フラッシュエリア */
+div#mainContents div.flashArea {
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+/* --------------------------------------------------アクション・関連情報・おすすめ・重要なお知らせエリア */
+div#mainContents div.actionArea h2 {
+	color:#996600;
+	font-weight: bold;
+}
+
+div#mainContents div.importantArea h2 {
+	color:#900;
+	font-weight: bold;
+}
+
+/* エリア定義・左右ボーダーを表示 */
+div#mainContents div.actionArea,
+div#mainContents div.relationArea,
+div#mainContents div.recommendArea,
+div#mainContents div.importantArea {
+	width: 740px;
+	margin: 0 0 30px 20px;
+	background-image: url(../images/bg-border-gray.gif);
+	background-repeat: repeat-y;
+	background-position: left top;
+}
+
+div#mainContents div.actionArea { background-color: #FFFDDD; }
+div#mainContents div.relationArea { background-color: #DFF0FF; }
+div#mainContents div.recommendArea { background-color: #F5F5F5; }
+div#mainContents div.importantArea { background-color: #FFF3ED; }
+
+/* 上画像の表示 */
+div#mainContents div.actionArea .top,
+div#mainContents div.relationArea .top,
+div#mainContents div.recommendArea .top,
+div#mainContents div.importantArea .top {
+	margin: 0;
+	padding: 10px 0 0 0;
+	background-repeat: no-repeat;
+	background-position: left top;
+}
+
+div#mainContents div.importantArea .top {
+	padding: 8px 0 0 0;
+}
+
+div#mainContents div.actionArea .top { background-image: url(../images/bg-action-top.gif); }
+div#mainContents div.relationArea .top { background-image: url(../images/bg-relation-top.gif); }
+div#mainContents div.recommendArea .top { background-image: url(../images/bg-recommend-top.gif); }
+div#mainContents div.importantArea .top { background-image: url(../images/bg-important-top.gif); }
+
+/* 下画像の表示 */
+div#mainContents div.actionArea div.section,
+div#mainContents div.relationArea div.section,
+div#mainContents div.actionArea div.sector,
+div#mainContents div.relationArea div.sector,
+div#mainContents div.recommendArea div.section,
+div#mainContents div.importantArea div.section,
+div#mainContents div.recommendArea div.sector,
+div#mainContents div.importantArea div.sector {
+	padding-bottom: 17px;
+	background-repeat: no-repeat;
+	background-position: left bottom;
+}
+
+div#mainContents div.actionArea div.section,
+div#mainContents div.actionArea div.sector { background-image: url(../images/bg-action-bottom.gif); }
+div#mainContents div.relationArea div.section,
+div#mainContents div.relationArea div.sector { background-image: url(../images/bg-relation-bottom.gif); }
+div#mainContents div.recommendArea div.section,
+div#mainContents div.recommendArea div.sector { background-image: url(../images/bg-recommend-bottom.gif); }
+div#mainContents div.importantArea div.section,
+div#mainContents div.importantArea div.sector { background-image: url(../images/bg-important-bottom.gif); }
+
+/* エリア内ロケーター */
+div#platformT1 div.actionArea div.locator,
+div#platformT2 div.actionArea div.locator,
+div#platformT1 div.relationArea div.locator,
+div#platformT2 div.relationArea div.locator,
+div#platformT1 div.actionArea div.locatorA,
+div#platformT2 div.actionArea div.locatorA,
+div#platformT1 div.relationArea div.locatorA,
+div#platformT2 div.relationArea div.locatorA,
+div#platformT1 div.recommendArea div.locator,
+div#platformT2 div.recommendArea div.locator,
+div#platformT1 div.importantArea div.locator,
+div#platformT2 div.importantArea div.locator,
+div#platformT1 div.recommendArea div.locatorA,
+div#platformT2 div.recommendArea div.locatorA,
+div#platformT1 div.importantArea div.locatorA,
+div#platformT2 div.importantArea div.locatorA {
+	width: 740px;
+	margin-bottom: 0px;
+}
+
+/* テーブル */
+div#mainContents div.actionArea table,
+div#mainContents div.relationArea table,
+div#mainContents div.recommendArea table,
+div#mainContents div.importantArea table { width: 720px; }
+
+div#mainContents div.actionArea table th,
+div#mainContents div.relationArea table th,
+div#mainContents div.recommendArea table th,
+div#mainContents div.importantArea table th {
+	width: 20%;
+	background-color: transparent;
+	border: none;
+}
+
+div#mainContents div.actionArea table td,
+div#mainContents div.relationArea table td,
+div#mainContents div.recommendArea table td,
+div#mainContents div.importantArea table td {
+	width: 30%;
+	background-color: transparent;
+	border: none;
+}
+/*EOF*/

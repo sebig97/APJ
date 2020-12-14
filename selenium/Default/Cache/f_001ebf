@@ -1,0 +1,1692 @@
+/*
+ * formassist.js Copyright Orient Corporation LIMITED 2010
+ * システム名     ： 受付与信システム
+ * サブシステム名 ： Web申込システム
+ * 業務名         ： 申込画面動的生成機能
+ * No.    クラス名       概要
+ *  1     formassist     入力フォームアシスト部品共通処理
+ * 変更履歴
+ * No.    日付          Ver      更新者              内容
+ *  1     2010/04/01    1.0      CTC) 金 光哲        新規作成
+ */
+(function($) {
+
+/** 入力フォームアシスト初期処理フラグ */
+var initialize = true;
+/** 画面エラー情報保持変数 */
+var errorStatus = false;
+/** エラー情報スタイルシートクラス名 */
+var errorStatusStyle = "item_error_status";
+/** 入力フォームアシスト対象コンテンツ指定のセレクター */
+var assistTarget = "input[type='text'],input[type='password'],input[type='radio'],input[type='checkbox'],input[type='hidden'],select";
+/** チェッカータイマー */
+var inputCheckTimer = 200;
+/** タイマーチェック対応項目セレクター */
+var timerCheckSelector = ":text,:password";
+/** 画面情報更新タイマー */
+var pageUpdateTimer = 300;
+var pageUpdateTimerHandle = false;
+
+/**
+ * 関数名   ： formassist
+ * 関数説明 ： 入力フォームアシスト起動メイン関数
+ * @param selector 入力フォームアシスト処理対象コンテンツセレクター
+ */
+$.formassist = function(selector) {
+
+	if (selector) assistTarget = selector;
+	var assistTargetElement = $(assistTarget);
+
+	$("form").each(function() {
+		$(this)[0].onreset = function() {
+			setTimeout(
+				function() {
+					assistTargetElement.each(function() {
+						$(this).trigger("valueupdate");
+					});
+				}, 10);
+		}
+	});
+
+	$("select,:radio,:checkbox").bind("change", function() {
+		$(this).trigger('valueupdate', [ 1 ]);
+	});
+
+	$(":text,:password").live("focusin", function() {
+		$.valuewatch.start(this);
+	}).live("focusout", function() {
+		element = $(this);
+		if ($.valuewatch.backupValue != element.val()) {
+			element.trigger('valueupdate', [ 1 ], $.valuewatch.backupValue);
+		}
+		$.valuewatch.stop();
+		element.trim();
+	});
+
+	if (navigator.userAgent.toLowerCase().indexOf("msie") > -1) {
+		$(":checkbox").one("click", function() {
+			$(this).trigger('valueupdate', [ 1 ]);
+		});
+	}
+
+	assistTargetElement.live("valueupdate", function() {
+		$(this).check();
+	});
+
+	assistTargetElement.each(function() {
+		theElement = $(this);
+		$(theElement.attr('class').match(/(_FV\w+)/g)).each(function(i, checkId) {
+			theElement.addChecker(checkId);
+		});
+	}).trigger("valueupdate");
+
+	assistTargetElement.each(function() {
+		theElement = $(this);
+		$(theElement.attr('class').match(/(_FA\w+)/g)).each(function(i, faId) {
+			if (theElement[faId] && theElement[faId]["_init"]) {
+				theElement[faId].source = theElement.get(0);
+				theElement[faId]._init();
+			}
+		});
+	});
+
+	initialize = false;
+
+	$.updateViewStatus();
+};
+
+/**
+ * 関数名   ： formassistTarget
+ * 関数説明 ： 入力フォームアシスト起動メイン関数（対象入力フォーム指定版）
+ */
+$.formassistTarget = function() {
+	$.formassist(".assistTarget");
+};
+
+/**
+ * 関数名   ： check
+ * 関数説明 ： 統合入力チェック共通関数
+ * 備考     ：
+ * @param opt チェックオプション
+ */
+$.fn.check = function(opt) {
+
+	var element = $(this);
+
+	if (element.is(':hidden')) return;
+	if (element.is(timerCheckSelector)) $.valuewatch.stop();
+
+	element.controler();
+	element.checkAttr();
+
+	for (gcheckId in element.checkData().groupChecker) {
+		chkdat = $.checkData().groupChecker[gcheckId];
+		$[chkdat.checkId]._checker(chkdat);
+	}
+
+	if (pageUpdateTimerHandle) clearTimeout(pageUpdateTimerHandle);
+	pageUpdateTimerHandle = setTimeout("$.checkPageStatus()", pageUpdateTimer);
+	if (element.is(timerCheckSelector)) $.valuewatch.start(this);
+};
+
+$.checkPageStatus = function() {
+	currentStatus = ($("." + errorStatusStyle + ":visible:first").length == 0);
+	if (currentStatus ^ errorStatus) {
+		$(window).trigger('updatestatus', currentStatus);
+		errorStatus = currentStatus;
+	}
+	pageUpdateTimerHandle = false;
+};
+
+/**
+ * 関数名   ： 単項目チェック
+ * 関数説明 ： 属性チェック
+ */
+$.fn.checkAttr = function(opt) {
+	var element = $(this);
+	var result = { status: true };
+	if (element.length > 0) {
+		for (checkId in element.checkData().checker) {
+			if (element.checkData().checker[checkId]) {
+				element[checkId].source = this;
+				result = element[checkId]._checker(element.checkData().checker[checkId]);
+				if (!result.status) break;
+			}
+		}
+	}
+	result.status ? element.resetStatus() : element.errorStatus(result);
+	return result;
+}
+
+$.checkGroup = function(checkId) {
+	chkdat = $.checkData().groupChecker[checkId];
+	result = $[chkdat.checkId]._controler(chkdat);
+	$(chkdat.selector).each(function() {
+		result.status ? $(this).resetStatus() : $(this).errorStatus(result);
+	});
+};
+
+/**
+ * 関数名   ： 表示制御
+ */
+$.fn.controler = function(opt) {
+	var element = $(this);
+	for (controlId in element.checkData().controler) {
+		element[controlId].source = this;
+		element[controlId]._controler(element.checkData().controler[controlId]);
+	}
+}
+
+$.fn.val2 = $.fn.val;
+
+/**
+ * 関数名   ： val
+ * 関数説明 ： エレメント値設定に値の自動チェック処理を追加する
+ * 備考     ：
+ * @param value 新しい値
+ */
+$.fn.val = function(value) {
+	var element = $(this);
+	if (value != undefined) {
+		element.val2(value);
+		element.trigger('valueupdate');
+	} else {
+		return element.val2();
+	}
+};
+
+/**
+ * 関数名   ： trim
+ * 関数説明 ： テキストボックス値のストリム機能
+ * 備考     ：
+ */
+$.fn.trim = function() {
+	var element = $(this);
+	var value = $.trim(element.val());
+	value = value.replace(/^[　]+/, "");
+	value = value.replace(/[　]+$/, "");
+	if (element.val() != value) element.val(value);
+};
+
+/**
+ * 関数名   ：updateViewStatus
+ * 関数説明 ：画面表示状態更新
+ */
+$.updateViewStatus = function() {
+	errorStatus = ($("." + errorStatusStyle + ":visible:first").length == 0);
+	$(window).trigger('updatestatus', errorStatus);
+};
+
+/**
+ * 関数名   ：errorStatus
+ * 関数説明 ：エラー状態設定処理
+ * @param result エラー情報
+ */
+$.fn.errorStatus = function(result) {
+
+	var target = $(this).getTargetItem();
+
+	if (!target.hasClass(errorStatusStyle)) target.addClass(errorStatusStyle);
+
+	if (navigator.userAgent.match(/^.+Mac OS X.+Firefox.+$/)) {
+		if (target.is("select")) {
+			target.css("background", "#ff9999");
+			target.css("position", "relative");
+		}
+	}
+
+	if (!initialize && target.is(":text,:password")) {
+		if (result && result['show'] && result['message']) {
+			target.showMessage({ message: result['message'] });
+		}
+	}
+};
+
+/**
+ * 関数名   ：isErrorStatus
+ * 関数説明 ：エラー状態の判定
+ */
+$.fn.isErrorStatus = function() {
+
+	return $(this).hasClass(errorStatusStyle);
+};
+
+/**
+ * 関数名   ：resetStatus
+ * 関数説明 ：通常状態に戻る処理
+ */
+$.fn.resetStatus = function() {
+
+	var target = $(this).getTargetItem();
+
+	if (target.hasClass(errorStatusStyle)) {
+
+		if (target.is(":text,:password")) target.showMessage('destory');
+		target.removeClass(errorStatusStyle);
+	}
+
+	if (navigator.userAgent.match(/^.+Mac OS X.+Firefox.+$/)) {
+		if (target.is("select")) {
+			target.css("background", "white");
+			target.css("position", "relative");
+		}
+	}
+};
+
+/**
+ * 関数名   ：getTargetItem
+ * 関数説明 ：エラー状態設定先エレメントの取得
+ */
+$.fn.getTargetItem = function() {
+	var target = $(this);
+	return (target.is(":radio,:checkbox") ? target.parents('.detail_item') : target);
+};
+
+/**
+ * テキストボックスに入力値を監視して、変更あった場合、イベントを発行する
+ */
+$.valuewatch = {
+	source: false,
+	backupValue: "",
+	timer: false,
+
+	/**
+	 * 関数名   ： start
+	 * 関数説明 ： 監視開始
+	 * 備考     ：
+	 * @param source 監視対象エレメント
+	 */
+	start: function(source) {
+		if (source) {
+			if ($(source).is(timerCheckSelector)) {
+				this.source = source;
+				this.backupValue = $(this.source).val();
+				if (!this.timer) this.stop();
+				this.timer = setInterval("$.valuewatch.interval()", inputCheckTimer);
+			}
+		} else this.stop();
+	},
+	/**
+	 * 関数名   ： stop
+	 * 関数説明 ： 監視終了
+	 * 備考     ：
+	 */
+	stop: function() {
+		this.source = false;
+		if (this.timer) clearInterval(this.timer);
+	},
+	/**
+	 * 関数名   ： interval
+	 * 関数説明 ： 監視間隔時間とイベント発行処理
+	 * 備考     ：
+	 */
+	interval: function() {
+		if (this.source) {
+			var element = $(this.source);
+
+			if (this.backupValue != element.val()) {
+				element.trigger('valueupdate', [ 1 ], this.backupValue);
+			}
+			this.backupValue = element.val();
+		}
+	}
+};
+
+/**
+ * 関数名   ： _FV0010
+ * 関数説明 ： 必須チェック入力フォームアシストプラグイン
+ * 備考     ：
+ */
+$.fn._FV0010 = {
+	/**
+	 * 関数名   ： _checker
+	 * 関数説明 ： チェック処理関数
+	 * 備考     ：
+	 * @return チェック結果オブジェクト
+	 */
+	_checker: function() {
+		return { status: $(this.source).hasValue() };
+	}
+};
+
+/**
+ * 関数名   ：_FV0020
+ * 関数説明 ：グループ必須チェック入力フォームアシストプラグイン
+ * 備考     ：グループ内の入力項目、何れか入力したら、その他項目はすべて必須となる。
+ *            どれでも入力されてない場合、すべて任意項目とする。
+ */
+$._FV0020 = {
+	_checker: function(chkdat) {
+
+		var result = { status: true };
+		var hasValue = false;
+		var targetItems = new Array();
+
+		$(chkdat.selector).each(function() {
+			var element = $(this);
+			if (element.hasValue() || element.checkData().checker["_FV0010"]) {
+				hasValue = true;
+			} else {
+				Array.prototype.push.apply(targetItems, [ this ]);
+			}
+		});
+
+		if (hasValue) {
+			$.each(targetItems, function() {
+				$(this).errorStatus( { status: false } );
+			});
+		} else {
+			$.each(targetItems, function() {
+				$(this).checkAttr();
+			});
+		}
+		return result;
+	}
+};
+
+/**
+ * 関数名   ：_FV0030
+ * 関数説明 ：入力不可
+ */
+$.fn._FV0030 = {
+	_checker: function(opt) {
+		return { status: $(this.source).hasValue() ? false : true };
+	}
+};
+
+
+/**
+ * 関数名   ： _FV1010
+ * 関数説明 ： 半角チェック入力フォームアシストプラグイン
+ * 備考     ：
+ */
+$.fn._FV1010 = {
+	_init: function() {
+		$(this.source).zen2han();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (!$.ishan(value)) {
+			return { status: false, show: true, message: '[半角]で入力して下さい。' };
+		}
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ： _FV1020
+ * 関数説明 ： 半角英字チェック入力フォームアシストプラグイン
+ * 備考     ：
+ */
+$.fn._FV1020 = {
+	_init: function() {
+		$(this.source).zen2han();
+	},
+	_checker: function() {
+
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value != null && value != '') {
+			if (value.match(/[^a-zA-Z]/)) {
+				return { status: false, show: true, message: '[半角の英字]で入力して下さい。' };
+			}
+		}
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ： _FV1030
+ * 関数説明 ： 半角数字チェック入力フォームアシストプラグイン
+ * 備考     ：
+ */
+$.fn._FV1030 = {
+	_init: function() {
+		$(this.source).zen2han();
+	},
+	_checker: function() {
+
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value.match(/[^0-9]/)) {
+			return { status: false, show: true, message: '[半角の数字]で入力して下さい。' };
+		}
+
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ： _FV1040
+ * 関数説明 ： 半角英数字チェック入力フォームアシストプラグイン
+ * 備考     ：
+ */
+$.fn._FV1040 = {
+	_init: function() {
+		$(this.source).zen2han();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value != null && value != '') {
+			if (value.match(/[^0-9a-zA-Z]/)) {
+				return { status: false, show: true, message: '[半角の英数字]で入力して下さい。' };
+			}
+		}
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ： _FV1050
+ * 関数説明 ： 半角英数字記号チェック入力フォームアシストプラグイン
+ * 備考     ： 記号は「/」「:」「-」「.」を許可
+ */
+$.fn._FV1050 = {
+	_init: function() {
+		$(this.source).zen2han();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value != null && value != '') {
+			if (value.match(/[^0-9a-zA-Z|:|\/|\-|.]/)) {
+				return { status: false, show: true, message: '[半角の英数字記号]で入力して下さい。' };
+			}
+		}
+		return { status: true };
+	}
+};
+
+
+/**
+ * 関数名   ： _FV1060
+ * 関数説明 ： 半角数字記号チェック入力フォームアシストプラグイン
+ * 備考     ： 記号は「-」を許可
+ */
+$.fn._FV1060 = {
+	_init: function() {
+		$(this.source).zen2han();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value != null && value != '') {
+			if (value.match(/[^0-9|\-]/)) {
+				return { status: false, show: true, message: '[半角の数字記号]で入力して下さい。' };
+			}
+		}
+
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ： _FV1070
+ * 関数説明 ： 半角数字(小数点可)チェック入力フォームアシストプラグイン
+ */
+$.fn._FV1070 = {
+	_init: function() {
+		$(this.source).zen2han();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value != null && value != '') {
+			if (!value.match(/^[0-9]+\.?[0-9]+$/)) {
+				return { status: false, show: true, message: '[半角数字]で入力して下さい。' };
+			}
+		}
+
+		return { status: true };
+	}
+};
+/**
+ * 関数名   ： _FV1080
+ * 関数説明 ： 半角英数字記号チェック入力フォームアシストプラグイン
+ * 備考     ： 記号は「-」を許可
+ */
+$.fn._FV1080 = {
+	_init: function() {
+		$(this.source).zen2han();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value != null && value != '') {
+			if (value.match(/[^0-9a-zA-Z|\-]/)) {
+				return { status: false, show: true, message: '[半角の英数字ハイフン]で入力して下さい。' };
+			}
+		}
+
+		return { status: true };
+	}
+};
+/**
+ * 関数名   ： _FV1210
+ * 関数説明 ： 半角英大文字と数字チェック入力フォームアシストプラグイン
+ * 備考     ：
+ */
+$.fn._FV1210 = {
+	_init: function() {
+		$(this.source).zen2han();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value != null && value != '') {
+			if (value.match(/[^0-9A-Z]/)) {
+				return { status: false, show: true, message: '[半角の英大文字または数字]で入力して下さい。' };
+			}
+		}
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ： _FV1090
+ * 関数説明 ： 半角数字（マイナス値可）チェック入力フォームアシストプラグイン
+ */
+$.fn._FV1090 = {
+	_init: function() {
+		$(this.source).zen2han();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value != null && value != '') {
+			if (!value.match(/^[-]{0,1}[0-9]*\.?[0-9]*$/)) {
+				return { status: false, show: true, message: '[半角数字、マイナス]で入力して下さい。' };
+			}
+		}
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ： _FV2010
+ * 関数説明 ： 全角チェック入力フォームアシストプラグイン
+ * 備考     ：
+ */
+$.fn._FV2010 = {
+	_init: function() {
+		$(this.source).han2zen();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (!$.iszen(value)) {
+			return { status: false, show: true, message: '[全角]で入力して下さい。' };
+		}
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ： _FV2110
+ * 関数説明 ： 全角のカタカナチェック入力フォームアシストプラグイン
+ * 備考     ：
+ */
+$.fn._FV2110 = {
+	_init: function() {
+		$(this.source).han2zen();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value.match(/[^ァ-ヴー　]/)) {
+			return { status: false, show: true, message: '[全角のカタカナ]で入力して下さい。' };
+		}
+
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ： _FV2120
+ * 関数説明 ： 全角数字、カナ、ハイフンチェック入力フォームアシストプラグイン
+ */
+$.fn._FV2120 = {
+	_init: function() {
+		$(this.source).han2zen();
+	},
+	_checker: function() {
+		var element = $(this.source);
+		var value = element.val();
+
+		if (value != null && value != '') {
+			if (value.match(/[^ァ-ヴー０-９ａ-ｚＡ-Ｚ‐－　]/)) {
+				return { status: false, show: true, message: '[全角のカタカナ、アルファベット、数字、ハイフン、スペース]で入力して下さい。' };
+			}
+		}
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ：_FV3010
+ * 関数説明 ：同一値のグループチェック
+ * 備考     ：テキストボックスのみ対象エレメントとする
+ */
+$._FV3010 = {
+	_checker: function(chkdat) {
+		sourceItem = $(chkdat.data.sourceItem);
+		confirmItem = $(chkdat.data.confirmItem);
+
+		if (sourceItem.val() != confirmItem.val()) {
+			if (sourceItem.val().indexOf(confirmItem.val()) != 0) {
+				confirmItem.errorStatus({
+					status: false, show: true,
+					message: '上記に入力した内容と異なります。ご確認下さい。' });
+			} else {
+				confirmItem.errorStatus({ status: false });
+			}
+		} else {
+			confirmItem.checkAttr();
+		}
+		return { status: true };
+	}
+};
+
+/**
+ * 関数名   ：_FV3020
+ * 関数説明 ：ヘボン式自動変換結果と入力値の一致チェック
+ */
+$.fn._FV3020 = {
+	_checker: function(kanaItem) {
+
+		var element = $(this.source);
+
+		surVal = $(kanaItem).val();
+		tarVal = element.val();
+
+		if (surVal != '' && $.kata2roma(surVal) != tarVal.toUpperCase()) {
+			element.showMessage({ message: 'カナで入力した内容と異なります。' });
+		} else {
+			element.showMessage('destory');
+		}
+
+		return { status: true };
+	}
+};
+
+
+/**
+ * 関数名   ： _FA0050
+ * 関数説明 ：「日付入力支援」入力フォームアシストプラグイン
+ * 備考     ：
+ */
+$.fn._FA0050 = {
+
+	/**
+	 * 関数名   ： _init
+	 * 関数説明 ： 部品初期化処理
+	 * 備考     ：
+	 */
+	_init: function() {
+
+		var element = $(this.source);
+		var source = element;
+		var type = element.attr("type");
+		var single = false;
+
+		if (type != "hidden") {
+			source = $('<input type="hidden"/>').insertAfter(element);
+			single = true;
+		}
+
+		source.datepicker({
+			changeMonth: true,
+			changeYear: true,
+			showOn: 'button',
+			buttonText: '',
+			buttonImageOnly: false,
+			beforeShow: function(input, inst) {
+				if (single) {
+					source.val(element.val());
+				} else {
+					var element_0051 = source.findElement("._FA0051", -1);
+					var element_0052 = source.findElement("._FA0052", -1);
+					var element_0053 = source.findElement("._FA0053", -1);
+					source.val(
+						element_0051.val()
+						+ "/" + element_0052.val()
+						+ "/" + element_0053.val());
+					var cls = "_FV0020" + "_" + $.getSequence();
+					element_0051.addClass(cls);
+					element_0052.addClass(cls);
+					element_0053.addClass(cls);
+				}
+			},
+			onSelect : function(dateText, inst) {
+
+				if (dateText) {
+					if (single) {
+						element.val(dateText);
+					} else {
+						target = element.findElement("._FA0051", -1);
+						if (target) target.val(inst.selectedYear)
+
+						target = element.findElement("._FA0052", -1);
+						if (target) target.val(inst.selectedMonth + 1)
+
+						target = element.findElement("._FA0053", -1);
+						if (target) target.val(inst.selectedDay)
+					}
+				}
+				source.next(".ui-datepicker-trigger").focus();
+			}
+		}, $.datepicker.regional['ja']);
+	}
+};
+
+$.fn.value = function(v) {
+	var element = $(this);
+	var name = element.attr("name");
+	if (typeof v === "undefined") {
+		val = element.val2();
+		if (element.is(":radio")) {
+			val = $('[name=' + name + ']:checked').val2();
+		} else if(element.is(":checkbox")) {
+			if (!element.is(':checked')) {
+				val = "";
+			}
+		}
+		return val;
+	} else {
+		if (element.is(":radio")) {
+			if (v === '') {
+				$('[name=' + name + ']:checked').attr("checked", false);
+			} else {
+				$('[name=' + name + '][value=' + v + ']').attr("checked", true);
+			}
+		} else if(element.is(":checkbox")) {
+			element.attr("checked", (v !== ''));
+		} else if (element.is("select")) {
+			if (v === '') {
+				element.find("option:first").attr("selected", true);
+			} else {
+				element.val2(v);
+			}
+		} else {
+			element.val2(v);
+		}
+		element.trigger('valueupdate');
+		return element;
+	}
+};
+
+/**
+ * 関数名   ： _C0010
+ * 関数説明 ： 画面多数項目表示の相関制御
+ */
+$.fn._C0010 = {
+	_controler: function(opt) {
+		var element = $(':input[name="' + $(this.source).attr('name') + '"]:first');
+
+		if (opt != null) {
+			var inputValue = element.value();
+			var idx=0;
+			var success=false;
+
+			$([ '~', inputValue, '*' ]).each(function(m, ivalue) {
+				$.each(opt.pattern, function(i, pattern) {
+					$.each(pattern["value"].split(','), function(f, pvalue) {
+						if (ivalue==pvalue) {
+							for (var type in pattern.status) {
+								selector = pattern.status[type];
+								if (opt["items"]) {
+									for (u = 0, len=opt["items"].length; u < len; u++) {
+										if (selector.indexOf("#{" + u + "}") >= 0) selector=selector.replace("#{" + u + "}", opt.items[u]);
+									}
+								}
+								// <<制御パターン一覧>>
+								// show				詳細項目の表示
+								// hide				詳細項目の非表示
+								// required 		詳細項目の必須
+								// option 			詳細項目の任意
+								// show_item 		項目の表示
+								// hide_item 		項目の非表示
+								// required_item 	項目の必須
+								// option_item 		項目の任意
+								// show_detail_item 詳細項目の表示
+								// hide_detail_item 詳細項目の非表示
+								// disabled 		詳細項目の非活性
+								// enabled 			詳細項目の活性
+								$(selector).each(function() {
+									var item=$(this);
+									var chkdat = item.checkData();
+
+									if (type == "show") {
+										item.show();
+									} else if (type == "hide") {
+										item.hide();
+									} else if (type == "required") {
+										if (item.is(":input") && !chkdat.checker['_FV0010']) item.addChecker('_FV0010').checkAttr();
+										else if (item.is('div')) item.find(".option_item").removeClass("option_item").addClass("required_item");
+									} else if (type == "option") {
+										if (item.is(":input") && chkdat.checker['_FV0010']) item.removeChecker('_FV0010').checkAttr();
+										else if (item.is('div')) item.find(".required_item").removeClass("required_item").addClass("option_item");
+
+										item.parents(".detail_item").find(":input").each(function() {
+											var target = $(this);
+											if (target.hasClass('_FV0010')) target.removeClass('_FV0010');
+											target.checkAttr();
+										});
+									} else if (type == "show_item") {
+										item.parents(".item").show();
+									} else if (type == "hide_item") {
+										item.parents(".item").hide();
+									} else if (type == "required_item") {
+										item.parents(".option_item").each(function() {
+											$(this).removeClass("option_item").addClass("required_item");
+										});
+									} else if (type == "option_item") {
+										item.parents(".required_item").each(function() {
+											$(this).removeClass("required_item").addClass("option_item");
+										});
+									} else if (type == "show_detail_item") {
+										item.parents(".detail_item").show();
+									} else if (type == "hide_detail_item") {
+										item.parents(".detail_item").hide();
+									} else if (type == "disabled") {
+										item.attr("disabled", "true");
+									} else if (type=="enabled") {
+										item.removeAttr("disabled");
+									} else if (type=="clear") {
+										item.val("");
+									}
+								});
+							}
+							if (pattern["callback"]) pattern["callback"]();
+							if (ivalue!='~') {
+								success=true;
+								return false;
+							}
+						}
+					});
+					if (success) return false;
+				});
+			});
+		}
+		return { status: true };
+	}
+};
+
+/**
+ * 画面詳細項目状態動的制御機能部品本体
+ */
+$.fn.disp_control = function(opt) {
+	var element = $(this);
+	if (element.length > 0) {
+		element.each(function() {
+			var target = $(this);
+			target.addControler("_C0010", opt);
+			target._C0010["source"] = this;
+			target.controler();
+		});
+	}
+};
+
+/**
+ * 関数名   ：samevalue
+ * 関数説明 ：同一値入力チェック
+ * 備考     ：
+ * @param 比較元エレメント
+ * @param 比較先エレメント
+ */
+$.samevalue = function(expr1, expr2){
+
+	var sourceItem = $(expr1);
+	var confirmItem = $(expr2);
+	if (sourceItem.length > 0 && confirmItem.length > 0) {
+
+		$.setupGroupChecker("_FV3010", expr1 + ',' + expr2, { sourceItem : expr1, confirmItem: expr2 });
+
+		sourceItem.bind("contextmenu", function() { return false; });
+		confirmItem.bind("paste contextmenu", function() { return false; });
+
+		if (window.opera) {
+
+			confirmItem.bind("keypress", function(e) {
+				if((e.keyCode == 86 && e.ctrlKey) || (e.keyCode == 45 && e.shiftKey)){ return false; }
+			});
+		} else {
+
+			confirmItem.bind("keydown", function(e) {
+				if((e.keyCode == 86 && e.ctrlKey) || (e.keyCode == 45 && e.shiftKey)){ return false; }
+			});
+		}
+	}
+}
+
+/**
+ * 詳細項目噴出しメッセージ表示部品の本体ソース
+ */
+$.widget("fa.showMessage", {
+
+	options: {
+		message: '',
+		content: false,
+		showtime: 3000,
+		timerId: false
+	},
+
+	/**
+	 * 関数名   ： _init
+	 * 関数説明 ： 初期処理
+	 * 備考     ：
+	 */
+	_init: function() {
+
+		var self = this;
+		var element = this.element;
+		var options = this.options;
+		var pos =  element.position();
+
+		if (options.content) this.destory();
+
+		pos.top -= 34;
+		options.content = $('<div style="color:#ffffff;text-align:center;">' + options.message + "</div>").appendTo($("body"));
+		options.content.tip({ style: 2, top: pos.top, left: pos.left, radius: 6 });
+
+		options.timerId =
+			setTimeout(
+				function() {
+					if (options.content) {
+						// 半秒で消す
+						options.content.parent().fadeTo(500, 0.1, function() {
+							self.destory();
+						});
+					}
+				},
+				options.showtime - 500
+			);
+	},
+
+	/**
+	 * 関数名   ：destory
+	 * 関数説明 ：削除処理
+	 * 備考     ：
+	 */
+	destory: function() {
+
+		var options = this.options;
+
+		if (options.content) {
+			options.content.tip("destory");
+			options.content.remove();
+			options.content = false;
+		}
+
+		if (options.timerId) {
+			clearTimeout(options.timerId);
+			options.timerId = false;
+		}
+	}
+});
+
+/**
+ * 画面状態チップ部品の本体ソース
+ */
+$.widget("wo.supportDialog", {
+
+	options: {
+		message: "メッセージを指定してください",
+		tipElement: false,
+		width: false,
+		height: false
+	},
+
+	/**
+	 * 関数名   ： _init
+	 * 関数説明 ： 初期処理
+	 * 備考     ：
+	 */
+	_init: function() {
+		var self = this;
+		var element = this.element;
+		var options = self.options;
+
+		options.tipElement = $('<div style="text-align:center;color:#ffffff;"/>').appendTo($("body"));
+		options.tipElement.html(options.message);
+
+		if (options.width) options.tipElement.width(options.width);
+		if (options.height) options.tipElement.height(options.height);
+
+		options.tipElement.tip({
+			style: 1,
+			top: 20,
+			left: $(window).width() - 160,
+			position: "window"
+		});
+	},
+
+	/**
+	 * 関数名   ： draw
+	 * 関数説明 ：再描画処理
+	 * 備考     ：
+	 */
+	draw: function() {
+		this.options.tipElement.html(this.options.message);
+	}
+});
+
+if (!window["console"]) {
+	window["console"] = {
+		log : function(msg) {
+//			if (!initialize) $("<div>" + msg + "</div>").appendTo($("body"));
+		}
+	}
+}
+
+/**
+ * 全角⇒半角変換マッピング
+ */
+var zen2han_mapping = {
+	'。'	: '.',
+	'￥'	: '\\',
+	'「'	: '｢',
+	'」'	: '｣',
+	'＊'	: '*',
+	'”'	: '\"',
+	'、'	: ',',
+	'；'	: ';',
+	'：'	: ':',
+	'’'	: '\'',
+	' '		: '　',
+	'・'	: '･'
+};
+
+/**
+ * 全角→半角変換部品
+ */
+$.widget("wo.zen2han", {
+	/**
+	 * 関数名   ： _init
+	 * 関数説明 ： 初期処理
+	 * 備考     ：
+	 */
+	_init: function() {
+		var element = this.element;
+		var options = this.options;
+		var self = this;
+
+		element.bind("focusout", function(e){
+			var value = element.val();
+
+			if (!$.ishan(value)) {
+				var han = $.zen2han(element.val());
+				if (han != element.val()) {
+					element.val(han);
+				}
+			}
+		});
+	}
+});
+
+/**
+ * 半角→全角変換部品
+ */
+$.widget("wo.han2zen", {
+
+	/**
+	 * 関数名   ： _init
+	 * 関数説明 ： 初期処理
+	 * 備考     ：
+	 */
+	_init: function() {
+		var self = this;
+		var element = this.element;
+		var options = this.options;
+
+		element.bind("focusout", function(e){
+			if (!$.iszen($(this).val())) {
+
+				var zen = $.han2zen($(this).val());
+				if (zen != element.val()) element.val(zen);
+			}
+		});
+	}
+});
+
+/**
+ * ローマ字変換（ヘボン式）
+ */
+$.widget("wo.romanized", {
+
+	/**
+	 * 部品オプション
+	 */
+	options: {
+		target: false
+	},
+
+	/**
+	 * 関数名   ： _init
+	 * 関数説明 ： 部品初期化処理
+	 * 備考     ：
+	 */
+	_init: function() {
+		var self = this;
+		var options = this.options;
+		var element = self.element;
+		var target = $(options.target);
+
+		if (options.target && target.length > 0 && element.is(":text")) {
+
+			element.blur(function() {
+				var value = element.val().toUpperCase();
+				target.val($.kata2roma(value));
+			});
+			target.addChecker("_FV3020", element.get(0));
+		}
+	}
+});
+
+/**
+ * ローマ字変換マッピング（シングル文字）
+ */
+var roman_mapping = {
+
+		"ア": "A",
+		"イ": "I",
+		"ウ": "U",
+		"エ": "E",
+		"オ": "O",
+		"カ": "KA",
+		"キ": "KI",
+		"ク": "KU",
+		"ケ": "KE",
+		"コ": "KO",
+		"サ": "SA",
+		"シ": "SHI",
+		"ス": "SU",
+		"セ": "SE",
+		"ソ": "SO",
+		"タ": "TA",
+		"チ": "CHI",
+		"ツ": "TSU",
+		"テ": "TE",
+		"ト": "TO",
+		"ナ": "NA",
+		"ニ": "NI",
+		"ヌ": "NU",
+		"ネ": "NE",
+		"ノ": "NO",
+		"ハ": "HA",
+		"ヒ": "HI",
+		"フ": "FU",
+		"ヘ": "HE",
+		"ホ": "HO",
+		"マ": "MA",
+		"ミ": "MI",
+		"ム": "MU",
+		"メ": "ME",
+		"モ": "MO",
+		"ヤ": "YA",
+		"ユ": "YU",
+		"ヨ": "YO",
+		"ラ": "RA",
+		"リ": "RI",
+		"ル": "RU",
+		"レ": "RE",
+		"ロ": "RO",
+		"ワ": "WA",
+		"ヲ": "O",
+		"ン": "N",
+		"ガ": "GA",
+		"ギ": "GI",
+		"グ": "GU",
+		"ゲ": "GE",
+		"ゴ": "GO",
+		"ザ": "ZA",
+		"ジ": "JI",
+		"ズ": "ZU",
+		"ゼ": "ZE",
+		"ゾ": "ZO",
+		"ダ": "DA",
+		"ヂ": "JI",
+		"ヅ": "ZU",
+		"デ": "DE",
+		"ド": "DO",
+		"バ": "BA",
+		"ビ": "BI",
+		"ブ": "BU",
+		"ベ": "BE",
+		"ボ": "BO",
+		"パ": "PA",
+		"ピ": "PI",
+		"プ": "PU",
+		"ペ": "PE",
+		"ポ": "PO",
+		"ァ": "A",
+		"ィ": "I",
+		"ゥ": "U",
+		"ェ": "E",
+		"ォ": "O"
+};
+
+/**
+ * 関数名   ： kata2roma
+ * 関数説明 ： ローマ字変換（ヘボン式）
+ * 備考
+ * @param 変換元値
+ * @return 変換結果
+ */
+$.kata2roma = function(value) {
+	var value = $.hira2kata(value);
+
+	value = value.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(val){
+		return String.fromCharCode(val.charCodeAt(0) - 0xFEE0);
+	});
+
+	// 1.長音消す処理
+	value = value.replace(/ー/, "");
+
+	// 2.不要な"う"を消す処理
+	value = value.replace(
+			/(コ|ソ|ト|ノ|ホ|モ|ヨ|ロ|ゴ|ゾ|ド|ボ|ポ|ャ|ュ|ョ|ウ)ウ/g,
+		function(word) {
+			return word.charAt(0);
+		}
+	);
+
+	// 3.不要な"お"を消す処理（おう／おお ⇒ お）
+	value = value.replace(/オ(ウ|オ)+/g, "オ");
+
+	// 4.シングル文字標準変換
+	var buf = value;
+	value = "";
+
+	for (i = 0; i < buf.length; i++) {
+
+		chr = buf.charAt(i);
+		if (roman_mapping[chr]) chr = roman_mapping[chr];
+		value += chr;
+	}
+
+	// 5.1 "ャュョ"の変換(しゃ、しゅ、しょ、ちゃ、ちゅ、ちょ)
+	value = value.replace(/(SHI|CHI)(ャ|ュ|ョ)/g,
+		function(word) {
+
+			var chr = word.charAt(3);
+			var result = word.substring(0, 2);
+
+			if (chr == 'ャ') result += "A";
+			if (chr == 'ュ') result += "U";
+			if (chr == 'ョ') result += "O";
+
+			return result;
+		}
+	);
+
+	// 5.2 "ャュョ"の変換(じゃ、じゅ、じょ)
+	value = value.replace(/JI(ャ|ュ|ョ)/g,
+		function(word) {
+
+			var chr = word.charAt(2);
+			var result = word.charAt(0);
+
+			if (chr == 'ャ') result += "A";
+			if (chr == 'ュ') result += "U";
+			if (chr == 'ョ') result += "O";
+
+			return result;
+		}
+	);
+
+	// 5.3"ャュョ"の変換（5.1、5.2の以外）
+	value = value.replace(/[a-zA-Z](ャ|ュ|ョ)/g,
+		function(word) {
+
+			var chr = word.charAt(1);
+
+			if (chr == 'ャ') return "YA";
+			if (chr == 'ュ') return "YU";
+			if (chr == 'ョ') return "YO";
+		}
+	);
+
+	// 6.1 "促音、ち(CHI)、ちゃ(CHA)、ちゅ(CHU)、ちょ(CHO)音に限り、その前に「t」を加える。
+	value = value.replace(/ッCH(I|A|U|O)/g,
+		function(word) {
+			return "T" + word.substring(1);
+		}
+	);
+
+	// 6.2 "促音、子音重ねて示す。
+	value = value.replace(/ッ[a-zA-Z]/g,
+		function(word) {
+			return word.charAt(1) + word.charAt(1);
+		}
+	);
+
+	// 7.「うう」の発音になる文字は「u」一文字で表す
+	value = value.replace(/U+/g, "U");
+
+	// 8.b・m・pの前にnの代わりにmを置く
+	value = value.replace(/N(B|M|P)/g,
+		function(word) {
+			return "M" + word.substring(1);
+		}
+	);
+
+	// 9.「OO」->「O」
+	value = value.replace(/O+/g, "O");
+
+	return value;
+};
+
+
+/**
+ * ひらかな ⇒ カタカナマッピング
+ */
+var code_maps = [
+
+	"あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽゃゅょぁぃぅぇぉっ",
+	"アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポャュョァィゥェォッ"
+];
+
+/**
+ * 関数名   ： hira2kata
+ * 関数説明 ： ひらかな⇒カタカナ変換処理
+ * 備考
+ * @param value 変換元値
+ * @return 変換結果
+ */
+$.hira2kata = function(value) {
+	var result = "";
+
+	if (value) {
+		for (i = 0; i < value.length; i++) {
+			c = value.charAt(i);
+
+			if ((idx = code_maps[0].indexOf(c)) != -1) {
+				c = code_maps[1].charAt(idx);
+			}
+			result += c;
+		}
+	}
+	return result;
+};
+
+/**
+ * 全角⇒半角変換文字マッピング
+ */
+var zenhan_mapping = [
+	[
+		"ｱｲｳｴｵｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾅﾆﾇﾈﾉﾊﾋﾌﾍﾎﾏﾐﾑﾒﾓﾔﾕﾖﾗﾘﾙﾚﾛﾜｦﾝｧｨｩｪｫｬｭｮｯｰ･ﾞﾟ"
+		,"ｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾊﾋﾌﾍﾎ"
+		,"ﾊﾋﾌﾍﾎ"
+	],
+	[
+		"アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンァィゥェォャュョッー・  "
+		,"ガギグゲゴザジズゼゾダヂヅデドバビブベボ"
+		,"パピプペポ"
+	]
+];
+
+/**
+ * 関数名   ：ishan
+ * 関数説明 ：半角値の判定処理
+ * @param value 値
+ * @return true:半角
+ */
+$.ishan = function(value) {
+
+	return value.match(/^[\x20-\x7Eｱ-ﾟｦｧｨｩｪｫｬｭｮｯｰ･]*$/);
+};
+
+/**
+ * 関数名   ：iszen
+ * 関数説明 ：全角値の判定処理
+ * @param value 値
+ * @return true:全角
+ */
+$.iszen = function(value) {
+
+	return value.match(/^[^ -~｡-ﾟ]*$/);
+};
+
+/**
+ * 関数名   ： han2zen
+ * 関数説明 ： 半角⇒全角変換
+ * @param value 変換元値
+ * @return 変換結果
+ */
+$.han2zen = function(value) {
+
+	var result = value;
+
+	if (!$.iszen(result)) {
+
+		result = result.replace(/\x20/g, '　');
+
+		result = result.replace(/[\x21-\x7e]/g, function(val){
+
+			return (val == '-' ? '－' : String.fromCharCode(val.charCodeAt(0) + 0xFEE0));
+		});
+
+		result = result.replace(/[ｶｷｸｹｺｻｼｽｾｿﾀﾁﾂﾃﾄﾊﾋﾌﾍﾎ]ﾞ/g, function(val){
+
+			var idx = zenhan_mapping[0][1].indexOf(val.charAt(0));
+			return zenhan_mapping[1][1].charAt(idx);
+		});
+
+		result = result.replace(/[ﾊﾋﾌﾍﾎ]ﾟ/g, function(val){
+
+			var idx = zenhan_mapping[0][2].indexOf(val.charAt(0));
+			return zenhan_mapping[1][2].charAt(idx);
+		});
+
+		result = result.replace(/[ｱ-ﾟｦｧｨｩｪｫｬｭｮｯｰ･]/g, function(val){
+
+			var idx = zenhan_mapping[0][0].indexOf(val.charAt(0));
+			return zenhan_mapping[1][0].charAt(idx);
+		});
+	}
+
+	return result;
+};
+
+/**
+ * 関数名   ： zen2han
+ * 関数説明 ： 全角⇒半角変換処理関数
+ * 全角⇒半角変換処理関数
+ * @param value 変換元値
+ * @return 変換結果
+ */
+$.zen2han = function(value) {
+	return value.replace(/[^\x20-\x7eｱ-ﾟｦｧｨｩｪｫｬｭｮｯｰ･]/g, function(val){
+		var result = val;
+
+		if (result == '　') return ' ';
+		if (zen2han_mapping[val]) return zen2han_mapping[result];
+
+		var code = result.charCodeAt(0);
+
+		if (code >= 0xff01 && code <= 0xff5e) return String.fromCharCode(code - 0xFEE0);
+		return result;
+	});
+};
+
+/**
+ * 関数名   ： findElement
+ * 関数説明 ： 現在要素を基準とし、指定したセレクターの要素を取得する
+ * @param expr セレクター文字列
+ * @param step 何個目（整数は以降の要素、負数は以前の要素）
+ * @return 要素
+ */
+$.fn.findElement = function(expr, step) {
+
+	var self = $(this);
+	var target = undefined;
+
+	var index = 0;
+
+	step = step || 1;
+	expr = "#" + (this).attr('id') + (expr ? "," + expr : "");
+
+	var elems = $(expr);
+
+	elems.each(function(i,v){
+		if ($(this).attr('id') == self.attr('id')) {
+			index = i + step;
+			return false;
+		}
+	});
+
+	if (elems.length > index) target = $(elems.get(index));
+	return target;
+};
+
+/**
+ * 関数名   ： hasValue
+ * 関数説明 ： 入力項目の値ありチェック
+ * @return true:値あり false:値なし
+ */
+$.fn.hasValue = function() {
+
+	var element = $(this);
+
+	if (element.is("select")) {
+		sel = element.parents('.detail_item').find("option:selected");
+		if (sel.val() == "" || sel.html() == null || sel.html() == "") return false;
+	} else if (element.is(":radio,:checkbox")) {
+		value = element.parents('.detail_item').find('input:checked').length;
+		if (value == 0) return false;
+	} else {
+		if (element.val() == '') return false;
+	}
+
+	return true;
+};
+
+/**
+ * 関数名   ：getSequence
+ * 関数説明 ：ユニーク値の取得処理
+ * @return ユニーク値
+ */
+var sequence = 1;
+
+$.getSequence = function() {
+	return sequence ++;
+};
+
+
+/**
+* 関数名   ： setupGroupChecker
+* 関数説明 ： 相関チェック設定処理
+* @param checkId チェックID
+* @param selector セレクター文字列
+* @return true:値あり false:値なし
+*/
+$.setupGroupChecker = function(checkId, selector, data) {
+	grpChkId = checkId + "_" + $.getSequence();
+	$(selector).each(function() {
+		$(this).checkData().groupChecker[grpChkId] = true;
+	});
+	$.checkData().groupChecker[grpChkId] = { "selector": selector, "checkId": checkId, "data": data };
+};
+
+$.fn.addChecker = function(checkId, data) {
+	var element = $(this);
+	if (element && element.length > 0) {
+		chkdat = element.checkData();
+		if (element[checkId]) {
+			chkdat.checker[checkId] = (data == undefined ? true : data);
+			element[checkId].source = this;
+			if (element[checkId]["_init"]) element[checkId]["_init"]();
+		}
+	}
+	return element;
+};
+
+$.fn.addControler = function(controlId, data) {
+	var element = $(this);
+	if (element && element.length > 0) {
+		chkdat = element.checkData();
+		if (element[controlId]) {
+			chkdat.controler[controlId] = (data == undefined ? true : data);
+			element[controlId].source = this;
+			if (element[controlId]["_init"]) element[checkId]["_init"]();
+		}
+	}
+	return element;
+};
+
+$.fn.removeChecker = function(checkId) {
+	var element = $(this);
+	if (element && element.length > 0) {
+		chkdat = element.checkData();
+		if (element[checkId]) {
+			if (element[checkId]["_destroy"]) element[checkId]["_destroy"]();
+			chkdat.checker[checkId] = false;
+		}
+	}
+	return element;
+};
+
+$.checkData = function() {
+	var doc = $(document);
+	chkdat = doc.data("CHK_DAT");
+	if (!chkdat) {
+		doc.data("CHK_DAT", { groupChecker: {} });
+		chkdat = doc.data("CHK_DAT");
+	}
+	return chkdat;
+};
+
+$.fn.checkData = function() {
+	var self = $(this).get(0);
+	chkdat = $.data(self, "CHK_DAT");
+	if (!chkdat) {
+		$.data(self, "CHK_DAT", { checker: {}, groupChecker: {}, controler: {} });
+		chkdat = $.data(self, "CHK_DAT");
+	}
+	return chkdat;
+};
+
+$.fn.nVal = function() {
+	return Number($(this).val()) || 0;
+};
+
+var nVal = function(value) {
+	return Number(value) || 0;
+};
+
+$.sum = function(selector) {
+	var result = 0;
+	$(selector).each(function() {
+		result += (Number($(this).val()) || 0);
+	});
+	return result;
+};
+
+$(document).ready(function() {
+	// 編集コンポネットと値エレメントの値同期処理
+	$('[data-edit-for]').live("valueupdate", function() {
+		var element = $(this);
+		$('#' + element.attr('data-edit-for')).value(element.value());
+	});
+	$('[data-edit-for]').each(function() {
+		var element = $(this);
+		element.value($('#' + element.attr('data-edit-for')).value());
+	});
+});
+
+})(jQuery);

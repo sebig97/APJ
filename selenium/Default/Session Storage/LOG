@@ -1,21 +1,6 @@
-2020/07/28-13:43:12.330 4e18 Reusing MANIFEST C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Session Storage/MANIFEST-000001
-2020/07/28-13:43:12.331 4e18 Recovering log #235
-2020/07/28-13:43:12.332 4e18 Reusing old log C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Session Storage/000235.log 
-2020/07/28-13:44:06.000 3838 Level-0 table #239: started
-2020/07/28-13:44:06.002 3838 Level-0 table #239: 33553 bytes OK
-2020/07/28-13:44:06.004 3838 Delete type=0 #235
-2020/07/28-13:46:04.322 3838 Level-0 table #241: started
-2020/07/28-13:46:04.326 3838 Level-0 table #241: 36209 bytes OK
-2020/07/28-13:46:04.328 3838 Delete type=0 #238
-2020/07/28-13:46:04.332 3838 Compacting 4@0 + 1@1 files
-2020/07/28-13:46:04.335 3838 Generated table #242@0: 131 keys, 54115 bytes
-2020/07/28-13:46:04.336 3838 Compacted 4@0 + 1@1 files => 54115 bytes
-2020/07/28-13:46:04.336 3838 compacted to: files[ 0 1 0 0 0 0 0 ]
-2020/07/28-13:46:04.337 3838 Delete type=2 #231
-2020/07/28-13:46:04.337 3838 Delete type=2 #234
-2020/07/28-13:46:04.337 3838 Delete type=2 #236
-2020/07/28-13:46:04.337 3838 Delete type=2 #239
-2020/07/28-13:46:04.337 3838 Delete type=2 #241
-2020/07/28-13:47:27.272 3838 Level-0 table #244: started
-2020/07/28-13:47:27.279 3838 Level-0 table #244: 35665 bytes OK
-2020/07/28-13:47:27.284 3838 Delete type=0 #240
+2020/12/10-10:54:50.140 32fc Reusing MANIFEST C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Session Storage/MANIFEST-000001
+2020/12/10-10:54:50.142 32fc Recovering log #1931
+2020/12/10-10:54:50.143 32fc Reusing old log C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Session Storage/001931.log 
+2020/12/10-10:55:33.326 3350 Level-0 table #1934: started
+2020/12/10-10:55:33.337 3350 Level-0 table #1934: 35363 bytes OK
+2020/12/10-10:55:33.342 3350 Delete type=0 #1931

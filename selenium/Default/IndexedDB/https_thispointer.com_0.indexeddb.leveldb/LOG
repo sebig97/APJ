@@ -1,0 +1,8 @@
+2020/08/21-14:46:57.356 4324 Reusing MANIFEST C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\IndexedDB\https_thispointer.com_0.indexeddb.leveldb/MANIFEST-000001
+2020/08/21-14:46:57.360 4324 Recovering log #4
+2020/08/21-14:46:57.361 4324 Reusing old log C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\IndexedDB\https_thispointer.com_0.indexeddb.leveldb/000004.log 
+2020/08/21-14:47:05.323 51c Level-0 table #8: started
+2020/08/21-14:47:05.323 51c Level-0 table #8: 0 bytes OK
+2020/08/21-14:47:05.325 51c Delete type=0 #4
+2020/08/21-14:47:05.329 51c Manual compaction at level-0 from (begin) .. (end); will stop at (end)
+2020/08/21-14:47:05.329 51c Manual compaction at level-1 from (begin) .. (end); will stop at (end)

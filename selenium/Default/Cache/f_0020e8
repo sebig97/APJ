@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+      <title>CSV output fields setting</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+
+    <meta http-equiv="cache-control" content="no-cache, no-store, max-age=-1, must-revalidate" />
+    <meta http-equiv="expires" content="-1" />
+    <meta http-equiv="pragma" content="NO-CACHE" />
+
+    <link href="/maps/assets/application-75348311f038b804d403a65620c67fe8.css" media="screen" rel="stylesheet" type="text/css" />
+      <link href="/maps/assets/theme_default-f8c873a08b9fba9fc6af98df62722a95.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/maps/assets/application-5c58fda9213a7d0d25ceb690537f8403.js" type="text/javascript"></script>
+    <link href="/maps/assets/favicon-7270767b2a9e9fff880aa5de378ca791.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="QXq1uGV4dIYF/o4tl6nH4CIUiWcCSW2wVhcfis5y1XM=" name="csrf-token" />
+
+  </head>
+  <body >
+
+    <form accept-charset="UTF-8" action="/maps/csv_column_settings/B100013100014503000145-C&amp;C-SH" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="_method" type="hidden" value="put" /><input name="authenticity_token" type="hidden" value="QXq1uGV4dIYF/o4tl6nH4CIUiWcCSW2wVhcfis5y1XM=" /></div>
+
+      <div class="w700" >
+        <div class="sp10">
+          <section class="search_detail">
+            
+              <h1 class="search_detail_title">CSV file output column selection</h1>
+            <div class="box_ffffff">
+              <div class="box_search_detail">
+                
+<div class="fullWidth">
+<h2 class="search_detail_sub_title"><span>Output column selection for Common Items</span></h2>
+  <table cellspacing="0" class="csv_column_select" width="100%">
+    <tr>
+      <td>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="service_type_cd" />
+                 <span class="brickyColor">
+                 1.</span>
+                   <label for="service_type_cd">Settlement item</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="order_id" />
+                 <span class="brickyColor">
+                 2.</span>
+                   <label for="order_id">Order ID</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="start_datetime_formated" />
+                 <span class="brickyColor">
+                 3.</span>
+                   <label for="start_datetime_formated">Order DateTime</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="stmt_company_cd" />
+                 <span class="brickyColor">
+                 4.</span>
+                   <label for="stmt_company_cd">Settlement Company Code</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="get_new_order_type_details" />
+                 <span class="brickyColor">
+                 5.</span>
+                   <label for="get_new_order_type_details">Settlement Company</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="jp_txn_type" />
+                 <span class="brickyColor">
+                 6.</span>
+                   <label for="jp_txn_type">Status</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="alipay_amount_format" />
+                 <span class="brickyColor">
+                 7.</span>
+                   <label for="alipay_amount_format">Amount</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="mstatus" />
+                 <span class="brickyColor">
+                 8.</span>
+                   <label for="mstatus">Order Result</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="v_result_cd" />
+                 <span class="brickyColor">
+                 9.</span>
+                   <label for="v_result_cd">Result Code</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="txn_remark_jpn" />
+                 <span class="brickyColor">
+                 10.</span>
+                   <label for="txn_remark_jpn">Notes</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="account_id" />
+                 <span class="brickyColor">
+                 11.</span>
+                   <label for="account_id">Account ID</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="memo1" />
+                 <span class="brickyColor">
+                 12.</span>
+                   <label for="memo1">Transaction Memo1</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="memo2" />
+                 <span class="brickyColor">
+                 13.</span>
+                   <label for="memo2">Transaction Memo2</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="common_service_content" id="csv_settings_common_columns_" name="csv_settings[common_columns][]" type="checkbox" value="memo3" />
+                 <span class="brickyColor">
+                 14.</span>
+                   <label for="memo3">Transaction Memo3</label>
+            </div>
+      </td>
+    </tr>
+  </table>
+  <p class="sppt5 spb20">
+    <input name="common_checked" class="map_service" type="button" value="  Select All  "/>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="common_unchecked" class="map_service" type="button" value="  Cancel Select All  "/>
+  </p>
+</div>
+
+<div class="fullWidth">
+<h2 class="search_detail_sub_title"><span>Output column selection for Credit card settlement</span></h2>
+  <table cellspacing="0" class="csv_column_select" width="100%">
+    <tr>
+      <td>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="transaction_id" />
+                 <span class="brickyColor">
+                 1.</span>
+                   <label for="transaction_id">3D Transaction Id</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="transaction_status" />
+                 <span class="brickyColor">
+                 2.</span>
+                   <label for="transaction_status">3D Transaction Status</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="cavv" />
+                 <span class="brickyColor">
+                 3.</span>
+                   <label for="cavv">3D Cavv</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="eci" />
+                 <span class="brickyColor">
+                 4.</span>
+                   <label for="eci">3D Eci</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="security_code" />
+                 <span class="brickyColor">
+                 5.</span>
+                   <label for="security_code">Security code</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="original_order" />
+                 <span class="brickyColor">
+                 6.</span>
+                   <label for="original_order">Original Order</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="card_notes" />
+                 <span class="brickyColor">
+                 7.</span>
+                   <label for="card_notes">Notes</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="card_number" />
+                 <span class="brickyColor">
+                 8.</span>
+                   <label for="card_number">Card Number</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="validity_expiration" />
+                 <span class="brickyColor">
+                 9.</span>
+                   <label for="validity_expiration">Validity Expiration</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="authorization_number" />
+                 <span class="brickyColor">
+                 10.</span>
+                   <label for="authorization_number">Authorization Number</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="payment_method" />
+                 <span class="brickyColor">
+                 11.</span>
+                   <label for="payment_method">Payment method</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="no_of_installment" />
+                 <span class="brickyColor">
+                 12.</span>
+                   <label for="no_of_installment">No. of Installment</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="domestic_debit" />
+                 <span class="brickyColor">
+                 13.</span>
+                   <label for="domestic_debit">Domestic Debit</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="bonus_month" />
+                 <span class="brickyColor">
+                 14.</span>
+                   <label for="bonus_month">Bonus Month</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="bonus_num" />
+                 <span class="brickyColor">
+                 15.</span>
+                   <label for="bonus_num">Bonus Number</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="card_brand" />
+                 <span class="brickyColor">
+                 16.</span>
+                   <label for="card_brand">Card Brand</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="terminal_id" />
+                 <span class="brickyColor">
+                 17.</span>
+                   <label for="terminal_id">Terminal id</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="fd_res_type" />
+                 <span class="brickyColor">
+                 18.</span>
+                   <label for="fd_res_type">Fraud Detection Service</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="card_service_content" id="csv_settings_card_columns_" name="csv_settings[card_columns][]" type="checkbox" value="fd_res_result" />
+                 <span class="brickyColor">
+                 19.</span>
+                   <label for="fd_res_result">Fraud Detection Result</label>
+            </div>
+      </td>
+    </tr>
+  </table>
+  <p class="sppt5 spb20">
+    <input name="card_checked" class="map_service" type="button" value="  Select All  "/>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="card_unchecked" class="map_service" type="button" value="  Cancel Select All  "/>
+  </p>
+</div>
+
+<div class="fullWidth">
+<h2 class="search_detail_sub_title"><span>Output column selection for Convenience Store settlement</span></h2>
+  <table cellspacing="0" class="csv_column_select" width="100%">
+    <tr>
+      <td>
+            <div class="wid33">
+               <input checked="checked" class="cvs_service_content" id="csv_settings_cvs_columns_" name="csv_settings[cvs_columns][]" type="checkbox" value="name_last" />
+                 <span class="brickyColor">
+                 1.</span>
+                   <label for="name_last">Name (Last)</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="cvs_service_content" id="csv_settings_cvs_columns_" name="csv_settings[cvs_columns][]" type="checkbox" value="payment_timelimit" />
+                 <span class="brickyColor">
+                 2.</span>
+                   <label for="payment_timelimit">Payment Limit</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="cvs_service_content" id="csv_settings_cvs_columns_" name="csv_settings[cvs_columns][]" type="checkbox" value="receipt_number" />
+                 <span class="brickyColor">
+                 3.</span>
+                   <label for="receipt_number">Receipt Number</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="cvs_service_content" id="csv_settings_cvs_columns_" name="csv_settings[cvs_columns][]" type="checkbox" value="payment_label_url" />
+                 <span class="brickyColor">
+                 4.</span>
+                   <label for="payment_label_url">Payment Label URL</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="cvs_service_content" id="csv_settings_cvs_columns_" name="csv_settings[cvs_columns][]" type="checkbox" value="deposit_datetime" />
+                 <span class="brickyColor">
+                 5.</span>
+                   <label for="deposit_datetime">Deposit datetime</label>
+            </div>
+            <div class="wid33">
+               <input checked="checked" class="cvs_service_content" id="csv_settings_cvs_columns_" name="csv_settings[cvs_columns][]" type="checkbox" value="cvs_notes" />
+                 <span class="brickyColor">
+                 6.</span>
+                   <label for="cvs_notes">Notes</label>
+            </div>
+      </td>
+    </tr>
+  </table>
+  <p class="sppt5 spb20">
+    <input name="cvs_checked" class="map_service" type="button" value="  Select All  "/>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <input name="cvs_unchecked" class="map_service" type="button" value="  Cancel Select All  "/>
+  </p>
+</div>
+
+              </div>
+            </div>
+          </section>
+          <p id="btn_search">
+            <input data-disable-with="・・" name="commit" type="submit" value="Update" />
+          </p>
+        </div>
+
+      </div>
+
+</form>
+  </body>
+</html>

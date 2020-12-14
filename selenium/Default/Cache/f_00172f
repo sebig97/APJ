@@ -1,0 +1,7324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title> Order search screen</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <link href="/maps/assets/application-1857856b6e0e03cf41e3d394554e0e6e.css" media="all" rel="stylesheet" type="text/css" />
+      <link href="/maps/assets/theme_default-55e1726a855219a7de6c772b534c8127.css" media="all" rel="stylesheet" type="text/css" />
+      <link href="/maps/assets/jquery-ui.all.default-c4b980ea34044ef893cb24acd4788ee6.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="/maps/assets/english_locale-b24553534ea586113195fd60afbb8a47.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="/maps/assets/application-c017c7c21f5c7ba92199e247469fb9b1.js" type="text/javascript"></script>
+    <link href="/maps/assets/favicon-7270767b2a9e9fff880aa5de378ca791.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
+    <meta content="authenticity_token" name="csrf-param" />
+<meta content="upa5VpF+zHlKXr+FBYeYj1guNL+BBrTAxicu7GHPRzg=" name="csrf-token" />
+    <!--[if gt IE 6]>
+    <![endif]-->
+    <!--[if IE]>
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+    <style type="text/css">
+    body.ie .breadCum {
+    margin-top:-13px !important;
+    }
+    </style>
+    <![endif]-->
+
+    <!--[if IE 7]>
+		<link href="/maps/assets/ie7-df4892bec8104531242662a005cbd37c.css" media="all" rel="stylesheet" type="text/css" />
+		<![endif]-->
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			if ((screen.width<=1024)) {
+
+			$('head').append('<link href="/maps/assets/1024-e3141a25f0ff8180c093c58917164a8c.css" media="all" rel="stylesheet" type="text/css" />');
+
+			}
+		});
+	</script>
+  </head>
+
+
+
+
+  <body id="map">
+    <!--[if IE]>
+    <body id="map" class="ie">
+    <![endif]-->
+
+		<header id="header">
+			<section>
+				<h1><a href="/maps/top"><img alt="VeriTrans Merchant Administration Portal" height="50" src="/maps/assets/logo_map-f1450b2ea23c9e8f6d1b7d072a371369.png" width="100" /></a></h1>
+				<div>
+					<table cellspacing="0">
+						<tr>
+									<td class="help"> <a href="" data-remote="true" onclick="window.open(&#x27;/maps/help/main_page&#x27;,&#x27;Help&#x27;,&#x27;resizable=0, scrollbars=yes,height=550,width=550&#x27;).focus()">Help</a> </td>
+								<td class="help">
+									<a href="/maps/inquiry/new">Inquiry</a>
+								</td>
+							<td>
+							   <form accept-charset="UTF-8" action="/maps/locales" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="upa5VpF+zHlKXr+FBYeYj1guNL+BBrTAxicu7GHPRzg=" /></div>
+				                 <select id="user_locale" name="locale" style="width: 100px;"><option value="ja">日本語</option>
+<option value="en" selected="selected">English</option></select>
+				                 <input id="user_last_accessed_url" name="user_last_accessed_url" type="hidden" value="/maps/search" />
+</form>							</td>
+						</tr>
+					</table>
+				</div>
+			</section>
+			<!-- /header -->
+		</header>
+
+    <!-- Menu Section  -->
+    <section id="sub_menu">
+        <h1>Welcome! 株式会社日本ＨＰ( ＨＰ　Ｄｉｒｅｃｔｐｌｕｓ ) </h1>
+        <ul id="TopLink">
+  <li class=""><span> <a href="/maps/users">Security Settings</a> </span></li>
+  <li class=""><span> <a href="/maps/access_history" data-method="get">Display Access History</a> </span></li>
+
+
+
+
+
+
+    <li id="logout"><span><a href="/maps/logout" data-method="delete" rel="nofollow">Logout</a></span></li>
+<ul>
+    </section>
+    <!-- / Menu Section  -->
+
+    <div id="container">
+      <table cellspacing="0" style="width:100%;">
+        <tr>
+          <td class="vtop">
+            <!-- menu -->
+                <div id="menu">
+  <ul id="LeftLink">
+    <li id="menu_dashbord_b1">
+      <a href="/maps/top" class="">Dashboard</a>
+    </li>
+    <li id="menu_search_b1">
+      <a href="/maps/search" class="in">Order Search</a>
+    </li>
+      <li id="menu_manual">
+        <a href="/maps/manual_deals/new" class="">Manual Order</a>
+      </li>
+      <li id="menu_file">
+        <a href="/maps/file_processing" class="">File Processing</a>
+      </li>
+    <li id="menu_tools">
+      <a href="/maps/tool" class="">Tools</a>
+    </li>
+  </ul>
+</div>
+            <!-- /menu -->
+          </td>
+          <td class="vtop">
+
+            <div id="main">
+
+              <div class="fullWidth breadCum">
+                  <span>Merchant ID : </span>
+                  <span>B100013100014503000145</span>
+                  <span> (Logged in through C&amp;C-SH account)</span>
+
+                  
+              </div>
+
+              <section id="contents">
+
+                <div class="fullWidth">
+                  
+                </div>
+                <div class="fullWidth">
+                  
+                </div>
+                
+<h1 class="title"> Order search settings</h1>
+
+<form accept-charset="UTF-8" action="/maps/search" id="map_order_search" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="upa5VpF+zHlKXr+FBYeYj1guNL+BBrTAxicu7GHPRzg=" /></div>
+    <div class="box_e7f3f8" id="searchSettlementSection">
+
+      <h2 class="sub_title">Search condition setting</h2>
+      <table cellspacing="0" class="search_select spb20">
+        <tbody>
+
+        <tr>
+          <th>Settlement Item :</th>
+          <td>
+            <ul id="payment_type">
+              
+
+      <label style="display: block;float: left;">
+
+        <input checked="checked" class="payment_select " id="payment_type_" name="payment_type[]" type="checkbox" value="card" />
+        <span title="Payment service using Credit Card Settlement.">Credit Card Settlement</span>
+      </label>
+
+      <label style="display: block;float: left;">
+
+        <input class="payment_select non_fd" id="payment_type_" name="payment_type[]" type="checkbox" value="cvs" />
+        <span title="Payment service using Convenience Stores.">Convenience Store Settlement</span>
+      </label>
+<div class="clear"/>
+
+            </ul>
+            <p class="sppt5">
+              <button action="" id="select_all" name="button" type="submit">Select All</button>&nbsp;&nbsp;&nbsp;<button action="" id="deselect_all" name="button" type="submit">Cancel Select All</button>
+            </p></td>
+        </tr>
+        <tr>
+          <th>Search type :</th>
+          <td>
+            <ul id="search_type">
+              <li>
+                <label> <input checked="checked" id="default_search_full_search" name="default[search]" type="radio" value="full_search" />
+                  <span title="Search for all transaction data.">Search all</span> </label>
+              </li>
+              <li>
+                <label> <input id="default_search_latest_transact" name="default[search]" type="radio" value="latest_transact" />
+                  <span title="Search for only latest transaction.">Latest order</span> </label>
+              </li>
+            </ul></td>
+        </tr>
+        
+<tr>
+  <th>
+    By order datetime :
+  </th>
+  <td>
+    <table cellspacing="0" class="noBrd">
+      <tbody><tr>
+          <td class="sppr10">
+            <select id="default_re_transaction" name="default[re_transaction]" onchange="date_function(&#x27;default_re_transaction&#x27;,&#x27;default_def_mmddyy1&#x27;,&#x27;default_def_ddmmyy2&#x27;);"><option value="today" selected="selected">Today</option>
+<option value="befo_today">Yesterday</option>
+<option value="week">This week</option>
+<option value="last_week">Last week</option>
+<option value="month">This month</option>
+<option value="last_month">Last month</option>
+<option value="unspecified">Unspecified</option></select>
+          </td>
+          <td class="sppr5 tcenter"><input class="w100 has_date_picker_start_time" id="default_def_mmddyy1" maxlength="10" name="default[def_mmddyy1]" type="text" value="2020/7/13" /><br/><span class="size10 lh1em">YYYY/MM/DD</span></td>
+          <td class="sppr10 tcenter"><input class="w80" id="default_def_mmddyy11" maxlength="8" name="default[def_mmddyy11]" type="text" value="00:00:00" /><br/><span class="size10 lh1em">HH:MM:SS</span></td>
+          <td class="sppr10 tcenter">&nbsp;～&nbsp;</td>
+          <td class="sppr5 tcenter"><input class="w100 has_date_picker_end_time" id="default_def_ddmmyy2" maxlength="10" name="default[def_ddmmyy2]" type="text" value="2020/07/13" /><br/><span class="size10 lh1em">YYYY/MM/DD</span></td>
+          <td class="tcenter"><input class="w80" id="default_def_ddmmyy21" maxlength="8" name="default[def_ddmmyy21]" type="text" value="23:59:59" /><br/><span class="size10 lh1em">HH:MM:SS</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </td>
+
+</tr>
+<tr>
+  <th>Order result :</th>
+  <td>
+    <label>
+    <input checked="checked" id="default_trade_result_" name="default[trade_result]" type="radio" value="" />
+    All
+    </label>
+    <label>
+    <input id="default_trade_result_success" name="default[trade_result]" type="radio" value="success" />
+    Success
+    </label>
+    <label>
+    <input id="default_trade_result_failure" name="default[trade_result]" type="radio" value="failure" />
+    Failure
+    </label>
+    <label>
+    <input id="default_trade_result_pending" name="default[trade_result]" type="radio" value="pending" />
+    Pending
+    </label>
+    <label>
+    <input id="default_trade_result_refuse" name="default[trade_result]" type="radio" value="refuse" />
+    Refuse
+    </label>
+  </td>
+</tr>
+<tr>
+  <th>Order Amount :</th>
+  <td>
+    <table cellspacing="0" class="search_table">
+      <tbody><tr>
+          <td class="sppr10">
+            <input class="w100" id="default_amount_fix" maxlength="12" name="default[amount_fix]" type="text" value="" />Yen&nbsp;&nbsp;&nbsp;~
+          </td>
+          <td class="sppr10"><input class="w100" id="default_amount_decimal" maxlength="12" name="default[amount_decimal]" type="text" value="" />Yen</td>
+        </tr>
+      </tbody></table>
+
+  </td>
+
+</tr>
+
+<tr>
+  <th>Order ID :</th>
+  <td><input id="default_trans_id" maxlength="100" name="default[trans_id]" style="width:510px" type="text" value="" /></td>
+</tr>
+
+
+<tr>
+  <th>Test Orders :</th>
+
+  <td>
+    <label><input checked="checked" id="default_exclusion_test" name="default[exclusion_test]" type="checkbox" value="1" />Exclude</label>
+  </td>
+</tr>
+
+<!--Display Settings:-->
+  <tr>
+    <td colspan="2">
+      <h2 class="sub_title">Result display settings</h2>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Display settings :</th>
+    <td>
+      <ul id="result_type">
+      	<label>
+        <li><input checked="checked" class="result card_cancel" id="default_result_result_detail" name="default[result]" type="radio" value="result_detail" />
+                Summary result + Details result<span class="bold size10">(*fetches max 2,000 records)</span>
+        </li>
+      	</label>
+      	<label>
+        <li><input class="result card_cancel" id="default_result_result_based" name="default[result]" type="radio" value="result_based" />
+                Summary result only<span class="bold size10">(*fetches max 50,000 records)</span>
+       	</li>
+      	</label>
+      </ul>
+
+    </td>
+  </tr>
+
+  <tr>
+    <th>Max fetch count :</th>
+    <td>
+      <div id='result_detail_count'>
+        <select id="default_result_detail" name="default[result_detail]"><option value="200">200</option>
+<option value="500">500</option>
+<option value="1000">1,000</option>
+<option value="2000" selected="selected">2,000</option></select>
+      </div>
+      <div id='result_based_count' style='display:none'>
+        <select id="default_result_based" name="default[result_based]"><option value="200" selected="selected">200</option>
+<option value="500">500</option>
+<option value="1000">1,000</option>
+<option value="2000">2,000</option>
+<option value="10000">10,000</option>
+<option value="50000">50,000</option></select>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <th>CSV Output :</th>
+    <td>
+      <label>
+        <input checked="checked" id="default_csv_on" name="default[csv_on]" type="checkbox" value="1" />Make Csv
+      </label>
+      Note It takes time to make CSV File with a lot of record number, but please wait a moment.
+    </td>
+  </tr>
+
+  <tr>
+    <th><span class="translation_missing" title="translation missing: en.search.default_filter_type.csv_format">Csv Format</span> :</th>
+    <td>
+      <label><input id="default_csv_old_format" name="default[csv_old_format]" type="checkbox" value="1" />Display in old CSV format</label>
+    </td>
+  </tr>
+
+  <tr>
+    <th>Detail result sort order :</th>
+    <td>
+      <ul id="result_sort_type">
+        <label>
+          <li><input checked="checked" id="default_sort_transaction_detail" name="default[sort]" type="radio" value="transaction_detail" />By order datetime</li>
+        </label>
+        <label>
+          <li><input id="default_sort_settlement_item" name="default[sort]" type="radio" value="settlement_item" />By settlement type</li>
+        </label>
+      </ul>
+    </td>
+  </tr>
+
+        </tbody>
+      </table>
+
+      <section class="search_detail">
+        <div id='default_filter' ></div>
+
+            <div id='card_panel' style="display: none">
+              
+<h1 class="search_detail_title">
+  Credit card settlement specific search criteria
+  <p class="box_search_detail_toggle"><a href="#" data-down=" (+) Open" data-up=" (-) Close"> (-) Close</a></p>
+</h1>
+<div class="box_ffffff">
+
+  <div class="box_search_detail">
+  <div class="row">
+  <div class="col-5">
+    <h2 class="search_detail_sub_title">
+      <span>
+        Settlement status
+      </span>
+    </h2>
+    <div class="section">
+      <ul class="left spr20">
+        <li>
+          <label>
+            <input class="cc_check card_check" id="card_status_" name="card[status][]" type="checkbox" value="authorize" />
+            <span title="Status when Authorize request was processed.">Authorize</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input class="cc_check card_check" id="card_status_" name="card[status][]" type="checkbox" value="cancel_authorize" />
+            <span title="Status when Authorized transaction was cancelled.">Credit Cancel</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input class="cc_check cbatch card_check" id="card_status_" name="card[status][]" type="checkbox" value="authorize_expired" />
+            <span title="Automatically update to this status if there is no Post Proccessing (Capture/Cancel) request after 60 days from the authorized date.">Credit validity period expired</span>
+          </label>
+        </li>
+        <li></li>
+      </ul>
+      <ul class="left spr20">
+        <li>
+          <label>
+            <input checked="checked" class="cc_check card_check" id="card_status_" name="card[status][]" type="checkbox" value="authorize_capture" />
+            <span title="Status when there is Capture request for succeeded Authorize transaction.">Capture</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input checked="checked" class="cc_check card_check" id="card_status_" name="card[status][]" type="checkbox" value="cancel_capture" />
+            <span title="Status when Captured transaction was cancelled.">Cancel (Sales)</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input class="cc_check cbatch card_check" id="card_vt_plus" name="card[vt_plus]" type="checkbox" value="1" />
+            <span title="Status when there is operation/process from VeriTrans side.">VT Processing (+)</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input class="cc_check cbatch card_check" id="card_vt_minus" name="card[vt_minus]" type="checkbox" value="1" />
+            <span title="Status when there is operation/process from VeriTrans side.">VT Processing (-)</span>
+          </label>
+        </li>
+      </ul>
+      <ul class="left">
+        <li>
+          <label>
+            <input class="cc_check card_check" id="card_status_" name="card[status][]" type="checkbox" value="direct_cancel" />
+            <span title="Status when there is Direct Refund request was processed.">Direct Rreturn</span>
+          </label>
+        </li>
+        <li>
+          <label>
+            <input class="cc_check card_check" id="card_status_" name="card[status][]" type="checkbox" value="cancel_new" />
+            <span title="Status when there is no original transaction but Cancel request was processed.">Cancel (New)</span>
+          </label>
+        </li>
+      </ul>
+        <p class="clear sppt5">			
+    <input type="button" onClick="select_all_status('cc_check');"  value="Select all" />
+	&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="Select none" onClick ="deselect_all_status('cc_check');" />
+  </p>
+
+    </div>
+
+  </div>
+  <div class="col-5">
+    <h2 class="search_detail_sub_title">
+      <span title="Status when [Reorder] request for Order in the past is executed.">ReOrder</span>
+    </h2>
+    <div class="section">
+      <label>
+        <input class="card_auth" id="card_status_" name="card[status][]" type="checkbox" value="card_reauthorize" />
+        Target Reorders for search
+      </label>
+    </div>
+
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-5">
+
+      <h2 class="search_detail_sub_title">
+        <span title="Payment method like Lump-sum/Installment/Revolving/etc.">Payment method</span>
+      </h2>
+      <div class="section">
+        <select id="card_pay_method" name="card[pay_method]"><option value="" selected="selected">All</option>
+<option value="10">Bulk</option>
+<option value="61">Installments</option>
+<option value="2224">Bonus</option>
+<option value="21">Bonus Bulk</option>
+<option value="23">Bonus (Bonus month specified)</option>
+<option value="3134">Combine Bonus</option>
+<option value="80">Revolving</option></select>
+      </div>
+
+    </div>
+    <div class="col-5">
+
+      <h2 class="search_detail_sub_title">
+        <span title="Specified Code of Card Company where Card Payment Transaction is processed.">Card Company Code</span>
+      </h2>
+      <div class="section">
+        <table cellspacing="0" style="float:left">
+          <tbody>
+          <tr>
+            <td class="sppr10">
+              <input class="w20" id="card_company_card_code" maxlength="2" name="card[company_card_code]" type="text" value="02" />
+            </td>
+            <td>
+              <input id="search_issuer_code" type="button" value="Select"/>
+              <div id="fullScreen" class="transparent" style="display: none">&nbsp;</div>
+              <div id="lightBox" style="display: none">
+                <h2 class="search_detail_sub_title">
+                    <span>
+                      Card company list
+                    </span>
+                </h2>
+                <table cellspacing="0" width="100%" id="credit_card_list">
+                  <tbody>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("01"); return false;'>
+                            01
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("01"); return false;'>
+                            シティカードジャパン（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("02"); return false;'>
+                            02
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("02"); return false;'>
+                            （株）ジェーシービー
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("03"); return false;'>
+                            03
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("03"); return false;'>
+                            三菱UFJニコス（株）（DCカード）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("04"); return false;'>
+                            04
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("04"); return false;'>
+                            三井住友カード（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("05"); return false;'>
+                            05
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("05"); return false;'>
+                            三菱UFJニコス（株）（UFJカード）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("06"); return false;'>
+                            06
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("06"); return false;'>
+                            ユーシーカード（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("07"); return false;'>
+                            07
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("07"); return false;'>
+                            アメリカンエキスプレスインターナショナル
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("08"); return false;'>
+                            08
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("08"); return false;'>
+                            （株）ジャックス
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("09"); return false;'>
+                            09
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("09"); return false;'>
+                            三菱UFJニコス（株）（日本信販）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("10"); return false;'>
+                            10
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("10"); return false;'>
+                            （株）オリエントコーポレーション
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("11"); return false;'>
+                            11
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("11"); return false;'>
+                            （株）セディナ（セントラルファイナンス）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("12"); return false;'>
+                            12
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("12"); return false;'>
+                            （株）アプラス
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("13"); return false;'>
+                            13
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("13"); return false;'>
+                            ライフカード（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("14"); return false;'>
+                            14
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("14"); return false;'>
+                            楽天KC(株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("17"); return false;'>
+                            17
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("17"); return false;'>
+                            協同クレジット（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("19"); return false;'>
+                            19
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("19"); return false;'>
+                            阪急東宝クレジットサービス
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("20"); return false;'>
+                            20
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("20"); return false;'>
+                            ジーシー（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("21"); return false;'>
+                            21
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("21"); return false;'>
+                            （株）クレディセゾン
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("22"); return false;'>
+                            22
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("22"); return false;'>
+                            ポケットカード（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("23"); return false;'>
+                            23
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("23"); return false;'>
+                            （株）セディナ（オーエムシーカード）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("24"); return false;'>
+                            24
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("24"); return false;'>
+                            イオンクレジットサービス（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("25"); return false;'>
+                            25
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("25"); return false;'>
+                            大丸クレジット（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("28"); return false;'>
+                            28
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("28"); return false;'>
+                            （株）バンクカードサービス
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("31"); return false;'>
+                            31
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("31"); return false;'>
+                            トヨタファイナンス（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("32"); return false;'>
+                            32
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("32"); return false;'>
+                            （株）JALカード
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("33"); return false;'>
+                            33
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("33"); return false;'>
+                            全日信販（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("34"); return false;'>
+                            34
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("34"); return false;'>
+                            山陰信販（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("36"); return false;'>
+                            36
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("36"); return false;'>
+                            デジタル（クオーク）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("37"); return false;'>
+                            37
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("37"); return false;'>
+                            GEカード
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("38"); return false;'>
+                            38
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("38"); return false;'>
+                            東急カード（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("40"); return false;'>
+                            40
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("40"); return false;'>
+                            （株）UCS
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("41"); return false;'>
+                            41
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("41"); return false;'>
+                            （株）エスコートカード
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("42"); return false;'>
+                            42
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("42"); return false;'>
+                            （協）エヌシー日商連
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("43"); return false;'>
+                            43
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("43"); return false;'>
+                            九州日本信販（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("44"); return false;'>
+                            44
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("44"); return false;'>
+                            すみしんライフカード（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("45"); return false;'>
+                            45
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("45"); return false;'>
+                            （株）ニッセンレンライフ
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("46"); return false;'>
+                            46
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("46"); return false;'>
+                            日立キャピタル（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("47"); return false;'>
+                            47
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("47"); return false;'>
+                            （株）ほくせん
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("48"); return false;'>
+                            48
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("48"); return false;'>
+                            （株）ソニーファイナンスインターナショナル
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("49"); return false;'>
+                            49
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("49"); return false;'>
+                            ヤフー（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("50"); return false;'>
+                            50
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("50"); return false;'>
+                            （株）ゆめカード
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("51"); return false;'>
+                            51
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("51"); return false;'>
+                            （株）オークス
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("52"); return false;'>
+                            52
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("52"); return false;'>
+                            東日本旅客鉄道（ビューカード）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("53"); return false;'>
+                            53
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("53"); return false;'>
+                            イズミヤカード株式会社
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("56"); return false;'>
+                            56
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("56"); return false;'>
+                            （株）エポスカード
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("57"); return false;'>
+                            57
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("57"); return false;'>
+                            天満屋カードサービス（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("58"); return false;'>
+                            58
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("58"); return false;'>
+                            （株）京王パスポートクラブ
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("59"); return false;'>
+                            59
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("59"); return false;'>
+                            （株）オーシー
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("60"); return false;'>
+                            60
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("60"); return false;'>
+                            （株）エヌシーガイドショップ
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("61"); return false;'>
+                            61
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("61"); return false;'>
+                            （株）エヌケーシー
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("62"); return false;'>
+                            62
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("62"); return false;'>
+                            JFRカード株式会社
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("63"); return false;'>
+                            63
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("63"); return false;'>
+                            株式会社京阪カード
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("64"); return false;'>
+                            64
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("64"); return false;'>
+                            三井住友カード（株）（MCP）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("70"); return false;'>
+                            70
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("70"); return false;'>
+                            ワイジェイカード株式会社
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("71"); return false;'>
+                            71
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("71"); return false;'>
+                            住信SBIネット銀行（株）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("72"); return false;'>
+                            72
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("72"); return false;'>
+                            （株）ジャックス（ACQ）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("73"); return false;'>
+                            73
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("73"); return false;'>
+                            （株）日専連
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("74"); return false;'>
+                            74
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("74"); return false;'>
+                            株式会社りそな銀行
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("75"); return false;'>
+                            75
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("75"); return false;'>
+                            株式会社エムアイカード
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("76"); return false;'>
+                            76
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("76"); return false;'>
+                            ソフトバンク・ペイメント・サービス株式会社（SBPS）
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("77"); return false;'>
+                            77
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("77"); return false;'>
+                            株式会社東武カード
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("78"); return false;'>
+                            78
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("78"); return false;'>
+                            日専連エスコート
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("79"); return false;'>
+                            79
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("79"); return false;'>
+                            日専連札幌
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("83"); return false;'>
+                            83
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("83"); return false;'>
+                            JCBプレモ
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("90"); return false;'>
+                            90
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("90"); return false;'>
+                            日専連釧路
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("91"); return false;'>
+                            91
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("91"); return false;'>
+                            株式会社 日専連旭川
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("92"); return false;'>
+                            92
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("92"); return false;'>
+                            株式会社 日専連ベネフル
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("99"); return false;'>
+                            99
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("99"); return false;'>
+                            ダミーテストカード会社
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("1A"); return false;'>
+                            1A
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("1A"); return false;'>
+                            株式会社　日専連ライフサービス
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("2A"); return false;'>
+                            2A
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("2A"); return false;'>
+                            株式会社　日専連静岡
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("3A"); return false;'>
+                            3A
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("3A"); return false;'>
+                            株式会社　日専連ファイナンス
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("4A"); return false;'>
+                            4A
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("4A"); return false;'>
+                            株式会社　モデル百貨
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("5A"); return false;'>
+                            5A
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("5A"); return false;'>
+                            シティックスカード　株式会社
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("6A"); return false;'>
+                            6A
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("6A"); return false;'>
+                            モデルクレジット　株式会社
+                          </a>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th>
+                          <a href="#nogo" onclick = 'set_code_card("7A"); return false;'>
+                            7A
+                          </a>
+                        </th>
+                        <td>
+                          <a href="#nogo" onclick = 'set_code_card("7A"); return false;'>
+                            株式会社　宮崎信販
+                          </a>
+                        </td>
+                      </tr>
+                  </tbody>
+                </table>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+                <span class="size10 lh1em">
+                  *Half width numeric e.g.: 01
+                </span>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="row">
+      <h2 class="search_detail_sub_title">
+        <span>Card Brand</span>
+      </h2>
+
+
+      <div class=card-brand-rdo-button >
+            <label>
+              <input checked="checked" class="brand_check" id="card_card_bin_corporation_" name="card[card_bin_corporation][]" type="checkbox" value="visa" />
+                VISA
+            </label>
+            <label>
+              <input checked="checked" class="brand_check" id="card_card_bin_corporation_" name="card[card_bin_corporation][]" type="checkbox" value="master" />
+                MASTER
+            </label>
+            <label>
+              <input checked="checked" class="brand_check" id="card_card_bin_corporation_" name="card[card_bin_corporation][]" type="checkbox" value="jcb" />
+                JCB
+            </label>
+            <label>
+              <input checked="checked" class="brand_check" id="card_card_bin_corporation_" name="card[card_bin_corporation][]" type="checkbox" value="amex" />
+                AMEX
+            </label>
+            <label>
+              <input checked="checked" class="brand_check" id="card_card_bin_corporation_" name="card[card_bin_corporation][]" type="checkbox" value="diners" />
+                DINERS
+            </label>
+            <label>
+              <input checked="checked" class="brand_check" id="card_card_bin_corporation_" name="card[card_bin_corporation][]" type="checkbox" value="discover" />
+                DISCOVER
+            </label>
+            <label>
+              <input checked="checked" class="brand_check" id="card_card_bin_corporation_" name="card[card_bin_corporation][]" type="checkbox" value="others" />
+                OTHERS
+            </label>
+
+          <p class="clear sppt5">			
+    <input type="button" onClick="select_all_status('brand_check');"  value="Select all" />
+	&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="Select none" onClick ="deselect_all_status('brand_check');" />
+  </p>
+
+      </div>
+     </div>
+
+    <div class="row">
+      <div class="col-5">
+
+        <h2 class="search_detail_sub_title">
+          <span title="Credit Card number used in payment.">Credit card number</span>
+        </h2>
+        <div class="section">
+          <p class="spb5">
+            Please enter first 6 digits and last 0-2 digits of credit card number.
+          </p>
+          <table cellspacing="0">
+            <tbody>
+            <tr class="vmiddle">
+              <td class="sppr5">
+                <input class="w50" id="card_card_no1" maxlength="6" name="card[card_no1]" type="text" value="" />
+              </td>
+              <td class="sppr5">********</td>
+              <td class="sppr5">
+                <input class="w20" id="card_card_no2" maxlength="2" name="card[card_no2]" type="text" value="" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="3">
+                <span class="size10 lh1em">
+                  *Half width numeric e.g.: 123456********78
+                </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      <div class="col-5">
+
+        <h2 class="search_detail_sub_title">
+          <span title="Approval number issued by Card Company.">Authorization number</span>
+        </h2>
+        <div class="section">
+          <table cellspacing="0" class="fLeft">
+            <tbody>
+            <tr>
+              <td>
+                <input class="w100" id="card_approv_no" maxlength="8" name="card[approv_no]" type="text" value="" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="size10 lh1em">
+                  *Half width alphanumeric e.g.: 123456
+                  </br>
+                  It&#x27;s the usual 6 character, but an Authorization number is sometimes preserved by 7 character.
+                  </br>
+                  When a result isn&#x27;t output by input of 6 character, please put * on the head like *123456.
+                </span>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+
+            </div>
+
+
+            <div id='cvs_panel'  style="display: none">
+              
+<h1 class="search_detail_title">
+  CVS settlement specific search criteria
+  <p class="box_search_detail_toggle"><a href="#" data-down=" (+) Open" data-up=" (-) Close"> (-) Close</a></p>
+</h1>
+<div class="box_ffffff">
+  <div class="box_search_detail">
+    
+    <h2 class="search_detail_sub_title">
+      <span>
+        Settlement status
+      </span>
+    </h2>
+    <div class="section">
+      <ul class="left sppr20">
+        <li>
+          <label>
+          <input checked="checked" class="cvs_check" id="cvs_status_" name="cvs[status][]" type="checkbox" value="authorize" />
+          <span title="Status when Entry for Convenience Stores Payment.">Payment Application(Number Obtain)</span>
+          </label>
+        </li>
+        <li>
+          <label>
+          <input checked="checked" class="cvs_check" id="cvs_status_" name="cvs[status][]" type="checkbox" value="cancel_authorize" />
+          <span title="Status when Entry Request was cancelled.">Cancel Payment Application</span>
+          </label>
+        </li>
+        <li>
+          <label>
+          <input checked="checked" class="cvs_check" id="cvs_status_" name="cvs[status][]" type="checkbox" value="authorize_expired" />
+          <span title="Status when Consumer did not pay before the due date for payment expired.">Payment due date expired</span>
+          </label>
+        </li>
+      </ul>
+      <ul class="left sppr20">
+        <li>
+          <label>
+          <input checked="checked" class="cvs_check" id="cvs_status_" name="cvs[status][]" type="checkbox" value="flash_capture" />
+          <span title="Status when Received notification from Convenience Stores Company that Consumer has paid.">Paid</span>
+          </label>
+        </li>
+        <li>
+          <label>
+          <input checked="checked" class="cvs_check" id="cvs_status_" name="cvs[status][]" type="checkbox" value="cancel_capture" />
+          <span title="Status when receive Payment Cancelled notification from Convenience Stores Company.">Payment Cancellation</span>
+          </label>
+        </li>
+      </ul>
+      <ul class="left">
+        <li>
+          <label>
+          <input checked="checked" class="cvs_check" id="cvs_vt_plus" name="cvs[vt_plus]" type="checkbox" value="1" />
+          <span title="Status when there is operation/process from VeriTrans side.">VT Processing (+)</span>
+          </label>
+        </li>
+        <li>
+          <label>
+          <input checked="checked" class="cvs_check" id="cvs_vt_minus" name="cvs[vt_minus]" type="checkbox" value="1" />
+          <span title="Status when there is operation/process from VeriTrans side.">VT Processing (-)</span>
+          </label>
+        </li>
+      </ul>
+        <p class="clear sppt5">			
+    <input type="button" onClick="select_all_status('cvs_check');"  value="Select all" />
+	&nbsp;&nbsp;&nbsp;&nbsp;
+    <input type="button" value="Select none" onClick ="deselect_all_status('cvs_check');" />
+  </p>
+
+    </div>
+    
+    <div style="width:50%;" class="left">
+      <h2 class="search_detail_sub_title">
+        <span title="Selected Convenience Stores.01:Seven Eleven 02:Lawson・Seiko mart 03:Family mart 04:Circle K Sunkus etc 05:Lawson・Family mart etc">Convenience store selection</span>
+      </h2>
+      <div class="section">
+        <select id="cvs_convenience_code" name="cvs[convenience_code]"><option value="all" selected="selected">All</option>
+<option value="econ">ローソン・ファミリーマートその他</option>
+<option value="sej">セブンイレブン</option></select>
+      </div>
+    </div>
+    
+    <div style="width:49%; margin-left:1%;" class="left">
+      <h2 class="search_detail_sub_title">
+        <span title="Receipt number required for Convenience Stores Payment.">Receipt number</span>
+      </h2>
+      <div class="section">
+        <table cellspacing="0">
+          <tbody>
+            <tr>
+              <td>
+                <input class="w200" id="cvs_reciept_no" maxlength="20" name="cvs[reciept_no]" type="text" value="" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span class="size10 lh1em">
+                  *Half width alphanumeric e.g.: ABC123
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="clear"></div>
+    
+    <h2 class="search_detail_sub_title">
+      <span title="Payment Expiration Date.">Payment deadline</span>
+    </h2>
+    <div class="section">
+      <table cellspacing="0" class="search_table">
+        <tbody>
+          <tr>
+            <td class="sppr10">
+              <select id="cvs_pay_deadline" name="cvs[pay_deadline]" onchange="date_function_hhmm(&#x27;cvs_pay_deadline&#x27;,&#x27;cvs_pay_deadline_frm_dt_mmddyy3&#x27;,&#x27;cvs_pay_deadline_to_dt_mmddyy4&#x27;);"><option value="unspecified" selected="selected">Unspecified</option>
+<option value="today">Today</option>
+<option value="befo_today">Yesterday</option>
+<option value="week">This week</option>
+<option value="last_week">Last week</option>
+<option value="month">This month</option>
+<option value="last_month">Last month</option></select>
+            </td>
+            <td class="sppr10 tcenter">
+              <input class="w100 has_date_picker_start_hhmm" id="cvs_pay_deadline_frm_dt_mmddyy3" maxlength="10" name="cvs[pay_deadline_frm_dt_mmddyy3]" type="text" value="" />
+              <br>
+              <span class="size10 lh1em">
+                YYYY/MM/DD
+              </span>
+            </td>
+            <td class="sppr10 tcenter">
+              <input class="w60" id="cvs_pay_deadline_frm_dt_mmddyy31" maxlength="5" name="cvs[pay_deadline_frm_dt_mmddyy31]" type="text" value="" />
+              <br>
+              <span class="size10 lh1em">
+                HH:MM
+              </span>
+            </td>
+            <td class="sppr10 tcenter">～</td>
+            <td class="tcenter">
+              <input class="w100 has_date_picker_end_hhmm" id="cvs_pay_deadline_to_dt_mmddyy4" maxlength="10" name="cvs[pay_deadline_to_dt_mmddyy4]" type="text" value="" />
+              <br>
+              <span class="size10 lh1em">
+                YYYY/MM/DD
+              </span>
+            </td>
+            <td class="sppr10 tcenter">
+              <input class="w60" id="cvs_pay_deadline_to_dt_mmddyy41" maxlength="5" name="cvs[pay_deadline_to_dt_mmddyy41]" type="text" value="" />
+              <br>
+              <span class="size10 lh1em">
+                HH:MM
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <h2 class="search_detail_sub_title">
+      <span title="Time when Payment is made at Convenience Stores.">Payment datetime</span>
+    </h2>
+    <div class="section">
+      <table cellspacing="0" class="search_table csvTbl">
+        <tbody>
+          <tr>
+            <td class="sppr10">
+              <select id="cvs_pay_date" name="cvs[pay_date]" onchange="date_function(&#x27;cvs_pay_date&#x27;,&#x27;cvs_pay_frm_dt_mmddyy1&#x27;,&#x27;cvs_pay_to_dt_ddmmyy2&#x27;);"><option value="unspecified" selected="selected">Unspecified</option>
+<option value="today">Today</option>
+<option value="befo_today">Yesterday</option>
+<option value="week">This week</option>
+<option value="last_week">Last week</option>
+<option value="month">This month</option>
+<option value="last_month">Last month</option></select>
+            </td>
+            <td class="sppr5 tcenter">
+              <input class="w100 has_date_picker_start_time" id="cvs_pay_frm_dt_mmddyy1" maxlength="10" name="cvs[pay_frm_dt_mmddyy1]" type="text" value="" />
+              <br>
+              <span class="size10 lh1em">
+                YYYY/MM/DD
+              </span>
+            </td>
+            <td class="sppr10 tcenter">
+              <input class="w80" id="cvs_pay_frm_dt_mmddyy11" maxlength="8" name="cvs[pay_frm_dt_mmddyy11]" type="text" value="" />
+              <br>
+              <span class="size10 lh1em">
+                HH:MM:SS
+              </span>
+            </td>
+            <td class="sppr10 tcenter">～</td>
+            <td class="sppr5 tcenter">
+              <input class="w100 has_date_picker_end_time" id="cvs_pay_to_dt_ddmmyy2" maxlength="10" name="cvs[pay_to_dt_ddmmyy2]" type="text" value="" />
+              <br>
+              <span class="size10 lh1em">
+                YYYY/MM/DD
+              </span>
+            </td>
+            <td class="tcenter">
+              <input class="w80" id="cvs_pay_to_dt_ddmmyy21" maxlength="8" name="cvs[pay_to_dt_ddmmyy21]" type="text" value="" />
+              <br>
+              <span class="size10 lh1em">
+                HH:MM:SS
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+  
+</div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="mainBtnHolder">
+          <input class="button" data-disable-with="・・" name="commit" type="submit" value="Search" />
+        </div>
+      </section>
+    </div>
+</form>
+<ul class="search_csv search_top_csv" >
+    <li>
+    <form action="/maps/search/csv_download?id=20200903-B100013100014503000145_20200903155754472.csv" class="button_to" method="post"><div><input type="submit" value="CSV Download" /><input name="authenticity_token" type="hidden" value="upa5VpF+zHlKXr+FBYeYj1guNL+BBrTAxicu7GHPRzg=" /></div></form>
+  </li>
+
+
+    <li>
+     <form action="" class="button_to" method="post"><div><input onclick="window.open(&#x27;csv_column_settings&#x27;,&#x27;_blank&#x27;,&#x27;resizable=yes,height=550,width=700,scrollbars=yes&#x27;).focus(); return false" type="submit" value="CSV output details setting" /><input name="authenticity_token" type="hidden" value="upa5VpF+zHlKXr+FBYeYj1guNL+BBrTAxicu7GHPRzg=" /></div></form>
+   </li>
+
+    <li>
+     <form action="" class="button_to" method="post"><div><input onclick="window.open(&#x27;csv_column_settings?old_format=1&#x27;,&#x27;_blank&#x27;,&#x27;resizable=yes,height=550,width=700,scrollbars=yes&#x27;).focus(); return false" type="submit" value="Old CSV output details setting" /><input name="authenticity_token" type="hidden" value="upa5VpF+zHlKXr+FBYeYj1guNL+BBrTAxicu7GHPRzg=" /></div></form>
+    </li>
+
+</ul>
+
+<div class="result_not_found msg" style="color:#0040FF">
+  
+</div>
+    
+<table border="0" width="100%" cellpadding="0" cellspacing="0" class="search_result_total " >
+
+<thead>
+    <tr style="border: 0px;">
+      <td colspan="11" class="tblHead"> Summary result - Credit Card settlement</td>
+    </tr>
+
+<tr>
+      <th colspan="2" class="w25per darkBlue">Status</th>
+
+
+        <th class="darkBlue">authorize</th>
+
+
+        <th class="darkBlue">cancel_authorize</th>
+
+
+        <th class="darkBlue">authorize_expired</th>
+
+
+        <th class="darkBlue">capture</th>
+
+
+        <th class="darkBlue">cancel_capture</th>
+
+
+        <th class="darkBlue">direct_cancel</th>
+
+
+        <th class="darkBlue">cancel_new</th>
+
+
+        <th class="darkBlue">VT processing (+)</th>
+
+
+        <th class="darkBlue">VT processing (-)</th>
+</tr>
+</thead>
+
+
+                <tr class="lightYellow">
+                  <th rowspan="5" class="lightBlue">                         Number</th>
+            <th class="lightGray">Success </th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>166</td>
+                      <td>7</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+            </tr>
+                </tr>
+                <tr>
+            <th class="lightGray">Pending </th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+            </tr>
+                </tr>
+                <tr>
+            <th class="lightGray">Failure </th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>1</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+            </tr>
+                </tr>
+                <tr>
+            <th class="lightGray">Refuse </th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+            </tr>
+                </tr>
+                <tr>
+            <th class="lightGray">Total </th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>167</td>
+                      <td>7</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+            </tr>
+
+
+                <tr class="lightYellow">
+                  <th rowspan="5" class="lightBlue">                         Total Amount</th>
+            <th class="lightGray">Success </th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>16,179,581</td>
+                      <td>581,526</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+            </tr>
+                </tr>
+                <tr>
+            <th class="lightGray">Pending </th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+            </tr>
+                </tr>
+                <tr>
+            <th class="lightGray">Failure </th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>83,100</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+            </tr>
+                </tr>
+                <tr>
+            <th class="lightGray">Refuse </th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+            </tr>
+                </tr>
+                <tr>
+            <th class="lightGray">Total </th>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>16,262,681</td>
+                      <td>581,526</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+                      <td>0</td>
+            </tr>
+
+</table>
+
+
+
+
+    <ul class="search_csv marTop" >
+        <li>
+    <form action="/maps/search/csv_download?id=20200903-B100013100014503000145_20200903155754472.csv" class="button_to" method="post"><div><input type="submit" value="CSV Download" /><input name="authenticity_token" type="hidden" value="upa5VpF+zHlKXr+FBYeYj1guNL+BBrTAxicu7GHPRzg=" /></div></form>
+  </li>
+
+
+    <li>
+     <form action="" class="button_to" method="post"><div><input onclick="window.open(&#x27;csv_column_settings&#x27;,&#x27;_blank&#x27;,&#x27;resizable=yes,height=550,width=700,scrollbars=yes&#x27;).focus(); return false" type="submit" value="CSV output details setting" /><input name="authenticity_token" type="hidden" value="upa5VpF+zHlKXr+FBYeYj1guNL+BBrTAxicu7GHPRzg=" /></div></form>
+   </li>
+
+    <li>
+     <form action="" class="button_to" method="post"><div><input onclick="window.open(&#x27;csv_column_settings?old_format=1&#x27;,&#x27;_blank&#x27;,&#x27;resizable=yes,height=550,width=700,scrollbars=yes&#x27;).focus(); return false" type="submit" value="Old CSV output details setting" /><input name="authenticity_token" type="hidden" value="upa5VpF+zHlKXr+FBYeYj1guNL+BBrTAxicu7GHPRzg=" /></div></form>
+    </li>
+
+    </ul>
+        <form accept-charset="UTF-8" action="/maps/search/batch_process_confirmation" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="upa5VpF+zHlKXr+FBYeYj1guNL+BBrTAxicu7GHPRzg=" /></div>
+            
+            
+            <h1 class="title spt10"><label class="pagi_label" for="Detail_Result">Detail result</label>
+                  <div id='page_information'>
+                     － （1-100 out of 174 records）
+
+                  </div>
+                  <div id='pagination'>
+                    <ul>
+                      <li>
+                        <span id="first_link" style="display:none;"><a href="/maps/search/set_paginate_link?page=0&amp;total_record=174" class="link_paginate" id="first">  &lt;&lt; First</a></span>
+                      </li>
+                      <li>
+                        <span id="prev_link" style="display:none;"><a href="/maps/search/set_paginate_link?page=up&amp;total_record=174" class="link_paginate" id="up"> &lt; Prev</a></span>
+                      </li>
+                      <li>
+                        <span id="next_link"><a href="/maps/search/set_paginate_link?page=down&amp;total_record=174" class="link_paginate" id="down">Next &gt;</a></span>
+                      </li>
+                      <li>
+                        <span id="last_link"><a href="/maps/search/set_paginate_link?page=2&amp;total_record=174" class="link_paginate" id="last">Last &gt;&gt;</a></span>
+                      </li>
+                    </ul>
+                    <input id="pagination_information" name="pagination_information" type="hidden" />
+                  </div>  </h1>
+            <div class="fullWidth">
+              <!--  Code Reacftor - move to helper -->
+              <div id='paginate_link_test'>
+                <input id="total_paginated_records" name="total_paginated_records" type="hidden" value="174" />
+                <input id="capture_hash" name="capture_hash" type="hidden" value="{}" />
+<input id="billing_end_hash" name="billing_end_hash" type="hidden" value="{}" />
+<input id="cancel_hash" name="cancel_hash" type="hidden" value="{}" />
+<div id="page_result_0" style="display:block" class='search_result'>
+  <input id="start_page_info_0" name="start_page_info_0" type="hidden" value="1" />
+  <input id="end_page_info_0" name="end_page_info_0" type="hidden" value="100" />
+
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" class="search_result_specification tblFxedLyout">
+    <thead>
+      <tr>
+        <th class="w10per">Settlement Item</th><!--  Service_type  -->
+        <th class="w10per">Order ID</th><!--  OrderId  -->
+        <th class="w15per">Order Datetime</th><!-- TxnStartDate  -->
+        <th class="w15per">Settlement Company</th><!--  orderTable.settlment_method  -->
+        <th class="w10per">Status</th><!--  orderTable.mstatus  -->
+        <th class="w10per">Amount</th><!--  orderTable.amount  -->
+        <th class="w8per">Order result</th><!--  orderTable.as_mstatus  -->
+        <th class="w8per">Result code</th><!--  orderTable.v_result_cd  -->
+        <th class="w8per">Note</th><!--  orderTable.dummy_payment_flag  -->
+      </tr>
+    </thead>
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0625100632UXQ7-1&amp;txn_id=1590534">OP_0625100632UXQ7-1</a></td>
+  <td>2020/07/13 09:01:13</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      authorize_capture
+  </td>
+
+  <td class="txtRgt">
+      83,100
+  </td>
+
+
+
+
+  <td class='txtCntr'>Failure</td>
+  <td>AG460000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0613084922K92R&amp;txn_id=1590651">OP_0613084922K92R</a></td>
+  <td>2020/07/13 11:15:12</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      cancel_capture
+  </td>
+
+  <td class="txtRgt">
+      215,930
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0510171130ZL1P&amp;txn_id=1590663">OP_0510171130ZL1P</a></td>
+  <td>2020/07/13 11:23:05</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      cancel_capture
+  </td>
+
+  <td class="txtRgt">
+      107,140
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_06080422506B8A&amp;txn_id=1590694">OP_06080422506B8A</a></td>
+  <td>2020/07/13 11:46:56</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      cancel_capture
+  </td>
+
+  <td class="txtRgt">
+      55,000
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0602012206FL41&amp;txn_id=1590796">OP_0602012206FL41</a></td>
+  <td>2020/07/13 12:46:20</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      cancel_capture
+  </td>
+
+  <td class="txtRgt">
+      18,480
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0618230057LBXQ&amp;txn_id=1590812">OP_0618230057LBXQ</a></td>
+  <td>2020/07/13 12:54:52</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      cancel_capture
+  </td>
+
+  <td class="txtRgt">
+      11,880
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0430075153MCBK&amp;txn_id=1590828">OP_0430075153MCBK</a></td>
+  <td>2020/07/13 12:58:53</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      cancel_capture
+  </td>
+
+  <td class="txtRgt">
+      71,456
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0628163107VWPS&amp;txn_id=1590832">OP_0628163107VWPS</a></td>
+  <td>2020/07/13 13:01:05</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      cancel_capture
+  </td>
+
+  <td class="txtRgt">
+      101,640
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=20DPL88126575&amp;txn_id=1590936">20DPL88126575</a></td>
+  <td>2020/07/13 13:56:50</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      187,880
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=20DPL88122091&amp;txn_id=1590948">20DPL88122091</a></td>
+  <td>2020/07/13 13:59:06</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      64,900
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=20DPL88120508&amp;txn_id=1590950">20DPL88120508</a></td>
+  <td>2020/07/13 13:59:36</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      115,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=20DPL88112591&amp;txn_id=1590960">20DPL88112591</a></td>
+  <td>2020/07/13 14:02:46</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      85,800
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=20DPL88110837-1&amp;txn_id=1590962">20DPL88110837-1</a></td>
+  <td>2020/07/13 14:03:16</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      109,791
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0614230534HJZ5&amp;txn_id=1591873">OP_0614230534HJZ5</a></td>
+  <td>2020/07/13 23:45:08</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      59,136
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0615001906QUZB&amp;txn_id=1591877">OP_0615001906QUZB</a></td>
+  <td>2020/07/13 23:45:16</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      102,080
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0704023200NYRG&amp;txn_id=1591883">OP_0704023200NYRG</a></td>
+  <td>2020/07/13 23:45:27</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      72,380
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0623012450X48I&amp;txn_id=1591893">OP_0623012450X48I</a></td>
+  <td>2020/07/13 23:45:42</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      18,187
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707054638CWBS&amp;txn_id=1591895">OP_0707054638CWBS</a></td>
+  <td>2020/07/13 23:45:45</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      83,100
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_070623164986RF&amp;txn_id=1591897">OP_070623164986RF</a></td>
+  <td>2020/07/13 23:45:48</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      393,690
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_06142310358ZMG&amp;txn_id=1591903">OP_06142310358ZMG</a></td>
+  <td>2020/07/13 23:45:57</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      49,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706235152FB7K&amp;txn_id=1591916">OP_0706235152FB7K</a></td>
+  <td>2020/07/13 23:46:18</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      93,258
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0617010024ER8Y&amp;txn_id=1591921">OP_0617010024ER8Y</a></td>
+  <td>2020/07/13 23:46:26</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      23,089
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0608230649SXUE&amp;txn_id=1591925">OP_0608230649SXUE</a></td>
+  <td>2020/07/13 23:46:32</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      47,300
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0628232755PCRY&amp;txn_id=1591926">OP_0628232755PCRY</a></td>
+  <td>2020/07/13 23:46:34</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      225,016
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707015320MBZM&amp;txn_id=1591933">OP_0707015320MBZM</a></td>
+  <td>2020/07/13 23:46:43</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      84,700
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_06242302301AHC&amp;txn_id=1591937">OP_06242302301AHC</a></td>
+  <td>2020/07/13 23:46:50</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      133,760
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0701000637OJJY&amp;txn_id=1591938">OP_0701000637OJJY</a></td>
+  <td>2020/07/13 23:46:52</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      7,040
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706220048BBGI&amp;txn_id=1591947">OP_0706220048BBGI</a></td>
+  <td>2020/07/13 23:47:07</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      23,980
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707000955HR1B&amp;txn_id=1591948">OP_0707000955HR1B</a></td>
+  <td>2020/07/13 23:47:08</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      562,980
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07051828056NBG&amp;txn_id=1591957">OP_07051828056NBG</a></td>
+  <td>2020/07/13 23:47:22</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      78,100
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0628163300GHC4&amp;txn_id=1591969">OP_0628163300GHC4</a></td>
+  <td>2020/07/13 23:47:41</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      167,970
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_061509183734SQ&amp;txn_id=1591972">OP_061509183734SQ</a></td>
+  <td>2020/07/13 23:47:46</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      80,080
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0530100433CELF&amp;txn_id=1591973">OP_0530100433CELF</a></td>
+  <td>2020/07/13 23:47:48</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      119,900
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0609115950JVUI&amp;txn_id=1591976">OP_0609115950JVUI</a></td>
+  <td>2020/07/13 23:47:53</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      122,166
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07061643263NBG&amp;txn_id=1591990">OP_07061643263NBG</a></td>
+  <td>2020/07/13 23:48:14</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      27,800
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0617032821C753&amp;txn_id=1591993">OP_0617032821C753</a></td>
+  <td>2020/07/13 23:48:18</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      138,600
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0624033846LG5F&amp;txn_id=1591997">OP_0624033846LG5F</a></td>
+  <td>2020/07/13 23:48:25</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      3,850
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0610230040UBCN&amp;txn_id=1592002">OP_0610230040UBCN</a></td>
+  <td>2020/07/13 23:48:31</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      49,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0705203718UWSD&amp;txn_id=1592008">OP_0705203718UWSD</a></td>
+  <td>2020/07/13 23:48:38</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      25,289
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0611230527RKGW&amp;txn_id=1592012">OP_0611230527RKGW</a></td>
+  <td>2020/07/13 23:48:45</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      47,300
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_060413465837OF&amp;txn_id=1592013">OP_060413465837OF</a></td>
+  <td>2020/07/13 23:48:46</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      20,086
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0611230021ZTVI&amp;txn_id=1592016">OP_0611230021ZTVI</a></td>
+  <td>2020/07/13 23:48:52</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      47,300
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0614231616CAM2&amp;txn_id=1592018">OP_0614231616CAM2</a></td>
+  <td>2020/07/13 23:48:55</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      47,300
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706163921AN53&amp;txn_id=1592019">OP_0706163921AN53</a></td>
+  <td>2020/07/13 23:48:57</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      98,120
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_06010700249A23&amp;txn_id=1592022">OP_06010700249A23</a></td>
+  <td>2020/07/13 23:49:01</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      133,590
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_070900371326U8&amp;txn_id=1592024">OP_070900371326U8</a></td>
+  <td>2020/07/13 23:49:04</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      14,190
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0704160500NIIX&amp;txn_id=1592025">OP_0704160500NIIX</a></td>
+  <td>2020/07/13 23:49:06</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      110,246
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706174519RXG4&amp;txn_id=1592029">OP_0706174519RXG4</a></td>
+  <td>2020/07/13 23:49:12</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      104,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0629043557DWS9&amp;txn_id=1592032">OP_0629043557DWS9</a></td>
+  <td>2020/07/13 23:49:16</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      12,232
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0620034544B18X&amp;txn_id=1592033">OP_0620034544B18X</a></td>
+  <td>2020/07/13 23:49:18</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      105,237
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706184811WLGA&amp;txn_id=1592040">OP_0706184811WLGA</a></td>
+  <td>2020/07/13 23:49:27</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      62,040
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706180846TQ25&amp;txn_id=1592049">OP_0706180846TQ25</a></td>
+  <td>2020/07/13 23:49:41</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      89,100
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706181107UYRP&amp;txn_id=1592050">OP_0706181107UYRP</a></td>
+  <td>2020/07/13 23:49:42</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      89,100
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706193644OJIM&amp;txn_id=1592051">OP_0706193644OJIM</a></td>
+  <td>2020/07/13 23:49:44</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      116,600
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706184126ZKD3&amp;txn_id=1592053">OP_0706184126ZKD3</a></td>
+  <td>2020/07/13 23:49:46</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      93,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703155755RYX3&amp;txn_id=1592054">OP_0703155755RYX3</a></td>
+  <td>2020/07/13 23:49:48</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      182,930
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0523041455LGI3&amp;txn_id=1592056">OP_0523041455LGI3</a></td>
+  <td>2020/07/13 23:49:51</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      199,540
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07061912021YGD&amp;txn_id=1592057">OP_07061912021YGD</a></td>
+  <td>2020/07/13 23:49:53</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      77,000
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0702192319PCFX&amp;txn_id=1592060">OP_0702192319PCFX</a></td>
+  <td>2020/07/13 23:49:57</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      9,504
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706213945C8XY&amp;txn_id=1592061">OP_0706213945C8XY</a></td>
+  <td>2020/07/13 23:49:58</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      3,520
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_06300426138GZW&amp;txn_id=1592065">OP_06300426138GZW</a></td>
+  <td>2020/07/13 23:50:06</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      10,560
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707034747UR2C&amp;txn_id=1592069">OP_0707034747UR2C</a></td>
+  <td>2020/07/13 23:50:13</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      79,750
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707002514DICM&amp;txn_id=1592076">OP_0707002514DICM</a></td>
+  <td>2020/07/13 23:50:22</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      104,412
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707043839AF4I&amp;txn_id=1592082">OP_0707043839AF4I</a></td>
+  <td>2020/07/13 23:50:31</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      113,982
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0618230051RYK7&amp;txn_id=1592083">OP_0618230051RYK7</a></td>
+  <td>2020/07/13 23:50:32</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      49,280
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703162012SUUO&amp;txn_id=1592089">OP_0703162012SUUO</a></td>
+  <td>2020/07/13 23:50:42</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      139,480
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707041240CSOC&amp;txn_id=1592092">OP_0707041240CSOC</a></td>
+  <td>2020/07/13 23:50:46</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      146,960
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707045047RK2Y&amp;txn_id=1592094">OP_0707045047RK2Y</a></td>
+  <td>2020/07/13 23:50:48</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      3,432
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706235431M2IU&amp;txn_id=1592095">OP_0706235431M2IU</a></td>
+  <td>2020/07/13 23:50:49</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      64,152
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707012024NVXC&amp;txn_id=1592096">OP_0707012024NVXC</a></td>
+  <td>2020/07/13 23:50:50</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      104,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707021948JUJJ&amp;txn_id=1592097">OP_0707021948JUJJ</a></td>
+  <td>2020/07/13 23:50:52</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      122,980
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0709003239V6FG&amp;txn_id=1592102">OP_0709003239V6FG</a></td>
+  <td>2020/07/13 23:50:58</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      18,700
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707024005WFBK&amp;txn_id=1592103">OP_0707024005WFBK</a></td>
+  <td>2020/07/13 23:51:00</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      61,600
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_06142311356XY9&amp;txn_id=1592105">OP_06142311356XY9</a></td>
+  <td>2020/07/13 23:51:03</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      47,300
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0620021830ZPKD&amp;txn_id=1592112">OP_0620021830ZPKD</a></td>
+  <td>2020/07/13 23:51:14</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      1,122,880
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703172754N44R&amp;txn_id=1592115">OP_0703172754N44R</a></td>
+  <td>2020/07/13 23:51:18</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      125,312
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0601150647OVAA&amp;txn_id=1592116">OP_0601150647OVAA</a></td>
+  <td>2020/07/13 23:51:20</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      20,086
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07070149144CGK&amp;txn_id=1592117">OP_07070149144CGK</a></td>
+  <td>2020/07/13 23:51:22</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      188,980
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707023008YYPX&amp;txn_id=1592118">OP_0707023008YYPX</a></td>
+  <td>2020/07/13 23:51:23</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      156,860
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0610230033OGTX&amp;txn_id=1592123">OP_0610230033OGTX</a></td>
+  <td>2020/07/13 23:51:31</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      49,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707002958QRZZ&amp;txn_id=1592129">OP_0707002958QRZZ</a></td>
+  <td>2020/07/13 23:51:39</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      28,160
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707030758GFIZ&amp;txn_id=1592130">OP_0707030758GFIZ</a></td>
+  <td>2020/07/13 23:51:40</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      101,640
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0607121341B4HM&amp;txn_id=1592133">OP_0607121341B4HM</a></td>
+  <td>2020/07/13 23:51:45</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      192,836
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_06300233268Y4U&amp;txn_id=1592134">OP_06300233268Y4U</a></td>
+  <td>2020/07/13 23:51:46</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      4,752
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703201317SDWJ&amp;txn_id=1592136">OP_0703201317SDWJ</a></td>
+  <td>2020/07/13 23:51:49</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      59,950
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707050543WPXL&amp;txn_id=1592145">OP_0707050543WPXL</a></td>
+  <td>2020/07/13 23:52:02</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      161,480
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0609230051X299&amp;txn_id=1592154">OP_0609230051X299</a></td>
+  <td>2020/07/13 23:52:16</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      47,300
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0709005346KR1K&amp;txn_id=1592155">OP_0709005346KR1K</a></td>
+  <td>2020/07/13 23:52:17</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      37,456
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0705223819TY45&amp;txn_id=1592157">OP_0705223819TY45</a></td>
+  <td>2020/07/13 23:52:21</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      237,380
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707002433LBOQ&amp;txn_id=1592159">OP_0707002433LBOQ</a></td>
+  <td>2020/07/13 23:52:25</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      167,970
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_06211048516IQS&amp;txn_id=1592160">OP_06211048516IQS</a></td>
+  <td>2020/07/13 23:52:26</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      21,230
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0527123413QY1H&amp;txn_id=1592164">OP_0527123413QY1H</a></td>
+  <td>2020/07/13 23:52:32</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      188,948
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0611230009CPSE&amp;txn_id=1592165">OP_0611230009CPSE</a></td>
+  <td>2020/07/13 23:52:33</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      49,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0620132424CCJQ&amp;txn_id=1592166">OP_0620132424CCJQ</a></td>
+  <td>2020/07/13 23:52:35</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      195,800
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0605083642IZL7&amp;txn_id=1592167">OP_0605083642IZL7</a></td>
+  <td>2020/07/13 23:52:37</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      20,086
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706220640HP46&amp;txn_id=1592168">OP_0706220640HP46</a></td>
+  <td>2020/07/13 23:52:38</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      197,780
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0704231842N1NA&amp;txn_id=1592173">OP_0704231842N1NA</a></td>
+  <td>2020/07/13 23:52:46</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      89,650
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0610150555M1HA&amp;txn_id=1592175">OP_0610150555M1HA</a></td>
+  <td>2020/07/13 23:52:48</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      119,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0617230108VS1I&amp;txn_id=1592178">OP_0617230108VS1I</a></td>
+  <td>2020/07/13 23:52:53</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      47,300
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707000942TJTX&amp;txn_id=1592180">OP_0707000942TJTX</a></td>
+  <td>2020/07/13 23:52:56</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      29,689
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+  </table>
+  <br/>
+</div>
+<div id="page_result_1" style="display:none" class='search_result'>
+  <input id="start_page_info_1" name="start_page_info_1" type="hidden" value="101" />
+  <input id="end_page_info_1" name="end_page_info_1" type="hidden" value="174" />
+
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" class="search_result_specification tblFxedLyout">
+    <thead>
+      <tr>
+        <th class="w10per">Settlement Item</th><!--  Service_type  -->
+        <th class="w10per">Order ID</th><!--  OrderId  -->
+        <th class="w15per">Order Datetime</th><!-- TxnStartDate  -->
+        <th class="w15per">Settlement Company</th><!--  orderTable.settlment_method  -->
+        <th class="w10per">Status</th><!--  orderTable.mstatus  -->
+        <th class="w10per">Amount</th><!--  orderTable.amount  -->
+        <th class="w8per">Order result</th><!--  orderTable.as_mstatus  -->
+        <th class="w8per">Result code</th><!--  orderTable.v_result_cd  -->
+        <th class="w8per">Note</th><!--  orderTable.dummy_payment_flag  -->
+      </tr>
+    </thead>
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0616141504IXSW&amp;txn_id=1592185">OP_0616141504IXSW</a></td>
+  <td>2020/07/13 23:53:04</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      118,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_06191439239F19&amp;txn_id=1592189">OP_06191439239F19</a></td>
+  <td>2020/07/13 23:53:13</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      123,120
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0617115914AZJ3&amp;txn_id=1592191">OP_0617115914AZJ3</a></td>
+  <td>2020/07/13 23:53:16</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      118,140
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0616082652DJSQ&amp;txn_id=1592200">OP_0616082652DJSQ</a></td>
+  <td>2020/07/13 23:53:28</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      20,086
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0630211402HUDJ&amp;txn_id=1592207">OP_0630211402HUDJ</a></td>
+  <td>2020/07/13 23:53:39</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      168,740
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0630064158KCJH&amp;txn_id=1592212">OP_0630064158KCJH</a></td>
+  <td>2020/07/13 23:53:46</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      183,370
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07060350026BKB&amp;txn_id=1592216">OP_07060350026BKB</a></td>
+  <td>2020/07/13 23:53:52</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      17,600
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706080549IIIW&amp;txn_id=1592217">OP_0706080549IIIW</a></td>
+  <td>2020/07/13 23:53:53</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      110,550
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706010849NH7C&amp;txn_id=1592223">OP_0706010849NH7C</a></td>
+  <td>2020/07/13 23:54:02</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      120,230
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0705230701865I&amp;txn_id=1592226">OP_0705230701865I</a></td>
+  <td>2020/07/13 23:54:07</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      163,680
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707031641I757&amp;txn_id=1592230">OP_0707031641I757</a></td>
+  <td>2020/07/13 23:54:12</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      43,450
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707003332NFVR&amp;txn_id=1592236">OP_0707003332NFVR</a></td>
+  <td>2020/07/13 23:54:21</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      134,983
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_070603302148MH&amp;txn_id=1592238">OP_070603302148MH</a></td>
+  <td>2020/07/13 23:54:24</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      96,994
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07070122245ALB&amp;txn_id=1592240">OP_07070122245ALB</a></td>
+  <td>2020/07/13 23:54:25</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      78,870
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707013754L8SU&amp;txn_id=1592241">OP_0707013754L8SU</a></td>
+  <td>2020/07/13 23:54:27</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      11,880
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0704050003UXW7&amp;txn_id=1592245">OP_0704050003UXW7</a></td>
+  <td>2020/07/13 23:54:33</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      121,000
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0704151242DHA4&amp;txn_id=1592251">OP_0704151242DHA4</a></td>
+  <td>2020/07/13 23:54:41</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      42,240
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0704013614E75I&amp;txn_id=1592254">OP_0704013614E75I</a></td>
+  <td>2020/07/13 23:54:46</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      114,070
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_061613511296FP&amp;txn_id=1592256">OP_061613511296FP</a></td>
+  <td>2020/07/13 23:54:49</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      21,318
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0622080442QGZW&amp;txn_id=1592260">OP_0622080442QGZW</a></td>
+  <td>2020/07/13 23:54:55</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      153,769
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703065305IN8X&amp;txn_id=1592268">OP_0703065305IN8X</a></td>
+  <td>2020/07/13 23:55:07</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      170,535
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703132827WWOV&amp;txn_id=1592273">OP_0703132827WWOV</a></td>
+  <td>2020/07/13 23:55:14</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      66,660
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706040244WK55&amp;txn_id=1592275">OP_0706040244WK55</a></td>
+  <td>2020/07/13 23:55:15</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      58,080
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703052021N2J1&amp;txn_id=1592285">OP_0703052021N2J1</a></td>
+  <td>2020/07/13 23:55:31</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      133,980
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703144917M4HL&amp;txn_id=1592287">OP_0703144917M4HL</a></td>
+  <td>2020/07/13 23:55:34</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      3,432
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0704050031Q9TR&amp;txn_id=1592291">OP_0704050031Q9TR</a></td>
+  <td>2020/07/13 23:55:39</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      128,700
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0624121343Z3SX&amp;txn_id=1592300">OP_0624121343Z3SX</a></td>
+  <td>2020/07/13 23:55:51</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      32,934
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_062012104632HX&amp;txn_id=1592302">OP_062012104632HX</a></td>
+  <td>2020/07/13 23:55:53</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      78,980
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703073719HE1X&amp;txn_id=1592303">OP_0703073719HE1X</a></td>
+  <td>2020/07/13 23:55:55</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      111,540
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0630123051EEMI&amp;txn_id=1592304">OP_0630123051EEMI</a></td>
+  <td>2020/07/13 23:55:56</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      20,086
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706101253Q8SM&amp;txn_id=1592311">OP_0706101253Q8SM</a></td>
+  <td>2020/07/13 23:56:07</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      108,350
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706101154JF7T&amp;txn_id=1592313">OP_0706101154JF7T</a></td>
+  <td>2020/07/13 23:56:10</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      64,680
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703082647FR25&amp;txn_id=1592314">OP_0703082647FR25</a></td>
+  <td>2020/07/13 23:56:11</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      80,300
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0702045655N8BM&amp;txn_id=1592316">OP_0702045655N8BM</a></td>
+  <td>2020/07/13 23:56:13</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      16,280
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703082946YR6Z&amp;txn_id=1592317">OP_0703082946YR6Z</a></td>
+  <td>2020/07/13 23:56:14</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      11,880
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706051046U7KX&amp;txn_id=1592331">OP_0706051046U7KX</a></td>
+  <td>2020/07/13 23:56:33</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      26,800
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706075912K8VI&amp;txn_id=1592332">OP_0706075912K8VI</a></td>
+  <td>2020/07/13 23:56:35</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      115,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07060031257ZFE&amp;txn_id=1592335">OP_07060031257ZFE</a></td>
+  <td>2020/07/13 23:56:39</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      11,880
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07061146036KCY&amp;txn_id=1592350">OP_07061146036KCY</a></td>
+  <td>2020/07/13 23:56:58</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      85,800
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_070100353196VP&amp;txn_id=1592357">OP_070100353196VP</a></td>
+  <td>2020/07/13 23:57:08</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      20,086
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703060550OFVW&amp;txn_id=1592358">OP_0703060550OFVW</a></td>
+  <td>2020/07/13 23:57:09</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      123,970
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706105234GYKO&amp;txn_id=1592361">OP_0706105234GYKO</a></td>
+  <td>2020/07/13 23:57:14</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      2,112
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0625150901I8VK&amp;txn_id=1592370">OP_0625150901I8VK</a></td>
+  <td>2020/07/13 23:57:27</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      186,010
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0627070710454I&amp;txn_id=1592374">OP_0627070710454I</a></td>
+  <td>2020/07/13 23:57:33</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      323,026
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_06270707066NYH&amp;txn_id=1592375">OP_06270707066NYH</a></td>
+  <td>2020/07/13 23:57:35</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      181,170
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706072135R9SY&amp;txn_id=1592377">OP_0706072135R9SY</a></td>
+  <td>2020/07/13 23:57:39</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      171,160
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707022127HGSB&amp;txn_id=1592384">OP_0707022127HGSB</a></td>
+  <td>2020/07/13 23:57:50</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      16,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707022332IGZC&amp;txn_id=1592385">OP_0707022332IGZC</a></td>
+  <td>2020/07/13 23:57:51</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      98,780
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07070409439F4A&amp;txn_id=1592386">OP_07070409439F4A</a></td>
+  <td>2020/07/13 23:57:52</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      88,550
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0625080445GFPN&amp;txn_id=1592388">OP_0625080445GFPN</a></td>
+  <td>2020/07/13 23:57:55</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      102,520
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_070312290646NE&amp;txn_id=1592392">OP_070312290646NE</a></td>
+  <td>2020/07/13 23:58:01</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      7,370
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0629114009C6ZZ&amp;txn_id=1592394">OP_0629114009C6ZZ</a></td>
+  <td>2020/07/13 23:58:04</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      104,500
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0703081840E6FO&amp;txn_id=1592397">OP_0703081840E6FO</a></td>
+  <td>2020/07/13 23:58:09</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      105,380
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07040913134XMF&amp;txn_id=1592409">OP_07040913134XMF</a></td>
+  <td>2020/07/13 23:58:25</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      81,400
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0702235550VIE8&amp;txn_id=1592412">OP_0702235550VIE8</a></td>
+  <td>2020/07/13 23:58:30</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      17,886
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706062931U1EM&amp;txn_id=1592418">OP_0706062931U1EM</a></td>
+  <td>2020/07/13 23:58:37</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      130,240
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07060801038RPP&amp;txn_id=1592421">OP_07060801038RPP</a></td>
+  <td>2020/07/13 23:58:41</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      9,988
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0706101435T18V&amp;txn_id=1592422">OP_0706101435T18V</a></td>
+  <td>2020/07/13 23:58:42</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      26,796
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0707045429HNFW&amp;txn_id=1592428">OP_0707045429HNFW</a></td>
+  <td>2020/07/13 23:58:50</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      16,280
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0704060928JWN6&amp;txn_id=1592430">OP_0704060928JWN6</a></td>
+  <td>2020/07/13 23:58:53</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      64,900
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0705030937P3RQ&amp;txn_id=1592437">OP_0705030937P3RQ</a></td>
+  <td>2020/07/13 23:59:05</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      108,680
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0629110436JDVG&amp;txn_id=1592439">OP_0629110436JDVG</a></td>
+  <td>2020/07/13 23:59:12</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      121,550
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0705070145W98O&amp;txn_id=1592443">OP_0705070145W98O</a></td>
+  <td>2020/07/13 23:59:17</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      104,390
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07040529301UBK&amp;txn_id=1592445">OP_07040529301UBK</a></td>
+  <td>2020/07/13 23:59:21</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      99,000
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0704062525HI3Q&amp;txn_id=1592446">OP_0704062525HI3Q</a></td>
+  <td>2020/07/13 23:59:22</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      108,350
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0705140459NN6B&amp;txn_id=1592447">OP_0705140459NN6B</a></td>
+  <td>2020/07/13 23:59:23</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      95,920
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07070201477ZFN&amp;txn_id=1592457">OP_07070201477ZFN</a></td>
+  <td>2020/07/13 23:59:36</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      114,180
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_070410064574NS&amp;txn_id=1592460">OP_070410064574NS</a></td>
+  <td>2020/07/13 23:59:41</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      3,740
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07041326112J9Q&amp;txn_id=1592468">OP_07041326112J9Q</a></td>
+  <td>2020/07/13 23:59:51</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      83,100
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07041327502UPX&amp;txn_id=1592469">OP_07041327502UPX</a></td>
+  <td>2020/07/13 23:59:53</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      14,190
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0704132844RX28&amp;txn_id=1592470">OP_0704132844RX28</a></td>
+  <td>2020/07/13 23:59:54</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      87,450
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_0701015721ZVO9&amp;txn_id=1592471">OP_0701015721ZVO9</a></td>
+  <td>2020/07/13 23:59:55</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      150,700
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_07041334317PN1&amp;txn_id=1592473">OP_07041334317PN1</a></td>
+  <td>2020/07/13 23:59:58</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      55,000
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+    <tr>
+
+
+  <td>Credit Card</td>
+  <td class="wordSpace"><a href="/maps/settlement?order_id=OP_070413433195CE&amp;txn_id=1592474">OP_070413433195CE</a></td>
+  <td>2020/07/13 23:59:59</td>
+  <td>
+      （株）ジェーシービー
+  </td>
+  <td>
+      capture
+  </td>
+
+  <td class="txtRgt">
+      117,350
+  </td>
+
+
+
+
+  <td class='txtCntr'>Success</td>
+  <td>A0010000<br/>00000000</td>
+
+  <td class="txtLft">
+
+
+  </td>
+
+</tr>
+
+  </table>
+  <br/>
+</div>
+</div>
+              </div>
+
+</form>        </div>
+        <div class="result_not_found" style="color:#0040FF">
+          
+        </div>
+<div id="add_form_post" style="display:none"></div>
+
+<div id="grayout" style="display: none">
+  &nbsp;
+</div>
+<div class="backToTop">
+  TOP ↑
+</div>
+<div id="search_loader" style="display: none">
+  <img alt="Loading2" src="/maps/assets/loading2-9de2d04ae755da444098559170e63678.gif" />
+</div>
+<input id="settlement_div_close" name="settlement_div_close" type="hidden" value=" (-) Close" />
+<input id="settlement_div_open" name="settlement_div_open" type="hidden" value=" (+) Open" />
+
+
+                <input id="contract_info_save" name="contract_info_save" type="hidden" value="Changes would be applied. 
+Is it fine?" />
+                <input id="contract_cancel_save" name="contract_cancel_save" type="hidden" value="Cancel would be applied. 
+Is it fine?" />
+              </section>
+
+              <!-- /main -->
+            </div></td>
+        </tr>
+      </table>
+
+      <footer id="footer">
+        <address>
+             Merchant Administration Portal
+          <br/>
+          Copyright &copy; 2020 VeriTrans Inc., a Digital Garage company. All rights reserved.
+        </address>
+          <p><img alt="Orico" height="40" src="/maps/assets/logo_orico-f34df570b0d2f28947e335bb948cf93f.png" style="padding-top:8px;padding-right:10px;" width="172" /></p>
+        <!-- /footer -->
+      </footer>
+      <!-- /container -->
+    </div>
+  </body>
+
+</html>

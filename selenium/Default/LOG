@@ -1,5 +1,5 @@
-2020/07/28-13:43:07.258 4e0c Recovering log #444
-2020/07/28-13:43:07.258 4e0c Level-0 table #447: started
-2020/07/28-13:43:07.261 4e0c Level-0 table #447: 724 bytes OK
-2020/07/28-13:43:07.272 4e0c Delete type=0 #444
-2020/07/28-13:43:07.272 4e0c Delete type=3 #442
+2020/12/10-10:55:02.445 d60 Recovering log #2025
+2020/12/10-10:55:02.445 d60 Level-0 table #2027: started
+2020/12/10-10:55:02.449 d60 Level-0 table #2027: 1574 bytes OK
+2020/12/10-10:55:02.465 d60 Delete type=0 #2025
+2020/12/10-10:55:02.465 d60 Delete type=3 #2023

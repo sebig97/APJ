@@ -1,18 +1,6 @@
-2020/07/28-13:42:02.307 4c28 Reusing MANIFEST C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Local Storage\leveldb/MANIFEST-000001
-2020/07/28-13:42:02.309 4c28 Recovering log #215
-2020/07/28-13:42:02.311 4c28 Reusing old log C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Local Storage\leveldb/000215.log 
-2020/07/28-13:44:14.551 3838 Level-0 table #219: started
-2020/07/28-13:44:14.554 3838 Level-0 table #219: 28276 bytes OK
-2020/07/28-13:44:14.555 3838 Delete type=0 #215
-2020/07/28-13:46:14.552 3838 Level-0 table #221: started
-2020/07/28-13:46:14.556 3838 Level-0 table #221: 28262 bytes OK
-2020/07/28-13:46:14.559 3838 Delete type=0 #218
-2020/07/28-13:46:14.563 3838 Compacting 4@0 + 1@1 files
-2020/07/28-13:46:14.567 3838 Generated table #222@0: 85 keys, 162909 bytes
-2020/07/28-13:46:14.567 3838 Compacted 4@0 + 1@1 files => 162909 bytes
-2020/07/28-13:46:14.568 3838 compacted to: files[ 0 1 0 0 0 0 0 ]
-2020/07/28-13:46:14.569 3838 Delete type=2 #211
-2020/07/28-13:46:14.569 3838 Delete type=2 #214
-2020/07/28-13:46:14.569 3838 Delete type=2 #216
-2020/07/28-13:46:14.569 3838 Delete type=2 #219
-2020/07/28-13:46:14.569 3838 Delete type=2 #221
+2020/12/10-10:54:49.841 2ce4 Reusing MANIFEST C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Local Storage\leveldb/MANIFEST-000001
+2020/12/10-10:54:49.876 2ce4 Recovering log #1594
+2020/12/10-10:54:49.877 2ce4 Reusing old log C:\Users\guzulesc\PycharmProjects\JCB\selenium\Default\Local Storage\leveldb/001594.log 
+2020/12/10-10:55:57.981 3350 Level-0 table #1599: started
+2020/12/10-10:55:57.997 3350 Level-0 table #1599: 26751 bytes OK
+2020/12/10-10:55:58.003 3350 Delete type=0 #1594
